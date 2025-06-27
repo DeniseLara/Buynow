@@ -56,6 +56,11 @@
   margin-bottom: 3rem;
 }
 
+.featured-products-title {
+  font-size: var(--fs-xl);
+  color: #122C4D; 
+}
+
 .home-authenticated-subtitle {
   text-align: center;
   font-size: var(--fs-2xl);
