@@ -185,6 +185,7 @@
 }
 
 .profile-view p {
+  color: var(--text-color);
   font-size: var(--fs-base);
 }
 

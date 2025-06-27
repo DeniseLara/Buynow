@@ -20,6 +20,10 @@
   text-align: center;
 }
 
+.modal-content-sucess p {
+  color: #444
+}
+
 .modal-header-sucess{
   display:flex;
   justify-content: center;
