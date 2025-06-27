@@ -118,6 +118,7 @@
 
 .rating-count {
   font-size: var(--fs-sm);
+  color: var(--text-color);
   border-bottom: 1px solid #ccc;
 }
 
@@ -132,6 +133,11 @@
 .product-purchase-actions{
   display: flex;
   flex-direction: column;
+}
+
+.quantity {
+  font-size: var(--fs-sm);
+  color: var(--text-color);
 }
 
 label[for="quantity"] {

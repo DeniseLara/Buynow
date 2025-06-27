@@ -4,7 +4,7 @@ function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, produ
   return (
     <div className="product-purchase-actions">
      <div className="product-actions">
-        <label htmlFor="quantity">Quantity:</label>
+        <label className='quantity' htmlFor="quantity">Quantity:</label>
         <input
         id="quantity"
         type="number"
