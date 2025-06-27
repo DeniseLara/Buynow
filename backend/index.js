@@ -6,7 +6,7 @@ const Stripe = require('stripe');
 
 const cors = require('cors');  
 app.use(cors({
-  origin: ['https://buynow-hqd4.onrender.com','http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3001/'], // Especifica el puerto de tu frontend
+  origin: ['https://buynow-gy88.onrender.com','http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3001/'], // Especifica el puerto de tu frontend
 }));
 
 app.use(express.json());

@@ -18,7 +18,7 @@ if (totalWithShipping <= 0) {
 }
 
 // Obtener el client secret desde tu backend, enviando el ID del usuario
-const response = await fetch('http://localhost:3001/create-payment-intent', {
+const response = await fetch('https://buynow-backend-pdpx.onrender.com/create-payment-intent', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
