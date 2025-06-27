@@ -1,0 +1,65 @@
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from "react-icons/fa";
+
+import { useFeaturedProducts } from '../../hooks/useFeaturedProducts';
+
+function FeaturedProducts() {
+  const { products, loading } = useFeaturedProducts();  
+
+  return (
+    <section className="featured-products">
+      <h2 className="featured-products-title">Exclusive Product Highlights</h2>
+      <div className="product-list-public">
+      {products.slice(0, 8).map((product) => {
+          const hasDiscount = product.price > 50;
+          const discountAmount = 5;
+          const discountedPrice = hasDiscount
+            ? (product.price - discountAmount).toFixed(2)
+            : null;
+
+          return (
+            <div key={product.id} className="product-card-public">
+              <img
+                src={product.image}
+                alt={product.title}
+                className="product-image-public"
+              />
+              <h3 className="featured-products-subtitle">{product.title}</h3>
+
+              <div className="featured-info">
+                {hasDiscount ? (
+                  <div className="price-discount-wrapper">
+                    <strong className="discounted-price-public">${discountedPrice}</strong>
+                    <span className="original-price-public">${product.price.toFixed(2)}</span>
+                    <span className="discount-label">- $5</span>
+                  </div>
+                ) : (
+                  <strong className="featured-products-description">
+                    ${product.price.toFixed(2)}
+                  </strong>
+                )}
+
+                <Link
+                  to="/products/details"
+                  state={{ product, allProducts: products }}
+                  className="cta-btn-product-public"
+                  aria-label={`View details of ${product.name}`}
+                >
+                  View product <span className="arrow-icon-public"><FaArrowRight /></span>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+    <div className="view-all-container">
+     <Link to="/products" aria-label="view all products">
+    <span className="view-all-products">View all products</span>
+    </Link>
+    </div>
+    </section>
+  );
+}
+
+export default FeaturedProducts;

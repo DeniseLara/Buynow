@@ -1,0 +1,97 @@
+.skeleton-loader {
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 10rem auto;
+  width: 100%;  /* Ajusta para que ocupe más espacio */
+  max-width: 28rem; /* Asegura que el skeleton no sea más grande que el contenedor */
+}
+
+.skeleton-loader .react-loading-skeleton {
+  background-color: #ddd;
+  border-radius: 0.5rem;
+}
+
+/* Avatar de perfil */
+.skeleton-avatar {
+  width: 6rem;  /* Tamaño similar al avatar del perfil */
+  height: 6rem;
+  border-radius: 50%;
+}
+
+/* Títulos */
+.skeleton-title {
+  width: 12rem;
+  height: 1.2rem;
+  margin-bottom: 3rem;
+  border-radius: 0.5rem;
+}
+
+
+.skeleton-info {
+  width: 15rem;
+  margin-bottom: 1rem;
+  height: 1.3rem;
+  border-radius: 0.5rem;
+}
+
+.skeleton-info.delivery{
+  margin-bottom: 8rem;
+}
+
+.skeleton-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-info.pay{
+  width: 7.5rem;
+}
+
+
+
+@media (min-width:450px){
+  .skeleton-content{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    width: 24rem;
+  }
+}
+
+
+@media (min-width:768px){
+  .skeleton-loader{
+    margin-top: 12rem;
+    margin: 15rem auto;
+  }
+
+  .skeleton-title {
+    width: 15rem;
+    height: 1.2rem;
+    margin-bottom: 4.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .skeleton-content{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    width: 30rem;
+  }
+
+  .skeleton-info.pay{
+    width: 7.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+
+@media (min-width:1024px){
+  .skeleton-loader{
+    margin-top: 12rem;
+    margin: 10rem auto;
+  }
+}

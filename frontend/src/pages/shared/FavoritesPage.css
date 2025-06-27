@@ -1,0 +1,54 @@
+.favorites-page {
+  margin: 4.5rem 1.5rem;
+  font-size: var(--fs-base); 
+}
+
+.favorites-title{
+  margin-bottom: 1.2rem;
+  font-size: var(--fs-xl);
+}
+
+.favorites-page p {
+  font-size: var(--fs-md);
+}
+  
+.go-back-btn {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+  
+.favorites-grid {
+  display: grid;
+  gap: 1rem;
+  justify-content: start;
+  grid-template-columns: 
+  repeat(auto-fill, minmax(300px, 1fr));
+}
+
+
+
+@media (min-width:768px){
+  .favorites-page {
+    margin: 5rem 3rem;
+  }
+  
+  .favorites-grid{
+    justify-content: start;
+  }
+}
+
+
+@media (min-width:1024px){
+  .favorites-page {
+    margin: 5.2rem 3rem;
+  }
+}
+
+
+
+  

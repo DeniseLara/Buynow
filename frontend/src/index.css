@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  /*background-color: #242424;*/
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* PROFILE COLORS */
+  /*--primary-color: #0D3B66;*/
+  --secondary-color:#0D3B66;
+  --text-color: #333;
+  --bg-color: #f9f9f9;
+  --border-color: #ddd;
+
+  /* PRODUCTSPAGE COLORS */
+  --primary-color: #2272FF;
+  /*--secondary-color: #427388;*/
+  --background-color: #f8f9fa;
+  /*--text-color: #333;*/
+  /*--white: #fff;*/
+  --white-color: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+
+  /* NAVBAR COLORS */
+  /*--primary-color: #0D3B66;*/
+  /*--text-color: #FFFFFF;*/
+
+  --fx-xs: clamp(0.64rem, 0.608rem + 0.16vw, 0.8rem);
+  --fs-sm: clamp(0.8rem, 0.76rem + 0.2vw, 1rem);
+  --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+  --fs-md: clamp(1.25rem, 1.1875rem + 0.3125vw, 1.5625rem);
+  --fs-lg: clamp(1.5625rem, 1.4844rem + 0.3906vw, 1.9531rem);
+  --fs-xl: clamp(1.9531rem, 1.8555rem + 0.4883vw, 2.4414rem);
+  --fs-2xl: clamp(2.4414rem, 2.3193rem + 0.6104vw, 3.0518rem);
+  --fs-3xl: clamp(3.0518rem, 2.8992rem + 0.7629vw, 3.8147rem);
+}
+
+a {
+  font-weight: 500;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; /* quita el flash azul en móviles */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a:hover {
+  outline: none;
+  border: none;
+}
+
+.a:focus,
+.a:active{
+  border: none;
+  outline: none;
+}
+
+button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; /* quita el flash azul en móviles */
+}
+
+button:hover,
+button:active,
+button:focus{
+  border: none;
+  outline: none;
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  /*background-color: #F7F7F7;*/
+  /*background-color: 		#121212;*/
+}
+
+.path-container{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.path{
+  flex: 1;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 0.6rem;
+  /*border: 1px solid transparent;*/
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #ffffff;
+  /*background-color: #1a1a1a;*/
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  border-color: #646cff;
+}
+
+/*button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}*/
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    /*background-color: #F7F7F7;*/
+    background-color: #ffffff;
+  }
+  
+  button {
+    background-color: #f9f9f9;
+  }
+}

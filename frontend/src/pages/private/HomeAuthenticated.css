@@ -1,0 +1,132 @@
+.home-authenticated {
+  margin-top: 2rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero-authenticated-content{
+  padding: 1rem;
+}
+
+.hero-authenticated {
+  place-content: center;
+  text-align: center;
+  background-size:cover; /* Asegura que la imagen cubra todo el fondo */
+  background-position: center center; /* Centra la imagen */
+  background-attachment: unset;
+  height: 100vh;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url('../../assets/homeauth.jpg');
+  color: #ffffff;
+  border-radius: 1rem;
+  margin-bottom: 4rem;
+}
+
+.home-authenticated-title {
+  font-size: var(--fs-3xl);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  margin-bottom: 0.8rem;
+}
+
+.home-authenticated-description {
+  font-size: var(--fs-md);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2.5rem;
+}
+
+.explore-btn {
+  padding: 1rem 2rem;
+  font-size: var(--fs-base);
+  background-color: #ffffff;
+  color: #121212;
+  font-weight: 600;
+  border: none;
+  border-radius: 2rem;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.explore-btn:hover {
+  background-color: #e1e1e1;
+}
+
+.featured-products {
+  margin-bottom: 3rem;
+}
+
+.home-authenticated-subtitle {
+  text-align: center;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.product-list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 
+  repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-item {
+  background-color: #ffffff;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-item p {
+  margin-top: 0.5rem;
+  font-size: var(--fs-sm);
+}
+
+.product-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.user-info {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-details p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+
+
+@media (min-width: 600px) {
+  .product-item {
+    width: 45%;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .home-authenticated{
+    margin-top: 2rem;
+  }
+  
+  .product-item {
+    width: 30%;
+  }
+
+  .hero p {
+    font-size: 1.5rem;
+  }
+
+  .user-info {
+    padding: 3rem;
+  }
+}
+
