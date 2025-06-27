@@ -2,11 +2,9 @@ import { useState } from 'react';
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Perfil from '../../../assets/profile.png';
-import { useProfile } from '../../../context/ProfileContext';
 
 export function ProfileMenu({ user }) {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-  const { profileImage } = useProfile();
 
 
   if (!user) {
@@ -31,7 +29,7 @@ export function ProfileMenu({ user }) {
     <div className="icon-wrapper profile-avatar">
         <Link to="/profile" className="icon-link" aria-label='go to profile page'>
             <img 
-                src={profileImage || Perfil} 
+                src={Perfil} 
                 alt="Profile Avatar" 
                 className="avatar-image"
                 loading='lazy' 
