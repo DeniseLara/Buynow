@@ -52,6 +52,7 @@
 }
 
 .cart-summary p{
+  color: var(--text-color);
   margin-bottom: 1rem;
   font-size: var(--fs-base);
 }
@@ -63,6 +64,7 @@
 }
 
 .cart-summary-subtitle {
+  color: #084275; 
   margin-bottom: 1rem;
   font-size: var(--fs-md);
 }
@@ -76,6 +78,7 @@
 }
 
 .cart-item p {
+  color: var(--text-color);
   font-size: var(--fs-base);
 }
   

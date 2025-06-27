@@ -3,14 +3,13 @@ import Perfil from '../../assets/profile.png';
 function ProfileHeader({ 
   user, 
   userName, 
-  profileImage, 
 }) {
   
   return (
     <div className="profile-header">
         <div className="profile-avatar-wrapper">
         <img
-          src={profileImage || user?.photoURL || Perfil}
+          src={Perfil}
           alt="user's profile picture"
           className="profile-avatar"
           loading="lazy"

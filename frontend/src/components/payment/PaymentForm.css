@@ -37,7 +37,7 @@
   /*font-size: 1rem;*/
   font-size: var(--fs-base);
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--text-color);
 }
 
 .shipping-address {
@@ -158,6 +158,7 @@
 
 .shipping-summary,
 .final-total{
+  color: #4a4a4a;
   display: flex;
   font-size: var(--fs-base);
   margin-bottom: 0.5rem;
