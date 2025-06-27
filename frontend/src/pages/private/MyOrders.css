@@ -2,7 +2,8 @@
   padding: 4rem 1.2rem;
 }
 
-.orders-container h2{
+.orders-title{
+  color: #122C4D; 
   font-size: var(--fs-xl);
   margin-bottom: 1rem;
 }

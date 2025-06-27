@@ -31,6 +31,7 @@
 }
 
 .profile-title{
+  color: #122C4D;
   margin-bottom: 1rem;
   font-size: var(--fs-xl);
 }

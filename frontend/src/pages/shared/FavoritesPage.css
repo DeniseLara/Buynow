@@ -4,6 +4,7 @@
 }
 
 .favorites-title{
+  color: #122C4D; 
   margin-bottom: 1.2rem;
   font-size: var(--fs-xl);
 }

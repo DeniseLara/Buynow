@@ -13,7 +13,7 @@ function MyOrders() {
 
   return (
     <div className="orders-container">
-      <h2>My orders</h2>
+      <h1 className="orders-title">My orders</h1>
       {orders.map((order) => (
       <OrderCard 
         key={order.id}
