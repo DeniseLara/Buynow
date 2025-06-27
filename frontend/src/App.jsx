@@ -1,21 +1,24 @@
+import { Suspense, lazy } from "react";
 import {  Routes, Route, Navigate } from "react-router-dom";
 
 import { useAuth } from './context/AuthContext';
 import { useProfile } from './context/ProfileContext';
 
-import HomePublic from './pages/public/HomePublic'
-import HomeAuthenticated from './pages/private/HomeAuthenticated'
 import Navbar from './components/layout/navbar/Navbar';
-import Signup from './pages/public/Signup'
-import Login from './pages/public/Login'
-import Profile from './pages/private/Profile'
-import ProductsPage from './pages/shared/ProductsPage'; 
-import CartPageWrapper from './CartPageWrapper'; 
-import ProductDetails from './pages/shared/ProductDetails';
-import FavoritesPage from './pages/shared/FavoritesPage';
-import MyOrders from './pages/private/MyOrders'
 import Footer from './components/layout/footer/Footer'
 import Loading from './components/ui/Loading'
+
+// Importación dinámica para code splitting
+const HomePublic = lazy(() => import('./pages/public/HomePublic'));
+const HomeAuthenticated = lazy(() => import('./pages/private/HomeAuthenticated'));
+const Signup = lazy(() => import('./pages/public/Signup'));
+const Login = lazy(() => import('./pages/public/Login'));
+const Profile = lazy(() => import('./pages/private/Profile'));
+const ProductsPage = lazy(() => import('./pages/shared/ProductsPage'));
+const CartPageWrapper = lazy(() => import('./CartPageWrapper'));
+const ProductDetails = lazy(() => import('./pages/shared/ProductDetails'));
+const FavoritesPage = lazy(() => import('./pages/shared/FavoritesPage'));
+const MyOrders = lazy(() => import('./pages/private/MyOrders'));
 
 function App() {
   const { user, loading } = useAuth();
@@ -26,19 +29,20 @@ function App() {
     <div className="path-container">
      <Navbar user={user} profileImage={profileImage}/>
       
+    <Suspense fallback={<Loading />}>
       <main className='path'>
-      <Routes>
-      <Route 
+        <Routes>
+          <Route 
             path="/" 
             element={user ? <HomeAuthenticated user={user} /> : <HomePublic />} 
           />
           
-      <Route 
+          <Route 
             path="/profile" 
             element={user ? <Profile user={user} profileImage={profileImage} /> : <Navigate to="/login" />}
           />
 
-      <Route 
+          <Route 
             path="/signup" 
             element={user ? <Navigate to="/" /> : <Signup />} 
           />
@@ -48,16 +52,15 @@ function App() {
             element={user ? <Navigate to="/" /> : <Login />} 
           />
 
-        <Route 
-          path="/cart" 
-          element={user ? <CartPageWrapper /> : <Navigate to="/login" />} 
-        />
+          <Route 
+            path="/cart" 
+            element={user ? <CartPageWrapper /> : <Navigate to="/login" />} 
+          />
 
-         <Route 
+          <Route 
             path="/products" 
             element={<ProductsPage user={user} />} 
-            />
-
+          />
 
           <Route 
             path="/favorites" 
@@ -67,14 +70,15 @@ function App() {
           <Route 
             path="/orders" 
             element={user ? <MyOrders /> : <Navigate to="/login" />} 
-            />
+          />
 
           <Route 
             path="/products/details" 
             element={<ProductDetails user={user} />} 
-            />
+          />
       </Routes>
       </main>
+    </Suspense>
 
       <Footer/>
     </div>

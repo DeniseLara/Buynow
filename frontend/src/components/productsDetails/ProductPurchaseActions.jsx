@@ -1,4 +1,3 @@
-// src/components/products/ProductPurchaseActions.jsx
 import PropTypes from 'prop-types';
 
 function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, productTitle }) {    

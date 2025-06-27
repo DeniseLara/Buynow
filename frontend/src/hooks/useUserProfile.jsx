@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { getUserProfile } from "../firebase/firebase";
-import { uploadProfileImage, removeProfileImage } from '../storage/storage';
 import { useProfile } from "../context/ProfileContext";
 import { usePayment } from "../context/PaymentContext";
 import { useAuth } from "../context/AuthContext";
@@ -42,30 +41,11 @@ export function useUserProfile() {
     }
   }, [user]);
 
-  const handleProfileImageChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    
-    try {
-      const downloadURL = await uploadProfileImage(file, user.uid);
-      await updateProfileImage(downloadURL);
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-    }
-  };
-
-  const handleRemoveProfileImage = async () => {
-    try {
-      await removeProfileImage(user.uid);
-      await updateProfileImage(Perfil);
-    } catch (error) {
-      console.error("Error al eliminar la imagen de perfil:", error);
-    }
-  };
 
   const handleLogout = async () => {
     await signOut(auth);
   };
+
 
   const handleEditToggle = () => {
     if (!editMode) {
@@ -77,9 +57,11 @@ export function useUserProfile() {
     setEditMode(!editMode);
   };
 
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
 
   const handleAddPaymentMethod = () => {
     if (selectedCard === null) return;
@@ -87,6 +69,7 @@ export function useUserProfile() {
     addPaymentMethod(selected);
     setSelectedCard(null);
   };
+
 
   const handleSaveChanges = async () => {
     if (!formData.address.trim()) {
@@ -102,6 +85,7 @@ export function useUserProfile() {
     }
   };
 
+
   return {
     user,
     userData,
@@ -114,8 +98,6 @@ export function useUserProfile() {
     setFormData,
     selectedCard,
     setSelectedCard,
-    handleProfileImageChange,
-    handleRemoveProfileImage,
     handleLogout,
     handleEditToggle,
     handleChange,
