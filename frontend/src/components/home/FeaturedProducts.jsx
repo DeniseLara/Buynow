@@ -20,7 +20,7 @@ function FeaturedProducts() {
 
           return (
             <li key={product.id} className="product-card-public">
-              <article className="product-card-public" aria-labelledby={`product-title-${product.id}`}>
+              <article className="product-card-public-details" aria-labelledby={`product-title-${product.id}`}>
                 <img
                 src={product.image}
                 alt={product.title}
