@@ -3,11 +3,12 @@ import { FaGem, FaLock, FaHeadset } from 'react-icons/fa';
 
 function Benefits() {
     return (
-      <section className="benefits">
-        <h2 className="benefits-title">Why choose us?</h2>
+      <section className="benefits" aria-labelledby="benefits-title">
+        <h2 id="benefits-title" className="benefits-title">Why choose us?</h2>
+
         <div className="benefit-cards">
           <article className="benefit-card">
-          <FaGem className="benefit-icon" />
+            <FaGem className="benefit-icon" />
             <h3 className="benefits-subtitle">Quality Products</h3>
             <p className="benefits-description">
               We only offer the best products for you, ensuring quality and durability.

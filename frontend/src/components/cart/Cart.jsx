@@ -7,11 +7,12 @@ function Cart({ items, onRemoveFromCart, onClearCart }) {
   }
 
   return (
-    <div className="cart">
+    <article className="cart">
       <h2 className="cart-subtitle">Shopping Cart</h2>
 
+    <ul className="cart-list">  
       {items.map((item) => (
-        <div key={item.id} className="cart-item">
+        <li key={item.id} className="cart-item">
           <p>{item.title} - ${item.price} x {item.quantity}</p>
           <button 
             className="cart-delete-button" 
@@ -20,16 +21,18 @@ function Cart({ items, onRemoveFromCart, onClearCart }) {
             type="button">
             <RiDeleteBin6Line />
           </button>
-        </div>
+        </li>
       ))}
+    </ul>
 
-      <button className="clear-button" 
+      <button 
+      className="clear-button" 
       onClick={onClearCart}
       aria-label="empty cart button"
       type="button">
         Empty Cart
       </button>
-    </div>
+    </article>
   );
 };
 

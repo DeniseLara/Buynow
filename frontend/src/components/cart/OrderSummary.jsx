@@ -2,7 +2,7 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 
 function OrderSummary({ total, onCheckoutClick, isDisabled }) {
   return (
-    <section className="cart-summary">
+    <aside className="cart-summary">
         <h2 className="cart-summary-subtitle">Order Summary</h2>
         <p>Total: <strong className="cart-total">${total.toFixed(2)}</strong></p> 
       
@@ -20,7 +20,7 @@ function OrderSummary({ total, onCheckoutClick, isDisabled }) {
       <span><RiErrorWarningLine className='warning-icon'/> </span>
       This platform is for demonstration purposes only. No real payments are processed.
     </p>
-    </section>
+    </aside>
   );
 }
 

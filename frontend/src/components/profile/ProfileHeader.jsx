@@ -7,19 +7,19 @@ function ProfileHeader({
   
   return (
     <div className="profile-header">
-        <div className="profile-avatar-wrapper">
+      <figure className="profile-avatar-wrapper">
         <img
           src={Perfil}
           alt="user's profile picture"
           className="profile-avatar"
           loading="lazy"
         />
-        </div>
+      </figure>
           
-    <div className="profile-principal-text">
+      <div className="profile-principal-text">
         <h2 className="username">{userName || "User"}</h2>
         <p className="email">{user?.email}</p>
-        </div>
+      </div>
     </div>
   );
 }

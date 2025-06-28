@@ -29,7 +29,7 @@ return (
     >
         <AiOutlineArrowLeft /> 
     </button>
-    );
+  );
 }
 
 export default BackButton;

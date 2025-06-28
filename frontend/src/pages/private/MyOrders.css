@@ -13,7 +13,6 @@
   padding: 1rem;
   font-size: var(--fs-sm);
   border-radius: 1rem;
-  margin-bottom: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   color: #333333;
 }
@@ -37,15 +36,15 @@
 
 .orders-list{
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   gap: 1.2rem;
   margin-bottom: 1.2rem;
-  overflow-x: auto;
+  /*overflow-x: auto;
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE y Edge */
+  /*-ms-overflow-style: none;  /* IE y Edge */
   /* Para evitar que la lista se rompa por salto de línea */
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 
 .order-item{

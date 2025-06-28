@@ -4,19 +4,21 @@ import { GoChevronRight } from "react-icons/go";
 function ViewLinks() {
   return (
     <div className="profile-view-details">
-          <section className="profile-view">
-          <p>View order history</p> 
-            <Link className="btn-view" to="/orders"> 
+      <ul className="profile-view-list">
+        <li className="profile-view">
+          <span>View order history</span> 
+          <Link className="btn-view" to="/orders"> 
             <GoChevronRight/>
-            </Link>
-          </section>
+          </Link>
+        </li>
 
-          <section className="profile-view">
-          <p>View wishlist</p> 
-            <Link className="btn-view" to="/favorites"> 
+        <li className="profile-view">
+          <span>View wishlist</span> 
+          <Link className="btn-view" to="/favorites"> 
             <GoChevronRight/>
-            </Link>
-        </section>
+          </Link>
+        </li>
+      </ul>
     </div>
   );
 }

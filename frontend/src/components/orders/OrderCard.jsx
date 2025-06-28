@@ -9,11 +9,11 @@ function OrderCard({ order, cancelingOrders, handleCancelOrder }) {
   const status = order.status ?? "Status not available";
 
   return (
-    <div className="order-card">
-      <div className="order-principal-text">
-        <p><strong>Order</strong> #{order.id.slice(0, 8)}</p>
-        <p className="order-date">{formattedDate}</p>
-      </div>
+    <article className="order-card" aria-labelledby={`order-${order.id}-title`}>
+      <header className="order-principal-text">
+        <p id={`order-${order.id}-title`}><strong>Order</strong> #{order.id.slice(0, 8)}</p>
+        <time className="order-date" dateTime={order.date}>{formattedDate}</time>
+      </header>
 
       <ul className="order-items">
         {order.items.map((item, index) => (
@@ -24,10 +24,10 @@ function OrderCard({ order, cancelingOrders, handleCancelOrder }) {
         ))}
       </ul>
 
-      <div className="order-total-detail">
+      <footer className="order-total-detail">
         <strong className={`order-status ${order.status}`}>{status}</strong>
         <p className="order-total">Total: <strong>{totalPaid}</strong></p>
-      </div>
+      </footer>
 
       {order.status !== "canceled" && (
         <button
@@ -40,7 +40,7 @@ function OrderCard({ order, cancelingOrders, handleCancelOrder }) {
           {isCanceling ? "Cancelings..." : "Cancel Order"} 
         </button>
       )}
-    </div>
+    </article>
   );
 };
 

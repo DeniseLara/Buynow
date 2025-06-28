@@ -25,23 +25,23 @@ function CartPage() {
   
 
   return (
-    <section className="cart-page">
-      <BackButton/>
-      
-      <h1 className="cart-title">Your cart</h1>
+    <div className="cart-page">
+      <header>
+        <BackButton/>
+        <h1 className="cart-title">Your cart</h1>
+      </header>
 
+      <section>
       {cart.length === 0 ? (
         <p role="alert">Your cart is empty</p>
       ) : (
         <>
-        <article>
           <Cart 
             items={cart} 
             onRemoveFromCart={removeFromCart} 
             onClearCart={clearCart} 
           />
-        </article>
-
+        
           <OrderSummary
           total={total}
           onCheckoutClick={() => setShowPaymentForm(true)}
@@ -49,6 +49,7 @@ function CartPage() {
           />
         </>
       )}
+      </section>
 
        <Modal isOpen={showPaymentForm} onClose={() => setShowPaymentForm(false)}>
        <PaymentForm
@@ -62,7 +63,7 @@ function CartPage() {
     {showSuccessModal && (
       <PaymentSuccessModal onClose={() => setShowSuccessModal(false)} />
     )}
-  </section>
+  </div>
   );
 }
 

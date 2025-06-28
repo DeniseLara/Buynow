@@ -12,17 +12,21 @@ function MyOrders() {
   }
 
   return (
-    <div className="orders-container">
+    <section className="orders-container">
       <h1 className="orders-title">My orders</h1>
+
+      <ul className="orders-list">
       {orders.map((order) => (
-      <OrderCard 
-        key={order.id}
-        order={order}
-        cancelingOrders={cancelingOrders}
-        handleCancelOrder={handleCancelOrder}
-      />
-      ))}
-    </div>
+        <li key={order.id}>
+          <OrderCard 
+          order={order}
+          cancelingOrders={cancelingOrders}
+          handleCancelOrder={handleCancelOrder}
+          />
+        </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 

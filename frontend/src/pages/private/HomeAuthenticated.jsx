@@ -10,8 +10,8 @@ function HomeAuthenticated() {
   const { products, loading } = useFeaturedProducts();
 
   return (
-    <div className="home-authenticated">
-      <div className="hero-authenticated">
+    <section className="home-authenticated">
+      <header className="hero-authenticated">
         <div className="hero-authenticated-content">
         <h1 className="home-authenticated-title">
         Welcome back, {userName || 'Guest'}!
@@ -24,21 +24,23 @@ function HomeAuthenticated() {
           Explore products
         </Link>
         </div>
-      </div>
+      </header>
 
-      <section className="featured-products">
-        <h2 className="home-authenticated-subtitle">Featured Products</h2>
+      <section className="featured-products" aria-labelledby="featured-products-title">
+        <h2 className="home-authenticated-subtitle" id="featured-products-title">Featured Products</h2>
         {loading ? (
           <p>Loading products...</p> 
         ) : (
-          <div className="product-list">
+          <ul className="product-list">
            {products.slice(0, 8).map((product) => (
-              <ProductCard key={product.id} product={product}/>
+              <li key={product.id}>
+                <ProductCard product={product}/>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </section>
-    </div>
+    </section>
   );
 }
 

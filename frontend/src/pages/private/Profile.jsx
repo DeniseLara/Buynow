@@ -36,20 +36,18 @@ function Profile() {
   }
 
   return (
-    <div className="profile-data-container">
-      
-      <div className="profile-principal">
-      <h1 className="profile-title">My profile</h1>
-
-      <button 
-      className="edit-profile-button" 
-      onClick={handleEditToggle} 
-      aria-label="edit profile"
-      type="button"
-      >
-        <MdEdit />
-      </button>
-      </div>
+    <section className="profile-data-container" aria-labelledby="profile-title">
+      <header className="profile-principal">
+        <h1 id="profile-title" className="profile-title">My profile</h1>
+        <button 
+        className="edit-profile-button" 
+        onClick={handleEditToggle} 
+        aria-label="edit profile"
+        type="button"
+        >
+          <MdEdit />
+        </button>
+      </header>
 
       <ProfileHeader
       user={user} 
@@ -82,7 +80,7 @@ function Profile() {
           onClick={handleSaveChanges}
           aria-label="save profile changes"
           >
-          Save Changes
+            Save Changes
           </button>
         )}
           
@@ -97,7 +95,7 @@ function Profile() {
           Log Out
         </button>
     </div>
-  </div>
+  </section>
   );
 }
 

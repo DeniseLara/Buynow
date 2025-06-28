@@ -47,8 +47,8 @@ export const loginUser = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user; // El objeto del usuario logueado
   } catch (error) {
-    console.error("Error al iniciar sesión:", error.message);
-    return null;
+    console.error("Error al iniciar sesión:", error.code);
+    throw error; 
   }
 };
 

@@ -10,12 +10,12 @@ function Login() {
     const { handleLogin, loginError } = useLogin();
 
     return (
-        <div className="form-container">
-            <div className="form-card">
-                <h1>Welcome Back to <span>BuyNow</span> 🛍️</h1>
+        <section className="form-container" aria-label="Login form">
+            <article className="form-card">
+                <h1 id="login-title">Welcome Back to <span>BuyNow</span> 🛍️</h1>
                 <p>Login to continue shopping with us.</p>
                 
-                <form onSubmit={handleSubmit((data) => handleLogin(data, setError))}>
+                <form onSubmit={handleSubmit((data) => handleLogin(data, setError))} noValidate>
                     <div className="input-group">
                         <input 
                             type="email"
@@ -34,18 +34,27 @@ function Login() {
                             placeholder="Enter your password"
                             autoComplete="current-password"
                             aria-invalid={errors.password ? "true" : "false"}
-                            aria-describedby="password-error"
+                            aria-describedby={errors.password ? "password-error" : undefined}
                             {...register("password", { 
                                 required: "Password is required", 
                                 minLength: { value: 6, message: "Password must be at least 6 characters" } 
                             })}
                         />
-                        {errors.password && <p className="error">{errors.password.message}</p>}
+                        {errors.password && (
+                            <p id="password-error" className="error" role="alert">
+                                {errors.password.message}
+                            </p>
+                        )}
                     </div>
 
-                    {errors.firebase && <p className="error-message">{errors.firebase.message}</p>} 
+                    {errors.firebase && (
+                        <p id="form-error" className="error-message" role="alert">
+                            {errors.firebase.message}
+                        </p>
+                    )} 
 
-                    <button type="submit" 
+                    <button 
+                    type="submit" 
                     className="form-btn"
                     aria-label="submit login form"
                     >
@@ -56,8 +65,8 @@ function Login() {
                 <p className="form-text">
                     Don't have an account? <Link to="/signup">Sign up</Link>
                 </p>
-            </div>
-        </div>
+            </article>
+        </section>
     );
 }
 

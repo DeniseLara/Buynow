@@ -11,40 +11,41 @@ function PaymentMethods({
 }) {
   
   return (
-    <div className="profile-section">
-          <h3>Payment Methods</h3>
+    <section className="profile-section" aria-labelledby="payment-methods-title">
+      <h3 id="payment-methods-title">Payment Methods</h3>
 
-          {editMode ? (
-            <>
-          <div className="card-filter">
-          {fakeTestCards.map((card) => (
-          <button
-          type="button"
-            key={card.id}
-            className={`card-option ${selectedCard === card.id ? 'selected' : ''}`}
-            onClick={() => setSelectedCard(card.id)}
-            aria-label="select card"
-            >
-            <img src={card.logo} alt={card.brand} className="card-logo" />
-          </button>
-          ))}
-          </div>
+        {editMode ? (
+          <>
+            <div className="card-filter">
+              {fakeTestCards.map((card) => (
+                <button
+                type="button"
+                key={card.id}
+                className={`card-option ${selectedCard === card.id ? 'selected' : ''}`}
+                onClick={() => setSelectedCard(card.id)}
+                aria-label="select card"
+                >
+                  <img src={card.logo} alt={card.brand} className="card-logo" />
+                </button>
+              ))}
+            </div>
 
 
             {selectedCard !== null && (
-                <button 
+              <button 
                 type="button"
                 className="add-payment-button" 
                 onClick={handleAddPaymentMethod}
                 aria-label="add card"
-                >
-                 <strong><IoIosAdd/></strong>
-                 <p className="add-payment-text">Add</p> 
-                </button>
+              >
+                <strong><IoIosAdd/></strong>
+                <p className="add-payment-text">Add</p> 
+              </button>
              )}
-
+              
+            <ul className="payment-cards-list">
               {paymentMethods.map((method, index) => (
-                <div className="payment-card" key={index}>
+                <li key={index} className="payment-card">
                 <p>{method.brand} **** {method.last4}</p> 
                   <button 
                   type="button"
@@ -54,24 +55,25 @@ function PaymentMethods({
                   >
                     <IoIosRemoveCircleOutline/>
                   </button>
-                </div>
+                </li>
               ))}
-            </>
+            </ul>
+          </>
           ) : (
-            <div>
-            {paymentMethods.length > 0 ? (
-              paymentMethods.map((method, index) => (
-                <div key={index} className="payment-method-display">
-                  <img src={method.logo} alt={method.brand} className="card-logo-display" />
-                  <p>{method.brand} **** {method.last4}</p>
-                </div>
-              ))
-            ) : (
-              "You don't have any saved payment methods."
-            )}
-        </div>
-        )}
-    </div>
+            <ul>
+              {paymentMethods.length > 0 ? (
+                paymentMethods.map((method, index) => (
+                  <li key={index} className="payment-method-display">
+                    <img src={method.logo} alt={method.brand} className="card-logo-display" />
+                    <p>{method.brand} **** {method.last4}</p>
+                  </li>
+                ))
+              ) : (
+                <li>"You don't have any saved payment methods."</li>
+              )}
+            </ul>
+          )}
+      </section>
   );
 }
 

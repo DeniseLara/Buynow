@@ -63,6 +63,7 @@
 
 .home-authenticated-subtitle {
   text-align: center;
+  color: #122C4D; 
   font-size: var(--fs-2xl);
   font-weight: 700;
   margin-bottom: 1.2rem;

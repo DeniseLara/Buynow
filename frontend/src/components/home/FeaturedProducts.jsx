@@ -7,9 +7,10 @@ function FeaturedProducts() {
   const { products, loading } = useFeaturedProducts();  
 
   return (
-    <section className="featured-products">
-      <h2 className="featured-products-title">Exclusive Product Highlights</h2>
-      <div className="product-list-public">
+    <section className="featured-products" aria-labelledby="featured-products-title">
+      <h2 id="featured-products-title" className="featured-products-title">Exclusive Product Highlights</h2>
+
+      <ul className="product-list-public">
       {products.slice(0, 8).map((product) => {
           const hasDiscount = product.price > 50;
           const discountAmount = 5;
@@ -18,13 +19,14 @@ function FeaturedProducts() {
             : null;
 
           return (
-            <div key={product.id} className="product-card-public">
-              <img
+            <li key={product.id} className="product-card-public">
+              <article className="product-card-public" aria-labelledby={`product-title-${product.id}`}>
+                <img
                 src={product.image}
                 alt={product.title}
                 className="product-image-public"
-              />
-              <h3 className="featured-products-subtitle">{product.title}</h3>
+                />
+                <h3 className="featured-products-subtitle">{product.title}</h3>
 
               <div className="featured-info">
                 {hasDiscount ? (
@@ -48,16 +50,17 @@ function FeaturedProducts() {
                   View product <span className="arrow-icon-public"><FaArrowRight /></span>
                 </Link>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            </article>
+          </li>
+        );
+      })}
+    </ul>
 
-    <div className="view-all-container">
-     <Link to="/products" aria-label="view all products">
-    <span className="view-all-products">View all products</span>
-    </Link>
-    </div>
+      <div className="view-all-container">
+        <Link to="/products" aria-label="view all products">
+          <span className="view-all-products">View all products</span>
+        </Link>
+      </div>
     </section>
   );
 }

@@ -5,7 +5,7 @@ function SavedCardsSelector({ paymentMethods, selectedCard, onSelect, error }) {
     const card = paymentMethods[0];
     return (
       <div className="single-card-message">
-        <p>Your saved card: {card.brand} •••• {card.last4}</p>
+        <p>Your saved card: <strong>{card.brand} •••• {card.last4}</strong></p>
       </div>
     );
   }
@@ -18,6 +18,7 @@ function SavedCardsSelector({ paymentMethods, selectedCard, onSelect, error }) {
         value={selectedCard}
         onChange={onSelect}
         className="saved-cards-dropdown"
+        required
       >
         <option value="">-- Select a Card --</option>
         {paymentMethods.map((method) => (
