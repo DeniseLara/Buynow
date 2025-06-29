@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { loadCartFromFirebase, saveCartToFirebase } from '../firebase/firebase';
+import { loadCartFromFirebase, saveCartToFirebase, saveUserOrder } from '../firebase/firebase';
 import { useAuth } from './AuthContext';
 
 const CartContext = createContext();
@@ -11,7 +11,7 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const { user,loading: authLoading } = useAuth();
   const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(true); // Agregar estado de carga
+  const [loading, setLoading] = useState(true); 
 
 // Escuchar cambios de autenticación y cargar carrito solo una vez por usuario
 useEffect(() => {
@@ -38,7 +38,7 @@ useEffect(() => {
 }, [user, authLoading]);
 
 
-  // Guardar el carrito en Firebase solo cuando cambia
+// Guardar el carrito en Firebase solo cuando cambia
 useEffect(() => {
   if (user?.uid) {
     const timeout = setTimeout(() => {
@@ -60,7 +60,7 @@ const addToCart = (item, quantity = 1) => {
   console.log('Producto agregado al carrito:', item);
 
   setCart((prevCart) => {
-    // Primero, buscamos si el producto ya está en el carrito
+    // buscamos si el producto ya está en el carrito
     const existingItem = prevCart.find((product) => product.id === item.id);
 
     if (existingItem) {
@@ -69,7 +69,7 @@ const addToCart = (item, quantity = 1) => {
       // Si el producto ya existe, solo incrementamos la cantidad
       return prevCart.map((product) =>
         product.id === item.id 
-      ? { ...product, quantity: product.quantity + quantity } // 👈 sumamos la cantidad nueva
+      ? { ...product, quantity: product.quantity + quantity } // sumamos la cantidad nueva
       : product
       );
     } else {
@@ -78,6 +78,25 @@ const addToCart = (item, quantity = 1) => {
       return [...prevCart, { ...item, quantity }];
     }
   });
+};
+
+
+const checkout = async (setShowPaymentForm, setShowSuccessModal) => {
+  if (!user) {
+    alert("Debes iniciar sesión para finalizar la compra");
+    return;
+  }
+
+  try {
+    await saveUserOrder(user.uid, cart); // Guarda la orden
+    clearCart(); // Limpia el estado local
+    await saveCartToFirebase(user.uid, { items: [] }); // Limpia el carrito en Firebase
+    setShowPaymentForm(false);
+    setShowSuccessModal(true);
+  } catch (error) {
+    console.error("Error al procesar la orden:", error);
+    alert("Ocurrió un error al completar la orden. Intenta nuevamente.");
+  }
 };
 
 
@@ -92,11 +111,11 @@ const clearCart = () => setCart([]);
 
 
 if (loading || authLoading) {
-  return null; // O mostrar un loader si estás cargando el carrito
+  return null;
 }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, checkout }}>
       {children}
     </CartContext.Provider>
   );

@@ -12,19 +12,19 @@ function FeaturedProducts() {
 
       <ul className="product-list-public">
       {products.slice(0, 8).map((product) => {
-          const hasDiscount = product.price > 50;
-          const discountAmount = 5;
-          const discountedPrice = hasDiscount
-            ? (product.price - discountAmount).toFixed(2)
-            : null;
+        const hasDiscount = product.discountPercentage > 0;
+        const discountedPrice = hasDiscount
+          ? (product.price * (1 - product.discountPercentage / 100)).toFixed(2)
+          : null;
 
           return (
             <li key={product.id} className="product-card-public">
               <article className="product-card-public-details" aria-labelledby={`product-title-${product.id}`}>
                 <img
-                src={product.image}
+                src={product.thumbnail}
                 alt={product.title}
                 className="product-image-public"
+                loading="lazy"
                 />
                 <h3 className="featured-products-subtitle">{product.title}</h3>
 
@@ -33,7 +33,7 @@ function FeaturedProducts() {
                   <div className="price-discount-wrapper">
                     <strong className="discounted-price-public">${discountedPrice}</strong>
                     <span className="original-price-public">${product.price.toFixed(2)}</span>
-                    <span className="discount-label">- $5</span>
+                    <span className="discount-label">- {product.discountPercentage.toFixed(0)}%</span>
                   </div>
                 ) : (
                   <strong className="featured-products-description">
@@ -45,7 +45,7 @@ function FeaturedProducts() {
                   to="/products/details"
                   state={{ product, allProducts: products }}
                   className="cta-btn-product-public"
-                  aria-label={`View details of ${product.name}`}
+                  aria-label={`View details of ${product.title}`}
                 >
                   View product <span className="arrow-icon-public"><FaArrowRight /></span>
                 </Link>

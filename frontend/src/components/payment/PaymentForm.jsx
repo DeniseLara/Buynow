@@ -81,9 +81,9 @@ function PaymentForm({ total, cart, onSucces }) {
   
 
   return (
-    <div className="payment-container">
-        <form className="payment-form" onSubmit={handleSubmit}>
-          <h2 className="payment-title">Payment Summary</h2>
+    <section className="payment-container" aria-labelledby="payment-title" role="region">
+      <form className="payment-form" onSubmit={handleSubmit}>
+        <h2 id="payment-title" className="payment-title">Payment Summary</h2>
           
         <ShippingAddressInput
           address={address}
@@ -108,7 +108,7 @@ function PaymentForm({ total, cart, onSucces }) {
           {isProcessing ? 'Processing...' : `PAY`}
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

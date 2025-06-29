@@ -11,8 +11,8 @@
 .hero-authenticated {
   place-content: center;
   text-align: center;
-  background-size:cover; /* Asegura que la imagen cubra todo el fondo */
-  background-position: center center; /* Centra la imagen */
+  background-size:cover; 
+  background-position: center center; 
   background-attachment: unset;
   height: 100vh;
   background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),

@@ -11,7 +11,6 @@ export const useLogin = () => {
         navigate("/");
       }
     } catch (err) {
-      // SOLO USAS LOS MENSAJES PERSONALIZADOS
       let message = "An unexpected error occurred.";
       if (err.code === "auth/user-not-found") {
         message = "No estás registrado. Por favor crea una cuenta.";

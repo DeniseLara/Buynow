@@ -7,8 +7,8 @@ const PaymentContext = createContext();
 export const PaymentProvider = ({ children }) => {
   const { user, userData, loading: authLoading, setUserData } = useAuth();
   const [paymentMethods, setPaymentMethods] = useState([]);
-  const [address, setAddress] = useState(""); //  Estado de la dirección
-  const [shippingCost, setShippingCost] = useState(0); // Agregamos el estado para el costo de envío
+  const [address, setAddress] = useState(""); 
+  const [shippingCost, setShippingCost] = useState(0); 
   const [loading, setLoading] = useState(true);
 
 
@@ -31,7 +31,7 @@ useEffect(() => {
 const addPaymentMethod = async (newCard) => {
   const cardWithId = {
     ...newCard,
-    id: newCard.id || `${newCard.brand}-${newCard.last4}` // o cualquier formato único que prefieras
+    id: newCard.id || `${newCard.brand}-${newCard.last4}` 
   };
 
   const updated = [...paymentMethods, cardWithId];
@@ -63,7 +63,7 @@ const updateAddress = async (newAddress) => {
 };
 
 
-// Nueva función para actualizar el costo de envío (en centavos)
+// función para actualizar el costo de envío (en centavos)
 const updateShippingCost = (cost) => {
   setShippingCost(cost * 100);  // Guardamos el costo en centavos
 };

@@ -10,60 +10,69 @@ import getCategoryIcon from "../../utils/getCategoryIcon";
 import ProductList from "../../components/products/ProductList";
 
 function ProductsPage() {
-  const { products, categories } = useProducts();
+  const { products, categories, CATEGORY_MAP } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState("");
   
   const { addToCart } = useCart();
-  const { searchQuery } = useSearch(); // Obtener el texto del buscador
+  const { searchQuery } = useSearch(); 
+
+  
+  const formatCategoryName = (category) => {
+  return category
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase());
+};
 
   // Filtro por categoría y por búsqueda
   const filteredProducts = products.filter((product) => {
-    const matchesCategory = !selectedCategory || product.category === selectedCategory;
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    const belongsToSelectedGroup = !selectedCategory
+      || CATEGORY_MAP[selectedCategory]?.includes(product.category);
+
+    const matchesSearch = product.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    return belongsToSelectedGroup && matchesSearch;
   });
 
 
   return (
-    <div className="products">
-      <div className="products-content">
-      <h1 className="products-title">Welcome to Buynow</h1>
-      <p className="products-description">Fashion, technology, and style, all in one place.</p>
-    </div>
+    <section className="products" aria-label="Product catalog">
+      <header className="products-content">
+        <h1 className="products-title">Welcome to Buynow</h1>
+        <p className="products-description">Fashion, technology, and style, all in one place.</p>
+      </header>
       
-    <div className="category-scroll-wrapper">
+    <nav className="category-scroll-wrapper" aria-label="Product categories">
       <div className="category-filters">
         <button
-        className={`category-button ${selectedCategory === '' ? 'active' : ''}`}
-        onClick={() => setSelectedCategory('')}
-        aria-label="Filter products by all categories"
+          className={`category-button ${selectedCategory === '' ? 'active' : ''}`}
+          onClick={() => setSelectedCategory('')}
+          aria-label="Filter products by all categories"
         >
           <span className="category-icon"><FaThLarge /></span> All
         </button>
 
       {categories.map((category) => (
         <button
-        key={category}
-        className={`category-button ${selectedCategory === category ? 'active' : ''}`}
-        onClick={() => setSelectedCategory(category)}
-        aria-label={`Filter products by ${category.charAt(0).toUpperCase() + category.slice(1)}`}
+          key={category}
+          className={`category-button ${selectedCategory === category ? 'active' : ''}`}
+          onClick={() => setSelectedCategory(category)}
+          aria-label={`Filter products by ${formatCategoryName(category)}`}
         >
-          {getCategoryIcon(category)} {
-          category === "men's clothing" ? "Men" :
-          category === "women's clothing" ? "Women" :
-          category.charAt(0).toUpperCase() + category.slice(1)
-         }
+          {getCategoryIcon(category)} 
+          {category}
         </button>
       ))}
     </div>
-  </div>
+  </nav>
 
       {products.length === 0 ? (
         <p>Loading products...</p>
       ) : (
         <ProductList products={filteredProducts} onAddToCart={addToCart} />
       )}
-    </div>
+    </section>
   );
 }
 

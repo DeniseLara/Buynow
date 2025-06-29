@@ -20,23 +20,39 @@ function SearchBar() {
 
   return (
     <div className="icon-wrapper">
-        <span onClick={toggleSearch} className="icon-link">
-            <BiSearch />
-        </span>
-        {isSearchOpen && (
-    <div className="search-container">
-        <input 
-            type="text" 
-            name="search bar"
-            placeholder="Buscar productos..." 
+      <button 
+        type='button'
+        onClick={toggleSearch} 
+        className="icon-link"
+        aria-label={isSearchOpen ? "Close search" : "Open search"}
+        aria-expanded={isSearchOpen}
+        aria-controls="search-input"
+      >
+        <BiSearch aria-hidden="true"/>
+      </button>
+
+      {isSearchOpen && (
+        <form className="search-container" role="search" onSubmit={(e) => e.preventDefault()}>
+          <input 
+            type="search" 
+            name="search"
+            placeholder="Search products..." 
             className="search-input"
             value={searchQuery}
             onChange={(e) => setSearchText(e.target.value)}
             onKeyDown={handleKeyDown}
-        />
-            <IoCloseOutline className="close-search" onClick={toggleSearch} />
-    </div>
-    )}
+            aria-describedby="search-description"
+          />
+          <button
+            type='button'
+            className="close-search"
+            aria-label="close search"
+            onClick={toggleSearch}
+          >
+            <IoCloseOutline aria-hidden="true"/>
+          </button>
+        </form>
+      )}
     </div>
   );
 }

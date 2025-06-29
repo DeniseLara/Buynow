@@ -5,21 +5,24 @@ function ProductList({ products = [] }) {
   if (!Array.isArray(products)) return null;
 
   return (
-    <div className="products-grid">
+    <section className="products-container" aria-label="Product results">
       {products.length > 0 ? (
-        products.map((product) => (
-          <ProductCard 
-          key={product.id} 
-          product={product} 
-          allProducts={products}/>
-        ))
-        
+        <ul className="product-list">
+          {products.map((product) => (
+            <li key={product.id} className="product-item">
+              <ProductCard  
+                product={product} 
+                allProducts={products}
+              />
+            </li>
+          ))}
+        </ul> 
       ) : (
-        <div role="status" className="no-products-message">
+        <div role="status" aria-live="polite" className="no-products-message">
           <p className="products-message">There are no products in this category.</p>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

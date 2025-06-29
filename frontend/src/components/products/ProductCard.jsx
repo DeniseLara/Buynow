@@ -25,73 +25,84 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
 
   if (!product) return null;
 
-  const productImage = isValidImageUrl(product.image)
-    ? product.image
+  const productImage = isValidImageUrl(product.thumbnail || product.image)
+    ? product.thumbnail || product.image
     : "https://via.placeholder.com/150";
   
   
-    const toggleMenu = (e) => {
-      e.stopPropagation();
-      e.preventDefault(); // evita navegación al hacer click en los 3 puntos
-      setMenuOpen(!menuOpen);
-    };
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    e.preventDefault(); // evita navegación al hacer click en los 3 puntos
+    setMenuOpen(!menuOpen);
+  };
   
-    const handleRemove = (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      removeFromFavorites(product.id);
-      setMenuOpen(false);
-    };
+  const handleRemove = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    removeFromFavorites(product.id);
+    setMenuOpen(false);
+  };
 
   return (
-    <div className="product-card">
-          {isFavoriteCard && (
-          <div className="menu-container">
-            <button 
+    <article className="product-card">
+      {isFavoriteCard && (
+        <div className="menu-container">
+          <button 
             className="dots-btn"
             type="button"
             aria-label="open favorite options menu" 
-            onClick={toggleMenu}>
+            onClick={toggleMenu}
+          >
               <BsThreeDotsVertical size={18} />
-            </button>
-            {menuOpen && (
-              <div className="dropdown-menu">
-                <button 
+          </button>
+          
+          {menuOpen && (
+            <div className="dropdown-menu">
+              <button 
                 onClick={handleRemove}
                 type="button"
-                aria-label={`remove ${product.title} from favorites`}>
+                aria-label={`remove ${product.title} from favorites`}
+              >
                   Eliminar
-                  </button>
-              </div>
-            )}
-          </div>
-        )}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
         
-    <Link to="/products/details" state={{product, allProducts}}>
-      <img
-        src={productImage}
-        alt={product.title}
-        className="product-img"
-      />
-      <div className="product-info">
-      <h3 className="product-title">{product.title}</h3>
-      </div>
+    <Link 
+    to="/products/details" 
+    state={{product, allProducts}}
+    aria-label={`Ver detalles de ${product.title}`}
+    >
+      <figure className="product-media">
+        <img
+          src={productImage}
+          alt={product.title}
+          className="product-img"
+          loading="lazy"
+        /> 
+        <div className="product-info">
+          <h3 className="product-title">{product.title}</h3>
+        </div>      
+      </figure>
     </Link>
    
-    <div className="card-footer">
-    <p className="product-price">
-      $ <strong>{product.price}</strong>
-    </p>
-    <button 
-      onClick={() => addToCart(product)}
-      aria-label={`add ${product.title} to cart`}
-      type="button"
-      className="product-btn"
+    <footer className="card-footer">
+      <p className="product-price">
+        $ <strong>{product.price}</strong>
+      </p>
+
+      <button 
+        onClick={() => addToCart(product)}
+        aria-label={`add ${product.title} to cart`}
+        type="button"
+        className="product-btn"
       >
-       <MdAddShoppingCart/>
+        <MdAddShoppingCart/>
       </button>
-      </div>
-    </div>
+    </footer>
+  </article>
   );
 };
 

@@ -5,14 +5,13 @@ import { useProfile } from "../context/ProfileContext";
 import { usePayment } from "../context/PaymentContext";
 import { useAuth } from "../context/AuthContext";
 
-import Perfil from '../assets/profile.png';
 import fakeTestCards from "../data/fakeTestCards";
 
 export function useUserProfile() {
   const auth = getAuth();
 
   const { user, userData, loading, setUserData } = useAuth();
-  const { profileImage, updateProfileImage, userName } = useProfile();
+  const { userName } = useProfile();
   const {
     paymentMethods,
     addPaymentMethod,
@@ -90,7 +89,6 @@ export function useUserProfile() {
     user,
     userData,
     loading,
-    profileImage,
     userName,
     editMode,
     setEditMode,

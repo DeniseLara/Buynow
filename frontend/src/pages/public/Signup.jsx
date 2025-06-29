@@ -14,7 +14,7 @@ function Signup() {
 
     const onSubmit = async (data) => {
         try {
-            const user = await registerUser(data.email, data.password, data.name); // Usamos registerUser
+            const user = await registerUser(data.email, data.password, data.name); 
             if (user) {
                 navigate("/"); // Redirige si el registro es exitoso
             } else {

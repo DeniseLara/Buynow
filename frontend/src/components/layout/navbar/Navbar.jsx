@@ -18,11 +18,23 @@ function Navbar() {
 
 
 return (
-    <header className='header'>
-        <div className={`menu-overlay ${menuOpen ? 'show' : ''}`} onClick={toggleMenu}></div>
+    <header className='header' role="banner">
+    {menuOpen && (
+        <button 
+            className={`menu-overlay ${menuOpen ? 'show' : ''}`}
+            onClick={toggleMenu}
+            aria-label="Close menu"
+            type="button"
+        >
+        </button>
+    )}
         
         <nav className="navbar container">
-            <NavbarToggleButton toggleMenu={toggleMenu}/>
+            <NavbarToggleButton 
+            toggleMenu={toggleMenu}
+            aria-expanded={menuOpen} 
+            aria-controls="sidebar-menu"
+            />
 
             <Logo/>
                 
@@ -35,7 +47,12 @@ return (
         </div>
         </nav>
 
-        <SidebarMenu toggleMenu={toggleMenu} menuOpen={menuOpen} user={user}/>
+        <SidebarMenu 
+        toggleMenu={toggleMenu} 
+        menuOpen={menuOpen} 
+        user={user}
+        id="sidebar-menu"
+        />
         </header>
     );
 }

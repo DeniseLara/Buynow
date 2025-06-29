@@ -14,14 +14,21 @@ function PaymentSuccessModal({ onClose }) {
   }, [onClose]);
 
   return (
-    <div className="modal-overlay-sucess">
-      <div className="modal-content-sucess">
-      <div className="modal-header-sucess">
-        <h2 className='modal-content-title'> Payment Successful</h2>
-            <strong><GrStatusGood/></strong>
-      </div>
-        <p>Your payment has been processed successfully.</p>
-      </div>
+    <div 
+      className="modal-overlay-sucess" 
+      role="alertdialog" 
+      aria-modal="true"  
+      aria-labelledby="modal-success-title" 
+      aria-describedby="modal-success-message"
+    >
+      <section className="modal-content-sucess">
+        <header className="modal-header-sucess">
+          <h2 id="modal-success-title" className='modal-content-title'> Payment Successful</h2>
+          <strong><GrStatusGood/></strong>
+        </header>
+
+        <p id="modal-success-message">Your payment has been processed successfully.</p>
+      </section>
     </div>
   );
 };

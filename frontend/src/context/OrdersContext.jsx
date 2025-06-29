@@ -7,7 +7,7 @@ const OrdersContext = createContext();
 export const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
-  const [cancelingOrders, setCancelingOrders] = useState([]); // Estado para manejar el cancelado de órdenes
+  const [cancelingOrders, setCancelingOrders] = useState([]); 
   const { user } = useAuth();
   
 // Usamos un efecto para escuchar los cambios en las órdenes cuando el usuario cambia

@@ -9,8 +9,13 @@ function ShippingAddressInput({ address, onChange, error }) {
         onChange={(e) => onChange(e.target.value)}
         placeholder="Ingresa tu dirección de envío"
         className="address-input"
+        required
       />
-      {error && <div className="card-error">{error}</div>}
+      {error && (
+        <div className="card-error" role="alert">
+          {error}
+        </div>
+      )}
     </div>
   );
 }

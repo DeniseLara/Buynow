@@ -34,13 +34,11 @@
 }
 
 .modal-header-sucess strong{
-  /*font-size: 1.5rem;*/
   font-size: var(--fs-lg);
   line-height: 1;
 }
 
 .modal-content-title{
-  /*font-size: 1.5rem;*/
   font-size: var(--fs-lg);
 }
   
@@ -48,6 +46,7 @@
   position: absolute;
   top: 0.5rem;
   right: 0rem;
+  color: var(--text-color);
   background: none;
   border: none;
   font-size: 1.5rem;

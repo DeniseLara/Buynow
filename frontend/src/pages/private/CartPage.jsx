@@ -1,11 +1,8 @@
 import './CartPage.css';
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import { useCart } from '../../context/CartContext'; 
 import { useCartTotal } from "../../hooks/useCartTotal";
-import { handleOrderSuccess } from "../../utils/handleOrder";
 
 import Cart from "../../components/cart/Cart";
 import PaymentForm from '../../components/payment/PaymentForm'
@@ -17,9 +14,9 @@ import BackButton from '../../components/ui/BackButton';
 
 function CartPage() {  
   // Usar el contexto para acceder al carrito y las funciones
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart, checkout } = useCart();
   const total = useCartTotal();
-  const loadedRef = useRef(false); // Evitar recargar el carrito
+  const loadedRef = useRef(false); 
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   
@@ -53,11 +50,10 @@ function CartPage() {
 
        <Modal isOpen={showPaymentForm} onClose={() => setShowPaymentForm(false)}>
        <PaymentForm
-            total={total}
-            cart={cart}
-            onSucces={() =>
-            handleOrderSuccess(cart, clearCart, setShowPaymentForm, setShowSuccessModal)}
-          />
+          total={total}
+          cart={cart}
+          onSucces={() => checkout(setShowPaymentForm, setShowSuccessModal)}
+        />
       </Modal>
 
     {showSuccessModal && (

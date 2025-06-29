@@ -5,9 +5,9 @@ import { auth, getUserProfile, registerUser, loginUser, logoutUser } from '../fi
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);       // usuario autenticado
-  const [userData, setUserData] = useState(null); // datos extras (name, address, etc)
-  const [loading, setLoading] = useState(true); // para saber cuándo ya terminó la carga inicial
+  const [user, setUser] = useState(null);      
+  const [userData, setUserData] = useState(null); 
+  const [loading, setLoading] = useState(true); 
 
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (userId) => {
@@ -33,7 +33,7 @@ useEffect(() => {
 }, []); // Solo se ejecuta una vez cuando el componente se monta
 
 
-// Función para registrar usuario (con nombre, dirección y tarjetas si quieres)
+// Función para registrar usuario
 const signup = async (email, password, name) => {
   const newUser = await registerUser(email, password, name);
     if (newUser) {
@@ -80,5 +80,4 @@ const logout = async () => {
   );
 };
 
-// Custom hook para acceder al contexto fácilmente
 export const useAuth = () => useContext(AuthContext);

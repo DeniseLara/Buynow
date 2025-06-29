@@ -22,7 +22,7 @@ function ProductDetails() {
 
   if (!product) return <p>Producto no encontrado</p>; 
   
-  const rating = Math.round(product.rating.rate);
+  const rating = Math.round(product.rating);
   // Filtrar productos de la misma categoría (excepto el actual)
   const relatedProducts = allProducts.filter(
     (p) => p.category === product.category && p.id !== product.id
@@ -40,15 +40,22 @@ function ProductDetails() {
   const value = parseInt(e.target.value);
     setQuantity(value > 0 ? value : 1);
   };
+  
+  const productImage = product.thumbnail || "https://via.placeholder.com/150";
+
 
   return (
-      <div className="product-details">
+      <article className="product-details">
         <BackButton/>
 
         <div className="product-details-content">
-        <div className="image-container">
-          <img src={product.image} alt={product.title} className='product-image'/>
-        </div>
+          <figure className="image-container">
+            <img 
+              src={productImage} 
+              alt={product.title} 
+              className='product-image'
+            />
+          </figure>
 
         <section className="product-text">
           <ProductInfo 
@@ -68,7 +75,7 @@ function ProductDetails() {
         </div>
 
           <RelatedProducts relatedProducts={relatedProducts}/>
-    </div>
+    </article>
  );
 };
 

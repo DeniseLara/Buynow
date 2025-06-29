@@ -4,25 +4,28 @@ function PaymentSummary({ total, shippingCost }) {
   const finalTotal = total + shippingCost / 100;
   
   return (
-    <>
-      <div className="total-summary">
-        <span>Total:</span>
-        ${total.toFixed(2)}
-      </div>
+    <section>
 
-      <div className="shipping-summary">
-        <span>Shipping cost:</span>
-        <strong className="shipping-price">
-          <IoIosAdd />
-          ${ (shippingCost / 100).toFixed(2) }
-        </strong>
-      </div>
+      <dl className="summary-list">
+        <div className="total-summary">
+          <dt>Total:</dt>
+          <dd>${total.toFixed(2)}</dd>
+        </div>
 
-      <div className="final-total">
-        <span>Total amount:</span>
-        <strong>${finalTotal.toFixed(2)}</strong>
-      </div>
-    </>
+        <div className="shipping-summary">
+          <dt>Shipping cost:</dt>
+          <dd className="shipping-price">
+            <IoIosAdd />
+            ${ (shippingCost / 100).toFixed(2) }
+          </dd>
+        </div>
+
+        <div className="final-total">
+          <dt>Total amount:</dt>
+          <dd><strong>${finalTotal.toFixed(2)}</strong></dd>
+        </div>
+      </dl>
+    </section>
   );
 }
 

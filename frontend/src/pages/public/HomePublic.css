@@ -6,8 +6,8 @@
 .hero-public {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
   url(../../assets/homepub.jpg);
-  background-size:cover; /* Asegura que la imagen cubra todo el fondo */
-  background-position: 75% ; /* Centra la imagen */
+  background-size: cover; 
+  background-position: 75% ; 
   background-attachment: scroll;
   min-height: 100vh; 
   place-content: center;
@@ -132,8 +132,8 @@
   gap: 1.5rem;
   justify-content: flex-start;
   overflow-x: auto; 
-  scroll-snap-type: x mandatory; /* Asegura que los productos se alineen al hacer scroll */
-  -webkit-overflow-scrolling: touch; /* Hace el desplazamiento más suave en dispositivos móviles */
+  scroll-snap-type: x mandatory; 
+  -webkit-overflow-scrolling: touch; 
   padding-bottom: 1rem; 
 }
   
@@ -151,7 +151,7 @@
   transition: all 0.3s ease-in-out;
   position: relative;
   border: 1px solid transparent;
-  scroll-snap-align: start; /* Alinea cada tarjeta al hacer scroll */
+  scroll-snap-align: start; 
 }
 
 /* Oculta el scrollbar en todos los navegadores */
@@ -208,7 +208,7 @@
   font-weight: 600;
   color: #333;
   display: -webkit-box;
-  -webkit-line-clamp: 1; /* Máximo 2 líneas */
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-align: start;

@@ -2,10 +2,9 @@ import { createContext, useState, useContext } from 'react';
 
 const SearchContext = createContext();
 
-// Crea el Provider para envolver la app
 export const SearchProvider = ({ children }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // Estado de apertura/cierre del buscador
-  const [searchQuery, setSearchQuery] = useState(''); // Estado para el texto de búsqueda
+  const [isSearchOpen, setIsSearchOpen] = useState(false); 
+  const [searchQuery, setSearchQuery] = useState(''); 
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen); // Alterna la visibilidad del buscador
@@ -22,5 +21,4 @@ export const SearchProvider = ({ children }) => {
   );
 };
 
-// Custom hook para usar el contexto en cualquier componente
 export const useSearch = () => useContext(SearchContext);

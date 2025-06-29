@@ -5,14 +5,17 @@ function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" role="dialog" aria-modal="true">
       <div className="modal-content">
-        <button className="modal-close" 
-        onClick={onClose}
-        aria-label='close window'
-        type='button'>
+        <button 
+          className="modal-close" 
+          onClick={onClose}
+          aria-label='close window'
+          type='button'
+        >
           <IoMdClose/>
         </button>
+        
         {children}
       </div>
     </div>

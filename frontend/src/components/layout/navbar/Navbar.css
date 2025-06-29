@@ -88,11 +88,13 @@ a {
   font-size: var(--fs-lg);
   color: inherit;
   display: flex;
+  padding: 0;
+  background-color: transparent;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   outline: none;
-  /*color: #2c2c2c;*/
+  border: none;
   -webkit-tap-highlight-color: transparent; /* quita el flash azul en móviles */
   transition: all .3s ease;
 }
@@ -108,8 +110,15 @@ a {
 }
 
 .icon-wrapper.profile-avatar{
+  outline: none;
   width: 1.8rem;
   height: 1.8rem;
+}
+
+.icon-wrapper.profile-avatar:focus,
+.icon-wrapper.profile-avatar:active,
+.icon-wrapper.profile-avatar:hover {
+  outline: none;
 }
 
 .icon-wrapper {
@@ -146,17 +155,6 @@ a {
   color: #333;
 }
 
-.close-search {
-  font-size: 1.2rem;
-  color: #888;
-  margin-left: 8px;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.close-search:hover {
-  color: #1A6FBF;
-}
 
 @keyframes fadeIn {
   from {
@@ -200,13 +198,17 @@ a {
 
 .close-search {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: var(--fs-md);
   z-index: 104;
+  padding: 0;
+  will-change: transform;
+  color: #888;
   margin-left: 0.5rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .close-search:hover {
+  color: #1A6FBF;
   transform: rotate(180deg);
 }
 
@@ -297,19 +299,24 @@ a {
 .navbar-menu {
   position: fixed;
   top: 0;
-  left: -100%;
   width: 72%;
+  will-change: transform, opacity;
   max-width: 100%;
   height: 100vh;
   z-index: 200;
+  transform: translateX(-100%);
   background-color: #f1f1f1;
   padding: 2rem;
-  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity .3s ease-in-out;  
 }
 
 .navbar-menu.show {
-  left: 0;
+  transform: translateX(0);
+  opacity: 1;
   z-index: 200;
+  pointer-events: auto;
 }
 
 .navbar-list {
@@ -334,7 +341,7 @@ a {
 
 .nav-close {
   position: absolute;
-  top: 0.5rem;
+  top: 0.8rem;
   padding: 0;
   left: 1rem;
   background-color: transparent;
@@ -349,22 +356,26 @@ a {
   left: 0;
   width: 100%;
   height: 100vh;
+  border: none;
+  z-index: 199;
+  will-change: visibility, opacity;
   background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  transition: opacity 0.2s ease, visibility 0.2s ease;  
+  pointer-events: none;
 }
 
 .menu-overlay.show {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 
 
 @media (min-width: 340px) {
   .navbar-menu {
-    left: -100%;
     width: 65%;
   }
 }
@@ -409,7 +420,8 @@ a {
 
 @media (min-width: 1024px) {
   .nav-close {
-    top: 0.5rem;
+    top: 1rem;
+    left: 3rem;
   }
 
   .navbar {
@@ -422,10 +434,6 @@ a {
 
   .navbar-menu {
     width: 20rem;
-  }
-
-  .nav-toggle{
-    font-size: 1.7rem;
   }
 
   .icon-wrapper.profile-avatar{

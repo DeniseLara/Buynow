@@ -1,22 +1,20 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { setDoc, doc, getFirestore, collection, addDoc, getDoc, serverTimestamp, updateDoc, query, getDocs, orderBy, limit, onSnapshot } from "firebase/firestore";
-import { getStorage } from "firebase/storage"; 
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app); // Agregar esta línea
-const storage = getStorage(app); // Inicializar Firebase Storage
 
 
 // Función para registrar un nuevo usuario con email y contraseña
@@ -140,7 +138,7 @@ export const loadUserOrders = (userId, callback) => {
     },
     (error) => {
       console.error("Error al escuchar órdenes:", error);
-      callback([]); // Opcional: enviar array vacío en error
+      callback([]); 
     }
   );
 };
@@ -148,7 +146,7 @@ export const loadUserOrders = (userId, callback) => {
 
 // Guardar órdenes del usuario como una lista plana de productos
 export const saveUserOrder = async (userId, newItems, status = "processing") => {
-  const ordersCollection = collection(db, "users", userId, "orders"); // plural "orders"
+  const ordersCollection = collection(db, "users", userId, "orders"); 
 
   // Calcular el total de la orden (precio de los productos + costo de envío)
   const calculateTotal = (items) => {
@@ -230,4 +228,4 @@ export const updateUserData = async (uid, data) => {
 };
 
 
-export { auth, db, storage };
+export { auth, db };

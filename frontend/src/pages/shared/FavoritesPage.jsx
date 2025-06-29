@@ -6,21 +6,23 @@ function FavoritesPage() {
   const { favorites } = useFavorites();
  
   return (
-      <div className="favorites-page">
-        <h1 className="favorites-title">My Wishlist</h1>
-  
+      <section className="favorites-page" aria-labelledby="favorites-heading">
+        <header className="favorites-header">
+          <h1  id="favorites-heading" className="favorites-title">My Wishlist</h1>
+        </header>
+
         {favorites.length === 0 ? (
           <p>No tienes productos guardados en favoritos.</p>
         ) : (
-          <div className="favorites-grid">
+          <ul className="favorites-grid">
             {favorites.map((product) => (
-
-              <ProductCard key={product.id} product={product} isFavoriteCard={true}/>
-              
+              <li key={product.id} role="listitem">
+                <ProductCard product={product} isFavoriteCard={true}/>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
-      </div>
+      </section>
     );
   };
   
