@@ -28,7 +28,6 @@ app.get('/', (req, res) => {
 
 // Ruta para crear el payment intent
 app.post('/create-payment-intent', async (req, res) => {
-  console.log('Solicitud recibida en /create-payment-intent');
 
   try {
     const { amount, userId, shippingCost } = req.body;  // Ahora esperamos también el userId
@@ -66,10 +65,9 @@ app.post('/create-payment-intent', async (req, res) => {
     });
     
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
+app.listen(PORT);

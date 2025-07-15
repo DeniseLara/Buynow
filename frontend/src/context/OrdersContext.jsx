@@ -27,7 +27,7 @@ useEffect(() => {
 
   return () => unsubscribe(); // Limpia el listener al desmontar o cambiar usuario
 
-}, [user]); // El efecto se ejecutará cada vez que cambie el usuario
+}, [user]); 
 
 
 // Función para cancelar la orden
@@ -44,7 +44,6 @@ const handleCancelOrder = async (orderId) => {
       )
     );
   } catch (error) {
-    console.error("Error al cancelar la orden:", error);
   } finally {
     setCancelingOrders((prev) => prev.filter((id) => id !== orderId)); // Eliminar de la lista de cancelación
   }
@@ -70,7 +69,6 @@ const refreshOrders = async () => {
     setOrders(userOrders);
   }
 };
-
 
 
   return (

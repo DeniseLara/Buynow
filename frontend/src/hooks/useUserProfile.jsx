@@ -31,7 +31,6 @@ export function useUserProfile() {
           const profile = await getUserProfile(user.uid);
           setUserData(profile);
         } catch (error) {
-          console.error("Error al cargar los datos del usuario", error);
         }
       };
       fetchUserData();
@@ -80,7 +79,6 @@ export function useUserProfile() {
       updateAddress(formData.address);
       setEditMode(false);
     } catch (error) {
-      console.error("Error al guardar los cambios:", error);
     }
   };
 

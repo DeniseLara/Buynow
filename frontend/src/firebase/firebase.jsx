@@ -1,6 +1,25 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { setDoc, doc, getFirestore, collection, addDoc, getDoc, serverTimestamp, updateDoc, query, getDocs, orderBy, limit, onSnapshot } from "firebase/firestore";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged } from "firebase/auth";
+import { 
+  setDoc, 
+  doc, 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  getDoc, 
+  serverTimestamp, 
+  updateDoc, 
+  query, 
+  getDocs, 
+  orderBy, 
+  limit, 
+  onSnapshot 
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -14,7 +33,7 @@ const firebaseConfig = {
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app); // Agregar esta línea
+const db = getFirestore(app); 
 
 
 // Función para registrar un nuevo usuario con email y contraseña
@@ -33,8 +52,7 @@ export const registerUser = async (email, password, name) => {
 
     return user; // El objeto del usuario registrado
   } catch (error) {
-    console.error("Error al registrar usuario:", error.message);
-    return null;
+    throw new Error('Error al registrar usuario: ' + (error.message || 'Error desconocido'));
   }
 };
 
@@ -45,8 +63,7 @@ export const loginUser = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user; // El objeto del usuario logueado
   } catch (error) {
-    console.error("Error al iniciar sesión:", error.code);
-    throw error; 
+    throw new Error('Error al iniciar sesión: ' + (error.message || 'Error desconocido'));
   }
 };
 
@@ -55,9 +72,8 @@ export const loginUser = async (email, password) => {
 export const logoutUser = async () => {
   try {
     await signOut(auth);
-    console.log("Usuario desconectado");
   } catch (error) {
-    console.error("Error al cerrar sesión:", error.message);
+    throw new Error('Error al cerrar sesión: ' + (error.message || 'Error desconocido'));
   }
 };
 
@@ -137,7 +153,6 @@ export const loadUserOrders = (userId, callback) => {
       callback(orders); // Llamamos el callback con los datos actualizados
     },
     (error) => {
-      console.error("Error al escuchar órdenes:", error);
       callback([]); 
     }
   );
@@ -177,9 +192,8 @@ export const cancelOrder = async (userId, orderId) => {
       status: "canceled", // Cambia el estado a "canceled"
       canceledAt: serverTimestamp(), // Guarda la fecha de cancelación
     });
-    console.log("Orden cancelada con éxito");
-  } catch (error) {
-    console.error("Error al cancelar la orden:", error);
+  } catch (_) {
+    throw new Error("Error al cancelar la orden");
   }
 };
 

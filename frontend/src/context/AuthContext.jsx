@@ -19,7 +19,6 @@ useEffect(() => {
         const profile = await getUserProfile(userId.uid); // Obtiene los datos del perfil
         setUserData(profile);
       } catch (error) {
-        console.error("Error al cargar el perfil:", error);
         setUserData(null);
         }
       } else {
@@ -30,7 +29,7 @@ useEffect(() => {
     });
 
   return () => unsubscribe(); // Limpia el listener al desmontar
-}, []); // Solo se ejecuta una vez cuando el componente se monta
+}, []); 
 
 
 // Función para registrar usuario

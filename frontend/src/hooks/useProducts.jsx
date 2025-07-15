@@ -26,7 +26,7 @@ const CATEGORY_MAP = {
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,21 +38,20 @@ export const useProducts = () => {
         const uniqueCategories = new Set(); data.products.forEach(product => {
           for (const group in CATEGORY_MAP) {
             if (CATEGORY_MAP[group].includes(product.category)) {
-              console.log(product.category, "➡️ pertenece a", group);
               uniqueCategories.add(group);
             }
           }
         });
 
-          setCategories(Array.from(uniqueCategories));
+        setCategories(Array.from(uniqueCategories));
       } catch (error) {
-        console.error("Error fetching products", error);
+        setError('No se pudieron cargar los productos. Intenta nuevamente más tarde.');
       }
     };
     
     fetchProducts();
   }, []);
 
-  return { products, categories, CATEGORY_MAP };
+  return { products, categories, CATEGORY_MAP, error };
 };
 

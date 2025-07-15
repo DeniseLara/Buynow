@@ -21,7 +21,6 @@ useEffect(() => {
         const items = await getFavoritesFromFirestore(user.uid);
         setFavorites(items);
       } catch (error) {
-        console.error('Error al cargar favoritos:', error);
         setFavorites([]);
         }
       } else {
@@ -29,7 +28,7 @@ useEffect(() => {
         setFavorites(localFavs ? JSON.parse(localFavs) : []);
       }
       setLoading(false);
-    })();
+  })();
 
 }, [user, authLoading]);
 
@@ -39,13 +38,13 @@ useEffect(() => {
 
   const timeout = setTimeout(() => {
     if (user?.uid){
-      saveFavoritesToFirestore(user.uid, favorites).catch(err => {
-      console.error('Error guardando favoritos:', err);
+      saveFavoritesToFirestore(user.uid, favorites)
+      .catch(() => {
     });
   } else {
     localStorage.setItem('favorites', JSON.stringify(favorites));
     }
-  }, 1000); // Espera 1 segundo antes de guardar
+  }, 1000); 
 
     return () => clearTimeout(timeout);
 }, [favorites, user, loading, authLoading]);

@@ -12,6 +12,7 @@ export const CartProvider = ({ children }) => {
   const { user,loading: authLoading } = useAuth();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true); 
+  const [errorMessage, setErrorMessage] = useState(null);
 
 // Escuchar cambios de autenticación y cargar carrito solo una vez por usuario
 useEffect(() => {
@@ -27,7 +28,6 @@ useEffect(() => {
       const cartData = await loadCartFromFirebase(user.uid);
       setCart(cartData?.items || []);
     } catch (error) {
-      console.error('Error cargando carrito:', error);
       setCart([]);
     } finally {
       setLoading(false); // Solo se llama una vez se completan los intentos
@@ -43,7 +43,7 @@ useEffect(() => {
   if (user?.uid) {
     const timeout = setTimeout(() => {
       saveCartToFirebase(user.uid, { items: cart });
-    }, 1000); // espera 1 segundo antes de guardar
+    }, 1000); 
 
     return () => clearTimeout(timeout); // cancela si cambia antes de tiempo
   }
@@ -57,14 +57,11 @@ const addToCart = (item, quantity = 1) => {
     return;
   }
 
-  console.log('Producto agregado al carrito:', item);
-
   setCart((prevCart) => {
     // buscamos si el producto ya está en el carrito
     const existingItem = prevCart.find((product) => product.id === item.id);
 
     if (existingItem) {
-      console.log('Producto ya existe en el carrito, cantidad anterior:', existingItem.quantity);
 
       // Si el producto ya existe, solo incrementamos la cantidad
       return prevCart.map((product) =>
@@ -74,7 +71,6 @@ const addToCart = (item, quantity = 1) => {
       );
     } else {
       // Si el producto no existe, lo agregamos con cantidad 1
-      console.log('Producto no existe en el carrito, agregando al carrito...');
       return [...prevCart, { ...item, quantity }];
     }
   });
@@ -88,14 +84,13 @@ const checkout = async (setShowPaymentForm, setShowSuccessModal) => {
   }
 
   try {
-    await saveUserOrder(user.uid, cart); // Guarda la orden
+    await saveUserOrder(user.uid, cart); 
     clearCart(); // Limpia el estado local
     await saveCartToFirebase(user.uid, { items: [] }); // Limpia el carrito en Firebase
     setShowPaymentForm(false);
     setShowSuccessModal(true);
   } catch (error) {
-    console.error("Error al procesar la orden:", error);
-    alert("Ocurrió un error al completar la orden. Intenta nuevamente.");
+    setErrorMessage("Ocurrió un error al completar la orden. Intenta nuevamente.");
   }
 };
 
@@ -115,7 +110,7 @@ if (loading || authLoading) {
 }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, checkout }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, checkout, errorMessage }}>
       {children}
     </CartContext.Provider>
   );

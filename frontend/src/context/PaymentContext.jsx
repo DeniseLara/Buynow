@@ -19,7 +19,6 @@ useEffect(() => {
         setPaymentMethods(userData.paymentMethods || []);
         setAddress(userData.address || "");
       } else {
-        console.log("No hay usuario o userData disponible");
         setPaymentMethods([]);
         setAddress("");
       }
