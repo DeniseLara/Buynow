@@ -6,7 +6,6 @@ import Perfil from '../../../assets/profile.png';
 export function ProfileMenu({ user }) {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
-
   if (!user) {
     return (
       <div
@@ -17,8 +16,8 @@ export function ProfileMenu({ user }) {
         <FaUserCircle className="icon-link" />
         {profileMenuOpen && (
           <div className="profile-menu">
-            <Link className="link" to="/login" aria-label="go to login page">Iniciar sesión</Link>
-            <Link className="link" to="/signup" aria-label="go to sign up page">Registrarse</Link>
+            <Link className="link" to="/login" aria-label="go to login page">Log in</Link>
+            <Link className="link" to="/signup" aria-label="go to sign up page">Sign up</Link>
           </div>
         )}
       </div>
