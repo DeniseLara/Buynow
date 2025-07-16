@@ -3,7 +3,6 @@ import { MdEdit } from "react-icons/md";
 import { useUserProfile } from "../../hooks/useUserProfile";
 
 import ProfileHeader from "../../components/profile/ProfileHeader";
-import SkeletonLoader from "../../components/ui/SkeletonLoader";
 import ShippingAddress from "../../components/profile/ShippingAddress";
 import PaymentMethods from "../../components/profile/PaymentMethods";
 import ViewLinks from "../../components/profile/ViewLinks";
@@ -12,7 +11,6 @@ import fakeTestCards from "../../data/fakeTestCards";
 function Profile() {
    const {
     user,
-    loading,
     profileImage,
     userName,
     editMode,
@@ -29,11 +27,6 @@ function Profile() {
     formData
   } = useUserProfile();
  
-  if (loading) {
-    return (
-      <SkeletonLoader/>
-    );
-  }
 
   return (
     <section className="profile-data-container" aria-labelledby="profile-title">

@@ -1,6 +1,6 @@
 .footer {
   background-color: #122C4D;
-  color: #ffffff;
+  color: var(--white-color);
   padding: 3rem 2rem 3rem;
   font-size: var(--fs-sm);
   display: flex;
@@ -51,7 +51,7 @@ button[type="submit"] {
   
 .footer-links ul li a {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--white-color);
   font-weight: 400;
   transition: color 0.3s ease-in-out;
 }
@@ -81,7 +81,7 @@ button[type="submit"] {
   border: 1px solid #7fa1c7;
   width: 100%;
   border-radius: 1rem;
-  color: #ffffff;
+  color: var(--white-color);
   background-color: transparent;
   transition: all 0.3s ease-in-out;
 }
@@ -140,7 +140,7 @@ button[type="submit"] {
   
 .social-icon {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--white-color);
   font-size: var(--fs-lg);
   transition: color 0.3s ease-in-out;
 }

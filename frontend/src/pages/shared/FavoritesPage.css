@@ -15,7 +15,7 @@
   
 .go-back-btn {
   background-color: var(--primary-color);
-  color: #ffffff;
+  color: var(--white-color);
   border: none;
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;

@@ -43,7 +43,7 @@
   width: 150px;
   height: 140px;
   padding: 1rem 2rem;
-  background-color: #ffffff;
+  background-color: var(--white-color);
   color: #555555;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   border: 1px solid #ececec;

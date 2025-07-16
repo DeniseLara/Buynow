@@ -14,7 +14,7 @@
   position: relative;
   padding: 1rem;
   background-repeat: no-repeat;
-  color: #ffffff; 
+  color: var(--white-color); 
   margin: 2rem auto; 
   transition: background-image 0.5s ease-in-out; 
 }
@@ -44,7 +44,7 @@
 
 .cta-btn-hero {
   background-color: #FF5722;
-  color: #ffffff;
+  color: var(--white-color);
   padding: 1rem 1.5rem;
   font-size: var(--fs-md); 
   font-weight: 600;
@@ -140,7 +140,7 @@
 .product-card-public {
   flex: 0 0 100%;
   max-width: 100%;    
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -181,7 +181,7 @@
   top: 0.6rem;
   left: 0.5rem;
   background-color: #FF4E2E;
-  color: #ffffff;
+  color: var(--white-color);
   border-radius: 0.5rem;
   padding: 0.5rem 0.8rem;
 }
@@ -278,7 +278,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #ffffff;
+  color: var(--white-color);
   padding: 1rem 1.5rem;
   background-color: var(--primary-color);
   border-radius: 0.5rem;
@@ -300,7 +300,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #ffffff;
+  background-color: var(--white-color);
   transition: width 0.3s ease-in-out;
   z-index: -1;
 }
@@ -316,7 +316,7 @@
 /** BENEFITS SECTION **/
 .benefits {
   padding: 2rem 1rem;
-  background-color: #ffffff;
+  background-color: var(--white-color);
   margin-bottom: 2.5rem;
 }
   
@@ -337,7 +337,7 @@
 }
   
 .benefit-card {
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -374,7 +374,7 @@
 
 /** AUTH SECTION **/
 .auth-section {
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 4rem 1rem;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -430,7 +430,7 @@
   display: inline-flex;
   padding: 1rem 2rem;
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--white-color);
   text-decoration: none;
   border-radius: 1rem;
   font-size: var(--fs-base);

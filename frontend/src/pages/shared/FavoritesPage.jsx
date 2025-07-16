@@ -12,7 +12,7 @@ function FavoritesPage() {
         </header>
 
         {favorites.length === 0 ? (
-          <p>No tienes productos guardados en favoritos.</p>
+          <p>You don’t have any products saved in your wishlist.</p>
         ) : (
           <ul className="favorites-grid">
             {favorites.map((product) => (

@@ -1,9 +1,9 @@
 import './HomePublic.css'
 
-import Hero from '../../components/home/Hero';
-import Benefits from '../../components/home/Benefits';
-import AuthSection from '../../components/home/AuthSection';
-import FeaturedProducts from '../../components/home/FeaturedProducts'
+import Hero from '../../components/homePublic/Hero';
+import Benefits from '../../components/homePublic/Benefits';
+import AuthSection from '../../components/homePublic/AuthSection';
+import FeaturedProducts from '../../components/homePublic/FeaturedProducts'
 
 function HomePublic() {
   return (

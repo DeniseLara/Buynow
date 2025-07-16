@@ -7,7 +7,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  /*background-color: #242424;*/
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,7 +14,6 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* PROFILE COLORS */
-  /*--primary-color: #0D3B66;*/
   --secondary-color:#0D3B66;
   --text-color: #333;
   --bg-color: #f9f9f9;
@@ -23,16 +21,9 @@
 
   /* PRODUCTSPAGE COLORS */
   --primary-color: #2272FF;
-  /*--secondary-color: #427388;*/
   --background-color: #f8f9fa;
-  /*--text-color: #333;*/
-  /*--white: #fff;*/
   --white-color: #ffffff;
   --shadow: rgba(0, 0, 0, 0.1);
-
-  /* NAVBAR COLORS */
-  /*--primary-color: #0D3B66;*/
-  /*--text-color: #FFFFFF;*/
 
   --fx-xs: clamp(0.64rem, 0.608rem + 0.16vw, 0.8rem);
   --fs-sm: clamp(0.8rem, 0.76rem + 0.2vw, 1rem);
@@ -42,6 +33,27 @@
   --fs-xl: clamp(1.9531rem, 1.8555rem + 0.4883vw, 2.4414rem);
   --fs-2xl: clamp(2.4414rem, 2.3193rem + 0.6104vw, 3.0518rem);
   --fs-3xl: clamp(3.0518rem, 2.8992rem + 0.7629vw, 3.8147rem);
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
 }
 
 a {
@@ -81,29 +93,6 @@ button:focus{
   outline: none;
 }
 
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html{
-  scroll-behavior: smooth;
-}
-
-body{
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  background-color: #ffffff;
-  /*background-color: #F7F7F7;*/
-  /*background-color: 		#121212;*/
-}
-
 .path-container{
   display: flex;
   flex-direction: column;
@@ -121,12 +110,10 @@ h1 {
 
 button {
   border-radius: 0.6rem;
-  /*border: 1px solid transparent;*/
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   background-color: #ffffff;
-  /*background-color: #1a1a1a;*/
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -135,14 +122,13 @@ button:hover {
 }
 
 
-@media (prefers-color-scheme: light) {
+/*@media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    /*background-color: #F7F7F7;*/
     background-color: #ffffff;
   }
   
   button {
     background-color: #f9f9f9;
   }
-}
+}*/

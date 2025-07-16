@@ -51,14 +51,14 @@
 
 .save-button:hover {
   background-color: #1A5FCC;
-  color: #fff;
+  color: var(--white-color);
   box-shadow: 0 2px 6px rgba(34, 114, 255, 0.15);
   border: 1px solid #1A5FCC;
 }
 
 .save-button:active {
   background-color: #0A3C75;
-  color: #fff;
+  color: var(--white-color);
   box-shadow: none;
   transform: scale(0.97);
 }
@@ -114,7 +114,7 @@
   border: none;
   outline: none;
   right: 0;
-  color: #ffffff;
+  color: var(--white-color);
   padding: 0.15rem;
   font-size: var(--fs-base);
   border-radius: 2rem;

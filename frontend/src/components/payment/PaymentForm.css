@@ -1,5 +1,5 @@
 .payment-container {
-  background-color: #fff;
+  background-color: var(--white-color);
   border-radius: 1rem;
   max-width: 100%;
   margin: 0 auto;
@@ -52,7 +52,7 @@
 } 
 
 .address-input {
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 0.6rem 0.8rem;
   border: 1px solid #ccc;
   color: #222;
@@ -64,20 +64,20 @@
   display: flex;
   text-align: start;
   flex-direction: column;
-  background-color: #fff;
+  background-color: var(--white-color);
   color: #222;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
 .saved-cards label {
-  background-color: #fff;
+  background-color: var(--white-color);
   font-size: 0.95rem;
   font-weight: 500;
 }
 
 .saved-cards-dropdown {
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 0.6rem 0.8rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -118,7 +118,7 @@
   width: 100%;
   padding: 0.9rem 1.2rem;
   background-color: #1a73e8;
-  color: #fff;
+  color: var(--white-color);
   font-size: var(--fs-base);
   font-weight: 600;
   border: none;

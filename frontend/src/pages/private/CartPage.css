@@ -47,7 +47,6 @@
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /*background: #f7f7f7;*/
   background: var(--white);
 }
 
@@ -106,7 +105,7 @@
 }
 
 .checkout-button{
-  color: #ffffff;
+  color: var(--white-color);
   font-size: var(--fs-md);
   margin-bottom: 2rem;
   background-color: #0A5AA1;
@@ -138,7 +137,7 @@
 
 .cart-delete-button {
   background: #ff4d4d;
-  color: #ffffff;
+  color: var(--white-color);
   padding: 0.5rem 0.7rem;
   border: none;
   border-radius: 1rem;
@@ -158,7 +157,7 @@
 .clear-cart {
   width: 100%;
   background-color: #ff4d4d;
-  color: #ffffff;
+  color: var(--white-color);
   padding: 0.8rem;
   border: none;
   border-radius: 1rem;
@@ -174,7 +173,7 @@
   
 .modal-content {
   position: relative;
-  background: #ffffff;
+  background: var(--white-color);
   padding: 1rem;
   border-radius: 1rem;
   text-align: center;

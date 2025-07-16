@@ -23,19 +23,25 @@ export function useUserProfile() {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({ address: "", paymentMethods: [] });
   const [selectedCard, setSelectedCard] = useState(null);
+  const [loadingProfile, setLoadingProfile] = useState(true); 
 
   useEffect(() => {
     if (user) {
       const fetchUserData = async () => {
+        setLoadingProfile(true);
         try {
           const profile = await getUserProfile(user.uid);
           setUserData(profile);
         } catch (error) {
+          setUserData(null);
+        } finally {
+          setLoadingProfile(false); // termina de cargar perfil
         }
       };
       fetchUserData();
     } else {
       setUserData(null);
+      setLoadingProfile(false);
     }
   }, [user]);
 

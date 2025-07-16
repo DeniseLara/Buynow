@@ -6,14 +6,14 @@
 }
 
 .form-card {
-    background: #FFFFFF;
+    background: var(--white-color);
     padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     max-width: 100%;
     width: clamp(350px, 50vw, 550px); 
-    color: #FFFFFF;
+    color: var(--white-color);
     margin: 1rem auto;
     transition: 0.3s;
 }
@@ -72,7 +72,7 @@
     width: 80%;
     padding: 1rem;
     background: var(--secondary-color);
-    color: #FFFFFF;
+    color: var(--white-color);
     font-size: var(--fs-base);
     font-weight: 700;
     border: none;

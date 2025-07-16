@@ -23,7 +23,7 @@
   top: -0.31rem;
   right: -10px;
   background-color: #FF3B30;
-  color: #fff;
+  color: var(--white-color);
   font-size: var(--fx-xs);
   border-radius: 50%;
   width: 18px;
@@ -47,7 +47,7 @@
   justify-content: center;
   left: -50%;
   transform: translateX(-50%);
-  background: #ffffff;
+  background: var(--white-color);
   border: 1px solid #ddd;
   padding: 1rem 1.4rem;
   min-width: 130px;
@@ -68,7 +68,7 @@
 
 /* Estilos para el ícono de perfil */
 a {
-  color: #ffffff;
+  color: var(--white-color);
 }
 
 .navbar-icons {
@@ -112,8 +112,8 @@ a {
 
 .icon-wrapper.profile-avatar{
   outline: none;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: var(--fs-lg);
+  height: var(--fs-lg);
 }
 
 .icon-wrapper.profile-avatar:focus,
@@ -135,7 +135,7 @@ a {
   right: -5.2rem;
   display: flex;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--white-color);
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 6px 10px;
@@ -173,13 +173,21 @@ a {
   display: block;
   width: 100%;
   height: 100%;
-  position: absolute;
   object-fit: cover;
-  border-radius: 10rem;
+  display: block;
+  border-radius: 50%;
+  position: relative;
 }
 
 .icon-wrapper.profile-avatar{
   transition: all .3s ease-in-out;
+  position: relative;
+  width: 1.65rem;
+  height: 1.65rem;
+  transition: all .3s ease-in-out;
+  outline: none;
+  border-radius: 50%;
+  overflow: hidden;
   border: 1.5px solid #FAF9F6;
 }
 
@@ -215,7 +223,7 @@ a {
 
 .logout-btn{
   background-color: #1A6FBF;
-  color: #ffffff;
+  color: var(--white-color);
   display: flex;
   font-size: var(--fs-base);
   align-items: center;
@@ -278,7 +286,7 @@ a {
 .navbar-link.sign{
   font-size: var(--fs-base);
   background-color: #1A6FBF;
-  color: #ffffff;
+  color: var(--white-color);
   gap: 0.5rem;
   border-radius: 0.6rem;
   padding: 0.7rem 1.6rem;

@@ -1,0 +1,9 @@
+.skeleton-card {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--white-color); /* o #121212 si es dark mode */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

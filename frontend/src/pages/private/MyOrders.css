@@ -58,7 +58,7 @@
 .order-item:hover,
 .order-item:active{
   background-color: #3B82F6;
-  color: #ffffff;
+  color: var(--white-color);
   border: 1px solid transparent;
 }
 

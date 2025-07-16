@@ -12,7 +12,7 @@
 }
   
 .modal-content-sucess {
-  background-color: #ffffff;
+  background-color: var(--white-color);
   padding: 1.5rem;
   border-radius: 1rem;
   max-width: 90%;

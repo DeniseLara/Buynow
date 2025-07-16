@@ -10,7 +10,7 @@ import getCategoryIcon from "../../utils/getCategoryIcon";
 import ProductList from "../../components/products/ProductList";
 
 function ProductsPage() {
-  const { products, categories, CATEGORY_MAP } = useProducts();
+  const { products, categories, CATEGORY_MAP, loading } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState("");
   
   const { addToCart } = useCart();
@@ -67,11 +67,13 @@ function ProductsPage() {
     </div>
   </nav>
 
-      {products.length === 0 ? (
-        <p>Loading products...</p>
-      ) : (
-        <ProductList products={filteredProducts} onAddToCart={addToCart} />
-      )}
+     
+        <ProductList 
+        products={filteredProducts} 
+        onAddToCart={addToCart} 
+        loading={loading}
+        />
+      
     </section>
   );
 }

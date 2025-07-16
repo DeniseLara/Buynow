@@ -27,6 +27,7 @@ export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -46,12 +47,14 @@ export const useProducts = () => {
         setCategories(Array.from(uniqueCategories));
       } catch (error) {
         setError('No se pudieron cargar los productos. Intenta nuevamente más tarde.');
+      } finally {
+        setLoading(false); // 👈 asegurarse de apagar loading siempre
       }
     };
     
     fetchProducts();
   }, []);
 
-  return { products, categories, CATEGORY_MAP, error };
+  return { products, categories, CATEGORY_MAP, error, loading };
 };
 

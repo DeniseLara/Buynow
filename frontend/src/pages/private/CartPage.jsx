@@ -1,5 +1,5 @@
 import './CartPage.css';
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import { useCart } from '../../context/CartContext'; 
 import { useCartTotal } from "../../hooks/useCartTotal";
@@ -16,7 +16,6 @@ function CartPage() {
   // Usar el contexto para acceder al carrito y las funciones
   const { cart, removeFromCart, clearCart, checkout } = useCart();
   const total = useCartTotal();
-  const loadedRef = useRef(false); 
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   
