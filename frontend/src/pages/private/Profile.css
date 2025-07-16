@@ -189,6 +189,10 @@
   font-size: var(--fs-base);
 }
 
+.btn-text{
+  color: #2c2c2c;
+}
+
 .btn-view{
   color: #2c2c2c;
   padding: 0;

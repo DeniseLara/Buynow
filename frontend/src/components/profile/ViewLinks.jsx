@@ -6,15 +6,15 @@ function ViewLinks() {
     <div className="profile-view-details">
       <ul className="profile-view-list">
         <li className="profile-view">
-          <span>View order history</span> 
+          <span className="btn-text">View order history</span> 
           <Link className="btn-view" to="/orders"> 
             <GoChevronRight/>
           </Link>
         </li>
 
         <li className="profile-view">
-          <span>View wishlist</span> 
-          <Link className="btn-view" to="/favorites"> 
+          <span className="btn-text">View wishlist</span> 
+          <Link className="btn-view" to="/favorites">
             <GoChevronRight/>
           </Link>
         </li>
