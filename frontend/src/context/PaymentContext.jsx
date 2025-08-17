@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { updateUserData } from "../firebase/firebase";
+import { updateUserData } from "../services/authService";
+//import { updateUserData } from "../firebase/firebase";
 import { useAuth } from "./AuthContext";
 
 const PaymentContext = createContext();

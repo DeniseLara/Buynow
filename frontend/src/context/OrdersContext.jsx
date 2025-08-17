@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { loadUserOrders, updateOrderStatus, cancelOrder, fetchUserOrdersOnce } from "../firebase/firebase";
+import { loadUserOrders, updateOrderStatus, cancelOrder, fetchUserOrdersOnce } from "../services/ordersService";
+//import { loadUserOrders, updateOrderStatus, cancelOrder, fetchUserOrdersOnce } from "../firebase/firebase";
 import { useAuth } from "./AuthContext";
 
 const OrdersContext = createContext();

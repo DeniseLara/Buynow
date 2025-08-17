@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
-import { getUserProfile } from "../firebase/firebase";
+//import { getUserProfile } from "../firebase/firebase";
+import { getUserProfile } from "../services/authService";
 import { useProfile } from "../context/ProfileContext";
 import { usePayment } from "../context/PaymentContext";
 import { useAuth } from "../context/AuthContext";

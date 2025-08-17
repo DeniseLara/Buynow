@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-
 import Personas from '../../assets/shop.png'
 
 function AuthSection() {

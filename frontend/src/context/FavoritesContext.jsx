@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getFavoritesFromFirestore, saveFavoritesToFirestore } from '../firebase/firebase';
+import { getFavoritesFromFirestore, saveFavoritesToFirestore } from '../services/favoritesService'
+//import { getFavoritesFromFirestore, saveFavoritesToFirestore } from '../firebase/firebase';
 import { useAuth } from './AuthContext';
 
 const FavoritesContext = createContext();

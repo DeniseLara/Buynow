@@ -1,5 +1,7 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { loadCartFromFirebase, saveCartToFirebase, saveUserOrder } from '../firebase/firebase';
+import { loadCartFromFirebase, saveCartToFirebase }  from '../services/cartService'
+import { saveUserOrder } from '../services/ordersService'
+//import { loadCartFromFirebase, saveCartToFirebase, saveUserOrder } from '../firebase/firebase';
 import { useAuth } from './AuthContext';
 
 const CartContext = createContext();

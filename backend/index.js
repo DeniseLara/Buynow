@@ -6,7 +6,12 @@ const Stripe = require('stripe');
 
 const cors = require('cors');  
 app.use(cors({
-  origin: ['https://buynow-gy88.onrender.com','http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3001/'], // Especifica el puerto de tu frontend
+  origin: [
+    'https://buynow-gy88.onrender.com',
+    'http://localhost:5173', 
+    'http://127.0.0.1:5173', 
+    'http://localhost:3001/'
+  ], 
 }));
 
 app.use(express.json());
@@ -21,7 +26,6 @@ app.use((req, res, next) => {
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Ruta GET para evitar el error "Cannot GET /"
 app.get('/', (req, res) => {
   res.send('Servidor backend funcionando correctamente');
 });
