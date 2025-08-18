@@ -18,7 +18,6 @@ const isValidImageUrl = (url) => {
 };
 
 function ProductCard({ product, allProducts, isFavoriteCard = false }) {
-  // Obtener la función addToCart desde el contexto
   const { addToCart } = useCart();
   const { removeFromFavorites } = useFavorites();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -56,25 +55,25 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
               <BsThreeDotsVertical size={18} />
           </button>
           
-          {menuOpen && (
-            <div className="dropdown-menu">
-              <button 
-                onClick={handleRemove}
-                type="button"
-                aria-label={`remove ${product.title} from favorites`}
-              >
-                  Eliminar
-              </button>
-            </div>
-          )}
+        {menuOpen && (
+          <div className="dropdown-menu">
+            <button 
+              onClick={handleRemove}
+              type="button"
+              aria-label={`remove ${product.title} from favorites`}
+            >
+              Eliminar
+            </button>
+          </div>
+        )}
         </div>
       )}
         
-    <Link 
-    to="/products/details" 
-    state={{product, allProducts}}
-    aria-label={`Ver detalles de ${product.title}`}
-    >
+      <Link 
+        to="/products/details" 
+        state={{product, allProducts}}
+        aria-label={`Ver detalles de ${product.title}`}
+      >
       <figure className="product-media">
         <img
           src={productImage}

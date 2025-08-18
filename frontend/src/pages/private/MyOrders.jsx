@@ -19,9 +19,9 @@ function MyOrders() {
       {orders.map((order) => (
         <li key={order.id}>
           <OrderCard 
-          order={order}
-          cancelingOrders={cancelingOrders}
-          handleCancelOrder={handleCancelOrder}
+            order={order}
+            cancelingOrders={cancelingOrders}
+            handleCancelOrder={handleCancelOrder}
           />
         </li>
         ))}

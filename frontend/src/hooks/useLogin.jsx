@@ -1,5 +1,4 @@
 import { loginUser } from "../services/authService";
-//import { loginUser } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {

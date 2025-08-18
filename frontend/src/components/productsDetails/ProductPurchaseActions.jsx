@@ -14,7 +14,6 @@ function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, produ
     <section className="product-purchase-actions">
       <div className="product-actions">
         <label className='quantity' htmlFor="quantity">Quantity:</label>
-
         <div className="quantity-input-wrapper">
            <button 
             type="button" 
@@ -22,7 +21,9 @@ function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, produ
             onClick={handleDecrease} 
             aria-label="Decrease quantity"
             disabled={quantity <= 1}
-          >−</button>
+            >
+              −
+            </button>
 
         <input
           id="quantity"
@@ -33,12 +34,14 @@ function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, produ
           className="product-quantity-input"
         />
         
-         <button 
-            type="button" 
-            className="quantity-btn increase" 
-            onClick={handleIncrease} 
-            aria-label="Increase quantity"
-          >+</button>
+        <button 
+          type="button" 
+          className="quantity-btn increase" 
+          onClick={handleIncrease} 
+          aria-label="Increase quantity"
+        >
+          +
+        </button>
         </div>
       </div>
 

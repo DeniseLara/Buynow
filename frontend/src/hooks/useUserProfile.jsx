@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
-//import { getUserProfile } from "../firebase/firebase";
 import { getUserProfile } from "../services/authService";
 import { useProfile } from "../context/ProfileContext";
 import { usePayment } from "../context/PaymentContext";
@@ -10,7 +9,6 @@ import fakeTestCards from "../data/fakeTestCards";
 
 export function useUserProfile() {
   const auth = getAuth();
-
   const { user, userData, loading, setUserData } = useAuth();
   const { userName } = useProfile();
   const {
@@ -36,7 +34,7 @@ export function useUserProfile() {
         } catch (error) {
           setUserData(null);
         } finally {
-          setLoadingProfile(false); // termina de cargar perfil
+          setLoadingProfile(false); 
         }
       };
       fetchUserData();

@@ -6,13 +6,13 @@ function FavoritesPage() {
   const { favorites } = useFavorites();
  
   return (
-      <section className="favorites-page" aria-labelledby="favorites-heading">
-        <header className="favorites-header">
-          <h1  id="favorites-heading" className="favorites-title">My Wishlist</h1>
-        </header>
+    <section className="favorites-page" aria-labelledby="favorites-heading">
+      <header className="favorites-header">
+        <h1  id="favorites-heading" className="favorites-title">My Wishlist</h1>
+      </header>
 
-        {favorites.length === 0 ? (
-          <p>You don’t have any products saved in your wishlist.</p>
+      {favorites.length === 0 ? (
+        <p>You don’t have any products saved in your wishlist.</p>
         ) : (
           <ul className="favorites-grid">
             {favorites.map((product) => (
@@ -22,7 +22,7 @@ function FavoritesPage() {
             ))}
           </ul>
         )}
-      </section>
+    </section>
     );
   };
   

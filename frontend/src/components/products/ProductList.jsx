@@ -6,7 +6,7 @@ function ProductList({ products = [], loading }) {
 
   return (
     <section className="products-container" aria-label="Product results">
-       {loading ? (
+      {loading ? (
     <ul className="product-list">
       {Array.from({ length: 12 }).map((_, index) => (
         <li key={index} className="product-item">
@@ -27,7 +27,9 @@ function ProductList({ products = [], loading }) {
         </ul> 
       ) : (
         <div role="status" aria-live="polite" className="no-products-message">
-          <p className="products-message">There are no products in this category.</p>
+          <p className="products-message">
+            There are no products in this category.
+          </p>
         </div>
       )}
     </section>

@@ -9,8 +9,8 @@ export const ProfileProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState(null); 
 
   
-useEffect(() => {
-  if (authLoading) return;
+  useEffect(() => {
+    if (authLoading) return;
 
     if (user && userData) {
       setUserName(userData.name || "Guest");
@@ -18,9 +18,8 @@ useEffect(() => {
     } else {
       setUserName("Guest");
       setUserEmail(null);
-  }
-
-}, [user, userData, authLoading]);
+    }
+  }, [user, userData, authLoading]);
 
 
   return (

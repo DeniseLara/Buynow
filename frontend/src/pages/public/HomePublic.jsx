@@ -9,11 +9,8 @@ function HomePublic() {
   return (
     <div className="home-public">
       <Hero/>
-
       <FeaturedProducts/>
-
       <Benefits/>
-
       <AuthSection/>
     </div>
   );

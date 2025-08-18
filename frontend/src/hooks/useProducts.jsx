@@ -48,7 +48,7 @@ export const useProducts = () => {
       } catch (error) {
         setError('No se pudieron cargar los productos. Intenta nuevamente más tarde.');
       } finally {
-        setLoading(false); // 👈 asegurarse de apagar loading siempre
+        setLoading(false); 
       }
     };
     

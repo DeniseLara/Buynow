@@ -10,8 +10,8 @@ function Cart({ items, onRemoveFromCart, onClearCart }) {
     <article className="cart">
       <h2 className="cart-subtitle">Shopping Cart</h2>
 
-    <ul className="cart-list">  
-      {items.map((item) => (
+      <ul className="cart-list">  
+        {items.map((item) => (
         <li key={item.id} className="cart-item">
           <p>{item.title} - ${item.price} x {item.quantity}</p>
           <button 
@@ -23,13 +23,14 @@ function Cart({ items, onRemoveFromCart, onClearCart }) {
           </button>
         </li>
       ))}
-    </ul>
+      </ul>
 
       <button 
-      className="clear-button" 
-      onClick={onClearCart}
-      aria-label="empty cart button"
-      type="button">
+        className="clear-button" 
+        onClick={onClearCart}
+        aria-label="empty cart button"
+        type="button"
+      >
         Empty Cart
       </button>
     </article>

@@ -12,16 +12,14 @@ import ProductList from "../../components/products/ProductList";
 function ProductsPage() {
   const { products, categories, CATEGORY_MAP, loading } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState("");
-  
   const { addToCart } = useCart();
   const { searchQuery } = useSearch(); 
 
-  
   const formatCategoryName = (category) => {
-  return category
+    return category
     .replace(/-/g, " ")
     .replace(/\b\w/g, (l) => l.toUpperCase());
-};
+  };
 
   // Filtro por categoría y por búsqueda
   const filteredProducts = products.filter((product) => {
@@ -39,12 +37,16 @@ function ProductsPage() {
   return (
     <section className="products" aria-label="Product catalog">
       <header className="products-content">
-        <h1 className="products-title">Welcome to Buynow</h1>
-        <p className="products-description">Fashion, technology, and style, all in one place.</p>
+        <h1 className="products-title">
+          Welcome to Buynow
+        </h1>
+        <p className="products-description">
+          Fashion, technology, and style, all in one place.
+        </p>
       </header>
       
-    <nav className="category-scroll-wrapper" aria-label="Product categories">
-      <div className="category-filters">
+      <nav className="category-scroll-wrapper" aria-label="Product categories">
+        <div className="category-filters">
         <button
           className={`category-button ${selectedCategory === '' ? 'active' : ''}`}
           onClick={() => setSelectedCategory('')}
@@ -53,7 +55,7 @@ function ProductsPage() {
           <span className="category-icon"><FaThLarge /></span> All
         </button>
 
-      {categories.map((category) => (
+        {categories.map((category) => (
         <button
           key={category}
           className={`category-button ${selectedCategory === category ? 'active' : ''}`}
@@ -63,16 +65,16 @@ function ProductsPage() {
           {getCategoryIcon(category)} 
           {category}
         </button>
-      ))}
-    </div>
-  </nav>
+        ))}
+        </div>
+      </nav>
 
      
-        <ProductList 
+      <ProductList 
         products={filteredProducts} 
         onAddToCart={addToCart} 
         loading={loading}
-        />
+      />
       
     </section>
   );

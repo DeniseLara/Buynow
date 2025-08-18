@@ -45,36 +45,36 @@ function ProductDetails() {
 
 
   return (
-      <article className="product-details">
-        <BackButton/>
+    <article className="product-details">
+      <BackButton/>
 
-        <div className="product-details-content">
-          <figure className="image-container">
-            <img 
-              src={productImage} 
-              alt={product.title} 
-              className='product-image'
-            />
-          </figure>
+      <div className="product-details-content">
+        <figure className="image-container">
+          <img 
+            src={productImage} 
+            alt={product.title} 
+            className='product-image'
+          />
+        </figure>
 
         <section className="product-text">
           <ProductInfo 
-          product={product}
-          handleFavoriteClick={handleFavoriteClick}
-          isFavorite={favorite}
-          rating={rating}
+            product={product}
+            handleFavoriteClick={handleFavoriteClick}
+            isFavorite={favorite}
+            rating={rating}
           />
 
           <ProductPurchaseActions
-          quantity={quantity}
-          onQuantityChange={handleQuantityChange}
-          onAddToCart={() => addToCart(product, quantity)}
-          productTitle={product.title}
+            quantity={quantity}
+            onQuantityChange={handleQuantityChange}
+            onAddToCart={() => addToCart(product, quantity)}
+            productTitle={product.title}
           />
         </section>
-        </div>
+      </div>
 
-          <RelatedProducts relatedProducts={relatedProducts}/>
+        <RelatedProducts relatedProducts={relatedProducts}/>
     </article>
  );
 };

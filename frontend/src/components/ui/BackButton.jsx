@@ -22,12 +22,12 @@ function BackButton() {
 
 return (
     <button 
-        className="product-continue-shopping" 
-        onClick={handleClick}
-        aria-label='Back to the products page'
-        type='button'
+      className="product-continue-shopping" 
+      onClick={handleClick}
+      aria-label='Back to the products page'
+      type='button'
     >
-        <AiOutlineArrowLeft /> 
+      <AiOutlineArrowLeft /> 
     </button>
   );
 }

@@ -16,13 +16,13 @@ function SidebarMenu({ toggleMenu, menuOpen, user, id }) {
     toggleMenu();
   };
 
-return (
-    <aside 
-        className={`navbar-menu ${menuOpen ? 'show' : ''}`}
-        id={id}
-        role="navigation"
-        aria-label="Sidebar menu"
-    >
+    return (
+        <aside 
+            className={`navbar-menu ${menuOpen ? 'show' : ''}`}
+            id={id}
+            role="navigation"
+            aria-label="Sidebar menu"
+        >
         <ul className="navbar-list">
             <li className='navbar-item'>
                 <Link className='navbar-link' to="/" aria-label='go to home page'>
@@ -79,8 +79,8 @@ return (
             >
                 <IoCloseOutline aria-hidden="true"/>
             </button>
-    </aside>
-  );
+        </aside>
+    );
 }
 
 export default SidebarMenu;

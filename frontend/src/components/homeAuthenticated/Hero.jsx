@@ -10,11 +10,14 @@ function Hero() {
                 <h1 className="home-authenticated-title">
                     Welcome back, {userName || 'Guest'}!
                 </h1>
-                <p className="home-authenticated-description">Find the best of our products.</p>
+                <p className="home-authenticated-description">
+                    Find the best of our products.
+                </p>
                 <Link 
-                to="/products" 
-                className="explore-btn"
-                aria-label="explore our products collection">
+                    to="/products" 
+                    className="explore-btn"
+                    aria-label="explore our products collection"
+                >
                   Explore products
                 </Link>
             </div>

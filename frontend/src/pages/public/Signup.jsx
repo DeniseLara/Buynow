@@ -2,10 +2,7 @@ import './Form.css'
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
 import { registerUser } from "../../services/authService";
-//import { registerUser } from "../../firebase/firebase";
-
 
 function Signup() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -36,14 +33,18 @@ function Signup() {
                 <h1 id="signup-title">Welcome to <span>BuyNow</span> 🛍️</h1>
                 <p>Create an account to start shopping with us.</p>
                 
-                <form onSubmit={handleSubmit(onSubmit)} noValidate aria-describedby={errorMessage ? "form-error" : undefined}>
+                <form 
+                    onSubmit={handleSubmit(onSubmit)} 
+                    noValidate 
+                    aria-describedby={errorMessage ? "form-error" : undefined}
+                >
                     <div className="input-group">
                         <input 
-                        type="text"
-                        placeholder="Enter your name"
-                        {...register("name", { required: "Name is required" })}
-                        aria-invalid={errors.name ? "true" : "false"}
-                        aria-describedby={errors.name ? "name-error" : undefined}
+                            type="text"
+                            placeholder="Enter your name"
+                            {...register("name", { required: "Name is required" })}
+                            aria-invalid={errors.name ? "true" : "false"}
+                            aria-describedby={errors.name ? "name-error" : undefined}
                         />
                         {errors.name && ( 
                             <p id="name-error" className="error" role="alert">
@@ -93,9 +94,10 @@ function Signup() {
 
 
                     <button 
-                    type="submit" 
-                    className="form-btn"
-                    aria-label="submit sign-up form">
+                        type="submit" 
+                        className="form-btn"
+                        aria-label="submit sign-up form"
+                    >
                         Create Account
                     </button>
                 </form>

@@ -10,21 +10,21 @@ function UserStats() {
 
   return (
     <section className="user-stats" aria-label="User statistics">
-    <h2 className="user-stats-title">Your Activity Summary</h2>
-      <div className="stats-grid">
-        <div className="stat-card">
+      <h2 className="user-stats-title">Your Activity Summary</h2>
+      <ul className="stats-grid">
+        <li className="stat-card">
           <h3>Orders</h3>
           <p>{orders.length} orders</p>
-        </div>
-        <div className="stat-card">
+        </li>
+        <li className="stat-card">
           <h3>Favorites</h3>
           <p>{favorites.length} saved items</p>
-        </div>
-        <div className="stat-card">
+        </li>
+        <li className="stat-card">
           <h3>In Cart</h3>
           <p>{cart.length} products</p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
   );
 }

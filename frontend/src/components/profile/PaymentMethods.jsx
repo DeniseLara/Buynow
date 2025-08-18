@@ -19,11 +19,11 @@ function PaymentMethods({
             <div className="card-filter">
               {fakeTestCards.map((card) => (
                 <button
-                type="button"
-                key={card.id}
-                className={`card-option ${selectedCard === card.id ? 'selected' : ''}`}
-                onClick={() => setSelectedCard(card.id)}
-                aria-label="select card"
+                  type="button"
+                  key={card.id}
+                  className={`card-option ${selectedCard === card.id ? 'selected' : ''}`}
+                  onClick={() => setSelectedCard(card.id)}
+                  aria-label="select card"
                 >
                   <img src={card.logo} alt={card.brand} className="card-logo" />
                 </button>
@@ -48,10 +48,10 @@ function PaymentMethods({
                 <li key={index} className="payment-card">
                 <p>{method.brand} **** {method.last4}</p> 
                   <button 
-                  type="button"
-                  aria-label="remove card"
-                  className="remove-card"
-                  onClick={() => removePaymentMethod(index)} 
+                    type="button"
+                    aria-label="remove card"
+                    className="remove-card"
+                    onClick={() => removePaymentMethod(index)} 
                   >
                     <IoIosRemoveCircleOutline/>
                   </button>
@@ -64,7 +64,11 @@ function PaymentMethods({
               {paymentMethods.length > 0 ? (
                 paymentMethods.map((method, index) => (
                   <li key={index} className="payment-method-display">
-                    <img src={method.logo} alt={method.brand} className="card-logo-display" />
+                    <img 
+                      src={method.logo} 
+                      alt={method.brand} 
+                      className="card-logo-display" 
+                    />
                     <p>{method.brand} **** {method.last4}</p>
                   </li>
                 ))
@@ -73,7 +77,7 @@ function PaymentMethods({
               )}
             </ul>
           )}
-      </section>
+    </section>
   );
 }
 

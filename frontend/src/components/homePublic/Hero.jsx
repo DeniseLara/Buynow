@@ -7,14 +7,16 @@ function Hero() {
       <div className="hero-content">
 
         <div className="hero-public-content">
-          <h1 id="hero-title" className='hero-public-title'>Find the best products for you</h1>
+          <h1 id="hero-title" className='hero-public-title'>
+            Find the best products for you
+          </h1>
           <p className='hero-public-description'>
             Explore our wide range of products at unbeatable prices.
           </p>
           <Link 
-          to="/products" 
-          className="cta-btn-hero"
-          aria-label='explore products'
+            to="/products" 
+            className="cta-btn-hero"
+            aria-label='explore products'
           >
             Explore products <span className='arrow-icon'><MdArrowOutward/></span>
           </Link> 

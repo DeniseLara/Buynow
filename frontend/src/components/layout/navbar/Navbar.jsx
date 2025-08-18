@@ -17,42 +17,39 @@ function Navbar() {
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
 
-return (
-    <header className='header' role="banner">
-    {menuOpen && (
-        <button 
-            className={`menu-overlay ${menuOpen ? 'show' : ''}`}
-            onClick={toggleMenu}
-            aria-label="Close menu"
-            type="button"
-        >
-        </button>
-    )}
+    return (
+        <header className='header' role="banner">
+            {menuOpen && (
+                <button 
+                    className={`menu-overlay ${menuOpen ? 'show' : ''}`}
+                    onClick={toggleMenu}
+                    aria-label="Close menu"
+                    type="button"
+                >
+                </button>
+            )}
         
-        <nav className="navbar container">
-            <NavbarToggleButton 
-            toggleMenu={toggleMenu}
-            aria-expanded={menuOpen} 
-            aria-controls="sidebar-menu"
-            />
-
-            <Logo/>
+            <nav className="navbar container">
+                <NavbarToggleButton 
+                    toggleMenu={toggleMenu}
+                    aria-expanded={menuOpen} 
+                    aria-controls="sidebar-menu"
+                />
+                <Logo/>
                 
-        <div className="navbar-icons">
-            <SearchBar/>
+            <div className="navbar-icons">
+                <SearchBar/>
+                <ProfileMenu user={user}/>
+                <CartIcon user={user}/>
+            </div>
+            </nav>
 
-            <ProfileMenu user={user}/>
-
-            <CartIcon user={user}/>
-        </div>
-        </nav>
-
-        <SidebarMenu 
-        toggleMenu={toggleMenu} 
-        menuOpen={menuOpen} 
-        user={user}
-        id="sidebar-menu"
-        />
+            <SidebarMenu 
+                toggleMenu={toggleMenu} 
+                menuOpen={menuOpen} 
+                user={user}
+                id="sidebar-menu"
+            />
         </header>
     );
 }

@@ -13,7 +13,6 @@ import BackButton from '../../components/ui/BackButton';
 
 
 function CartPage() {  
-  // Usar el contexto para acceder al carrito y las funciones
   const { cart, removeFromCart, clearCart, checkout } = useCart();
   const total = useCartTotal();
   const [showPaymentForm, setShowPaymentForm] = useState(false);
@@ -47,7 +46,10 @@ function CartPage() {
       )}
       </section>
 
-       <Modal isOpen={showPaymentForm} onClose={() => setShowPaymentForm(false)}>
+       <Modal 
+          isOpen={showPaymentForm} 
+          onClose={() => setShowPaymentForm(false)}
+        >
        <PaymentForm
           total={total}
           cart={cart}
@@ -55,7 +57,7 @@ function CartPage() {
         />
       </Modal>
 
-    {showSuccessModal && (
+      {showSuccessModal && (
       <PaymentSuccessModal onClose={() => setShowSuccessModal(false)} />
     )}
   </div>

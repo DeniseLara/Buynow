@@ -9,7 +9,12 @@ function FooterSide() {
         <h4 className="footer-subtitle">Secure Payments</h4>
         <div className="payment-logos">
           {fakeTestCards.map(card => (
-            <img key={card.brand} src={card.logo} alt={card.brand} className="payment-logo" />
+            <img 
+              key={card.brand} 
+              src={card.logo} 
+              alt={card.brand} 
+              className="payment-logo" 
+            />
           ))}
         </div>
       </article>
@@ -17,9 +22,30 @@ function FooterSide() {
       <div className="footer-social">
         <h4 className="footer-subtitle">Follow Us</h4>
         <ul className="footer-social-list">
-          <Link to="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaFacebook /></Link>
-          <Link to="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaTwitter /></Link>
-          <Link to="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon"><FaInstagram /></Link>
+          <Link 
+            to="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-icon"
+          >
+              <FaFacebook />
+          </Link>
+          <Link 
+            to="https://twitter.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-icon"
+          >
+            <FaTwitter />
+          </Link>
+          <Link 
+            to="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-icon"
+          >
+            <FaInstagram />
+          </Link>
         </ul>
       </div>
 

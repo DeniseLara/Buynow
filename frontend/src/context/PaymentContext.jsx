@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { updateUserData } from "../services/authService";
-//import { updateUserData } from "../firebase/firebase";
 import { useAuth } from "./AuthContext";
 
 const PaymentContext = createContext();
@@ -13,69 +12,69 @@ export const PaymentProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
 
-useEffect(() => {
-  if (authLoading) return;
+  useEffect(() => {
+    if (authLoading) return;
 
     if (user && userData) {
-        setPaymentMethods(userData.paymentMethods || []);
-        setAddress(userData.address || "");
-      } else {
-        setPaymentMethods([]);
-        setAddress("");
-      }
+      setPaymentMethods(userData.paymentMethods || []);
+      setAddress(userData.address || "");
+    } else {
+      setPaymentMethods([]);
+      setAddress("");
+    }
    
-  setLoading(false);
-}, [user, userData, authLoading]);
+    setLoading(false);
+  }, [user, userData, authLoading]);
 
 
-const addPaymentMethod = async (newCard) => {
-  const cardWithId = {
-    ...newCard,
-    id: newCard.id || `${newCard.brand}-${newCard.last4}` 
+  const addPaymentMethod = async (newCard) => {
+    const cardWithId = {
+      ...newCard,
+      id: newCard.id || `${newCard.brand}-${newCard.last4}` 
+    };
+
+    const updated = [...paymentMethods, cardWithId];
+    setPaymentMethods(updated);
+
+    if (user) {
+      await updateUserData(user.uid, { paymentMethods: updated });
+      setUserData(prev => ({ ...prev, paymentMethods: updated }));
+    }
+  }
+
+  
+  const removePaymentMethod = async (indexToRemove) => {
+    const updated = paymentMethods.filter((_, i) => i !== indexToRemove);
+    setPaymentMethods(updated);
+    if (user) {
+      await updateUserData(user.uid, { paymentMethods: updated });
+      setUserData(prev => ({ ...prev, paymentMethods: updated }));
+    }
   };
 
-  const updated = [...paymentMethods, cardWithId];
-  setPaymentMethods(updated);
 
-  if (user) {
-    await updateUserData(user.uid, { paymentMethods: updated });
-    setUserData(prev => ({ ...prev, paymentMethods: updated }));
-  }
-}
-
-  
-const removePaymentMethod = async (indexToRemove) => {
-  const updated = paymentMethods.filter((_, i) => i !== indexToRemove);
-  setPaymentMethods(updated);
-  if (user) {
-    await updateUserData(user.uid, { paymentMethods: updated });
-    setUserData(prev => ({ ...prev, paymentMethods: updated }));
-  }
-};
+  const updateAddress = async (newAddress) => {
+    setAddress(newAddress);
+    if (user) {
+      await updateUserData(user.uid, { address: newAddress });
+      setUserData(prev => ({ ...prev, address: newAddress }));
+    }
+  };
 
 
-const updateAddress = async (newAddress) => {
-  setAddress(newAddress);
-  if (user) {
-    await updateUserData(user.uid, { address: newAddress });
-    setUserData(prev => ({ ...prev, address: newAddress }));
-  }
-};
-
-
-// función para actualizar el costo de envío (en centavos)
-const updateShippingCost = (cost) => {
-  setShippingCost(cost * 100);  // Guardamos el costo en centavos
-};
+  // función para actualizar el costo de envío (en centavos)
+  const updateShippingCost = (cost) => {
+    setShippingCost(cost * 100);  // Guardamos el costo en centavos
+  };
 
   
-const calculateShippingCost = (total) => {
-  const cost = total >= 50 ? 0 : 5.99;
-  setShippingCost(cost * 100);  // Almacenar en centavos
-};
+  const calculateShippingCost = (total) => {
+    const cost = total >= 50 ? 0 : 5.99;
+    setShippingCost(cost * 100);  // Almacenar en centavos
+  };
 
 
-if (loading || authLoading) return null;
+  if (loading || authLoading) return null;
   
 return (
   <PaymentContext.Provider 

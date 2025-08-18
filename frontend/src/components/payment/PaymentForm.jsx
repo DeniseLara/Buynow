@@ -20,14 +20,12 @@ function PaymentForm({ total, cart, onSucces }) {
     shippingCost, 
     calculateShippingCost 
   } = usePayment();
-
-  // Usar las tarjetas del usuario si hay, si no, las fake
-  const cardsToShow = paymentMethods.length > 0 ? paymentMethods : fakeTestCards;
-
   const [selectedCard, setSelectedCard] = useState('');
   const [cardError, setCardError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [addressError, setAddressError] = useState(null);
+
+  const cardsToShow = paymentMethods.length > 0 ? paymentMethods : fakeTestCards;
   
   useEffect(() => {
     if (cardsToShow.length === 1) {

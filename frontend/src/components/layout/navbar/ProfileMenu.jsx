@@ -16,8 +16,12 @@ export function ProfileMenu({ user }) {
         <FaUserCircle className="icon-link" />
         {profileMenuOpen && (
           <div className="profile-menu">
-            <Link className="link" to="/login" aria-label="go to login page">Log in</Link>
-            <Link className="link" to="/signup" aria-label="go to sign up page">Sign up</Link>
+            <Link className="link" to="/login" aria-label="go to login page">
+              Log in
+            </Link>
+            <Link className="link" to="/signup" aria-label="go to sign up page">
+              Sign up
+            </Link>
           </div>
         )}
       </div>
@@ -26,14 +30,14 @@ export function ProfileMenu({ user }) {
 
   return (
     <div className="icon-wrapper profile-avatar">
-        <Link to="/profile" className="icon-link" aria-label='go to profile page'>
-            <img 
-              src={Perfil} 
-              alt="Profile Avatar" 
-              className="avatar-image"
-              loading='lazy' 
-            />
-        </Link>
+      <Link to="/profile" className="icon-link" aria-label='go to profile page'>
+        <img 
+          src={Perfil} 
+          alt="Profile Avatar" 
+          className="avatar-image"
+          loading='lazy' 
+        />
+      </Link>
     </div>
   );
 }

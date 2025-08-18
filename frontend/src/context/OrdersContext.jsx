@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { loadUserOrders, updateOrderStatus, cancelOrder, fetchUserOrdersOnce } from "../services/ordersService";
-//import { loadUserOrders, updateOrderStatus, cancelOrder, fetchUserOrdersOnce } from "../firebase/firebase";
 import { useAuth } from "./AuthContext";
 
 const OrdersContext = createContext();
@@ -11,65 +10,65 @@ export const OrdersProvider = ({ children }) => {
   const [cancelingOrders, setCancelingOrders] = useState([]); 
   const { user } = useAuth();
   
-// Usamos un efecto para escuchar los cambios en las órdenes cuando el usuario cambia
-useEffect(() => {
-  if (!user) {
-    setOrders([]);
-    setLoadingOrders(false);
-    return;
-  }
+  // efecto para escuchar los cambios en las órdenes cuando el usuario cambia
+  useEffect(() => {
+    if (!user) {
+      setOrders([]);
+      setLoadingOrders(false);
+      return;
+    }
 
-  setLoadingOrders(true);
+    setLoadingOrders(true);
 
-  const unsubscribe = loadUserOrders(user.uid, (orders) => {
-    setOrders(orders);
-    setLoadingOrders(false);
-  });
+    const unsubscribe = loadUserOrders(user.uid, (orders) => {
+      setOrders(orders);
+      setLoadingOrders(false);
+    });
 
-  return () => unsubscribe(); // Limpia el listener al desmontar o cambiar usuario
+    return () => unsubscribe(); // Limpiar el listener al desmontar o cambiar usuario
 
-}, [user]); 
+  }, [user]); 
 
 
-// Función para cancelar la orden
-const handleCancelOrder = async (orderId) => {
-  if (!user) return;
+  // Función para cancelar la orden
+  const handleCancelOrder = async (orderId) => {
+    if (!user) return;
+      
+    setCancelingOrders((prev) => [...prev, orderId]); // Marcar la orden como en proceso de cancelación
 
-  setCancelingOrders((prev) => [...prev, orderId]); // Marcar la orden como en proceso de cancelación
-
-  try {
-    await cancelOrder(user.uid, orderId); // Llamar a la función de cancelación en Firebase
-    setOrders((prevOrders) =>
-      prevOrders.map((order) =>
+    try {
+      await cancelOrder(user.uid, orderId); // Llamar a la función de cancelación en Firebase
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
         order.id === orderId ? { ...order, status: "canceled" } : order
-      )
-    );
-  } catch (error) {
-  } finally {
-    setCancelingOrders((prev) => prev.filter((id) => id !== orderId)); // Eliminar de la lista de cancelación
-  }
-};
+        )
+      );
+    } catch (error) {
+    } finally {
+      setCancelingOrders((prev) => prev.filter((id) => id !== orderId)); // Eliminar de la lista de cancelación
+    }
+  };
 
 
-const changeOrderStatus = async (orderId, newStatus) => {
-  if (user) {
-    await updateOrderStatus(user.uid, orderId, newStatus);
-    // Actualiza el estado local de las órdenes
-    setOrders(prevOrders => 
-      prevOrders.map(order => 
-      order.id === orderId ? { ...order, status: newStatus } : order
-      )
-    );
-  }
-};
+  const changeOrderStatus = async (orderId, newStatus) => {
+    if (user) {
+      await updateOrderStatus(user.uid, orderId, newStatus);
+      // Actualizar el estado local de las órdenes
+      setOrders(prevOrders => 
+        prevOrders.map(order => 
+        order.id === orderId ? { ...order, status: newStatus } : order
+        )
+      );
+    }
+  };
   
   
-const refreshOrders = async () => {
-  if (user) {
-    const userOrders = await fetchUserOrdersOnce(user.uid);
-    setOrders(userOrders);
-  }
-};
+  const refreshOrders = async () => {
+    if (user) {
+      const userOrders = await fetchUserOrdersOnce(user.uid);
+      setOrders(userOrders);
+    }
+  };
 
 
   return (

@@ -8,7 +8,6 @@ import Navbar from './components/layout/navbar/Navbar';
 import Footer from './components/layout/footer/Footer'
 import Loading from './components/ui/Loading'
 
-// Importación dinámica para code splitting
 const HomePublic = lazy(() => import('./pages/public/HomePublic'));
 const HomeAuthenticated = lazy(() => import('./pages/private/HomeAuthenticated'));
 const Signup = lazy(() => import('./pages/public/Signup'));
@@ -27,9 +26,9 @@ function App() {
 
   return (
     <div className="path-container">
-     <Navbar user={user} profileImage={profileImage}/>
+      <Navbar user={user} profileImage={profileImage}/>
       
-    <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
       <main className='path'>
         <Routes>
           <Route 
@@ -78,7 +77,7 @@ function App() {
           />
       </Routes>
       </main>
-    </Suspense>
+      </Suspense>
 
       <Footer/>
     </div>

@@ -5,26 +5,25 @@ function PaymentSummary({ total, shippingCost }) {
   
   return (
     <section>
+      <ul className="summary-list">
+        <li className="total-summary">
+          <p>Price:</p>
+          <span>${total.toFixed(2)}</span>
+        </li>
 
-      <dl className="summary-list">
-        <div className="total-summary">
-          <dt>Total:</dt>
-          <dd>${total.toFixed(2)}</dd>
-        </div>
-
-        <div className="shipping-summary">
-          <dt>Shipping cost:</dt>
-          <dd className="shipping-price">
+        <li className="shipping-summary">
+          <p>Shipping cost:</p>
+          <span className="shipping-price">
             <IoIosAdd />
             ${ (shippingCost / 100).toFixed(2) }
-          </dd>
-        </div>
+          </span>
+        </li>
 
-        <div className="final-total">
-          <dt>Total amount:</dt>
-          <dd><strong>${finalTotal.toFixed(2)}</strong></dd>
-        </div>
-      </dl>
+        <li className="final-total">
+          <p>Total amount:</p>
+          <span><strong>${finalTotal.toFixed(2)}</strong></span>
+        </li>
+      </ul>
     </section>
   );
 }

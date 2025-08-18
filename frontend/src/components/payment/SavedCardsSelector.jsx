@@ -22,9 +22,9 @@ function SavedCardsSelector({ paymentMethods, selectedCard, onSelect, error }) {
         >
           <option value="">-- Select a Card --</option>
           {paymentMethods.map((method) => (
-            <option key={method.id} value={method.id}>
-              {method.brand} •••• {method.last4}
-            </option>
+          <option key={method.id} value={method.id}>
+            {method.brand} •••• {method.last4}
+          </option>
           ))}
         </select>
 

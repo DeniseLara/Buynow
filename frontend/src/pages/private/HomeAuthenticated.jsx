@@ -6,7 +6,6 @@ import UserStats from "../../components/homeAuthenticated/UserStats";
 import PromoSection from "../../components/homeAuthenticated/PromoSection";
 
 function HomeAuthenticated() {
-
   return (
     <section className="home-authenticated">
       <Hero/>

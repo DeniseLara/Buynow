@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { getUserProfile, registerUser, loginUser, logoutUser } from '../services/authService'
 import { auth } from "../services/firebaseConfig";
-//import { auth, getUserProfile, registerUser, loginUser, logoutUser } from '../firebase/firebase'
 
 const AuthContext = createContext();
 
@@ -14,6 +13,7 @@ export const AuthProvider = ({ children }) => {
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (userId) => {
     setLoading(true); // Establece loading como true cuando se cambia de usuario
+
     if (userId) {
       setUser(userId);
       
@@ -24,10 +24,10 @@ useEffect(() => {
         setUserData(null);
         }
       } else {
-        setUser(null); // Si no hay usuario, limpiar el estado de usuario
-        setUserData(null); // Limpiar también los datos del usuario
+        setUser(null); 
+        setUserData(null); 
       }
-      setLoading(false);  // Termina de cargar después de que se actualizan los datos
+      setLoading(false);  
     });
 
   return () => unsubscribe(); // Limpia el listener al desmontar
