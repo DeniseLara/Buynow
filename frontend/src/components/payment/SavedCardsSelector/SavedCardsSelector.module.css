@@ -1,0 +1,30 @@
+.selector {
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  background-color: var(--white-color);
+  color: #222;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.selector label {
+  background-color: var(--white-color);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.dropdown {
+  background-color: var(--white-color);
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: #222;
+  font-size: 1rem;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 0.5rem;
+  font-size: var(--fs-sm);
+}

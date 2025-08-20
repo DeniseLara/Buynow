@@ -8,30 +8,11 @@
   margin-bottom: 1rem;
 }
   
-.order-card {
-  background-color: rgba(66, 115, 136, 0.1); 
-  padding: 1rem;
-  font-size: var(--fs-sm);
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  color: #333333;
-}
-  
-.order-items {
-  padding-left: 0;
-  margin-top: 0.8rem;
-}
-  
-.order-items li {
-  padding: 0.25rem 0;
-}
-  
 .orders-empty,
 .orders-loading {
-  margin: 5rem auto;
-  text-align: center;
+  margin: 1.5rem auto;
   font-size: var(--fs-base);
-  color: #999;
+  color: var(--color-info);
 }
 
 .orders-list{
@@ -48,11 +29,7 @@
   border-radius: 2rem;
   padding: 0.5rem 1.1rem;
   transition: all .3s ease;
-  border: 1px solid #333333;
-}
-
-.order-items{
-  margin-bottom: 0.5rem;
+  border: 1px solid var(--text-color);
 }
 
 .order-item:hover,
@@ -66,24 +43,6 @@
   display: none; /* Chrome, Safari y Opera */
 }
 
-.order-principal-text{
-  display: flex;
-  font-size: var(--fs-base);
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-.order-date{
-  color: #99AAB0;
-  font-size: var(--fs-sm);
-}
-
-.order-detail.product{
-  font-size: var(--fs-base);
-  margin-bottom: 0.5rem;
-}
-
 .order-text{
   color: #99AAB0;
   display: flex;
@@ -91,69 +50,7 @@
   justify-content: space-between;
 }
 
-.order-detail strong{
-  color: var(--text-color);
-}
-
 .actions{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.order-status{
-  font-size: var(--fs-base);
-  text-transform: capitalize;
-  color: #4CAF50;
-}
-
-.order-total {
-  font-size: var(--fs-base);
-}
-
-.order-total-detail{
-  display: flex;
-  font-size: var(--fs-base);
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.6rem;
-}
-
-.order-status.canceled {
-  color: #d93025;
-}
-
-.order-status.shipped {
-  color: #1967d2;
-}
-
-.order-status.delivered {
-  color: #33691e;
-}
-
-.cancel-order-btn{
-  display: flex;
-  font-size: var(--fs-sm);
-  justify-self: end;
-  border: 1px solid #999;
-  transition: all .3s ease-in-out;
-  color: #e63946;
-  border-radius: 1rem;
-  padding: 0.5rem 0.8rem;
-  background-color: transparent;
-}
-
-.cancel-order-btn:focus,
-.cancel-order-btn:active{
-  border: 1px solid #333333;
-}
-
-.cancel-order-btn:hover{
-  border: 1px solid #333333;
-  background-color: #f0f0f0;
-}
-
-.orders{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -173,10 +70,6 @@
 
 
 @media (min-width:1024px){
-  .order-card{
-    padding: 1.25rem;
-  }
-
   .orders-container {
     padding: 5rem 3rem;
   }

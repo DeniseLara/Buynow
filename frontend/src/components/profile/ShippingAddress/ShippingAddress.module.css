@@ -1,0 +1,44 @@
+.container {
+  font-size: var(--fs-base);
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--border-color-light);
+}
+
+.container input {
+  font-size: var(--fs-base);
+  transition: all 0.3s ease-in-out;
+}
+
+.container input::placeholder {
+  font-size: var(--fs-sm);
+}
+
+.container h3 {
+  font-size: var(--fs-md);
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.input{
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #D1D1D1;
+  border-radius: 0.6rem;
+  background: #F7F7F7;
+  color: var(--text-color);
+  font-size: var(--fs-base);
+  outline: none;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.input:focus {
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 0 5px rgba(13, 59, 102, 0.4);
+}
+
+.infoText {
+  color: var(--color-info);
+  font-size: var(--fs-base);
+}

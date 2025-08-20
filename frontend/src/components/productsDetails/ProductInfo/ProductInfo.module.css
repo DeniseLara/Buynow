@@ -1,0 +1,55 @@
+.headerLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.category {
+  color: #888;
+  font-size: var(--fs-sm);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.button {
+  padding: 0;
+  color: #333333;
+  font-size: 1.5rem;
+  transition: all .3s ease-in-out;
+}
+
+.button:hover{
+  color: #e63946;
+}
+
+.favoriteIconFilled {
+  color: #e63946;
+  transition: color 0.3s ease;
+}
+
+.price {
+  color: #003366;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  font-size: var(--fs-md);
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.ratingContainer .rating {
+  display: flex;
+}
+
+.description {
+  font-size: var(--fs-base);
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+  color: var(--text-color);
+}

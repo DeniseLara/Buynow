@@ -1,21 +1,22 @@
+import styles from './Cart.module.css'
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 function Cart({ items, onRemoveFromCart, onClearCart }) {
-  // Si el carrito está vacío, mostrar mensaje
-  if (items.length === 0) {
-    return <p className="cart-message">Tu carrito está vacío</p>;
-  }
 
   return (
-    <article className="cart">
-      <h2 className="cart-subtitle">Shopping Cart</h2>
+    <article className={styles.container}>
+      <h2 className={styles.subtitle}>Shopping Cart</h2>
 
-      <ul className="cart-list">  
+      {items.length === 0 ? (
+        <p className={styles.message}>Tu carrito está vacío</p>
+      ) : ( 
+        <>
+      <ul className={styles.list}>  
         {items.map((item) => (
-        <li key={item.id} className="cart-item">
+        <li key={item.id} className={styles.item}>
           <p>{item.title} - ${item.price} x {item.quantity}</p>
           <button 
-            className="cart-delete-button" 
+            className={styles.deleteButton} 
             onClick={() => onRemoveFromCart(item.id)} 
             aria-label="delete product from the cart button"
             type="button">
@@ -26,13 +27,15 @@ function Cart({ items, onRemoveFromCart, onClearCart }) {
       </ul>
 
       <button 
-        className="clear-button" 
+        className={styles.clearButton} 
         onClick={onClearCart}
         aria-label="empty cart button"
         type="button"
       >
         Empty Cart
       </button>
+      </>
+      )}
     </article>
   );
 };

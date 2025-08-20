@@ -66,6 +66,18 @@ export function useUserProfile() {
   };
 
 
+  const handleCancelEdit = () => {
+    setFormData({
+      userName: userName,
+      address: address,
+      paymentMethods: paymentMethods,
+    });
+
+    // Salir del modo edición
+    setEditMode(false);
+  };
+
+
   const handleAddPaymentMethod = () => {
     if (selectedCard === null) return;
     const selected = fakeTestCards.find(card => card.id === selectedCard);
@@ -106,6 +118,7 @@ export function useUserProfile() {
     handleSaveChanges,
     paymentMethods,
     removePaymentMethod,
-    address
+    address,
+    handleCancelEdit,
   };
 }

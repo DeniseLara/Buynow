@@ -1,0 +1,191 @@
+.container {
+  font-size: var(--fs-base);
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--border-color-light);
+}
+
+.container input {
+  font-size: var(--fs-base);
+  transition: all 0.3s ease-in-out;
+}
+
+.container input::placeholder {
+  font-size: var(--fs-sm);
+}
+
+.container h3 {
+  font-size: var(--fs-md);
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.paymentMethod {
+  margin: 0;
+  padding: 0;
+}
+
+.cardText {
+  color: var(--color-info);
+}
+
+.cardListDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.paymentMethod {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--bg-color);
+  border: 1px solid #e0e0e0;
+  border-radius: 0.6rem;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: all .2s ease;
+}
+
+.paymentMethod:hover {
+  background: #f1f5ff;
+}
+
+.cardFilter {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.cardOption {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  border: 1px solid transparent;
+  outline: none;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.cardOption:hover {
+  border: 1px solid var(--primary-color);
+}
+
+.cardOption.selected {
+  border: 1px solid var(--primary-color);
+  background-color: #e8f0ff;
+}
+
+.cardLogo {
+  width: 40px;
+  height: auto;
+}
+
+.cardbrand {
+  color: var(--text-color);
+}
+
+.addButton {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  gap: 0.4rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-size: var(--fx-xs);
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.addButton:hover {
+  background-color: #1f4fa3; /* un azul más oscuro */
+}
+
+.addButton strong svg {
+  font-size: var(--fs-base);
+}
+
+.addButton strong {
+  font-size: var(--fs-base);
+}
+
+.addButton .text {
+  font-size: var(--fs-sm);
+}
+
+/*.addButton strong svg {
+  font-size: var(--fs-md);
+}*/
+
+.addButton:active,
+.addButton:focus,
+.addButton:hover{
+  border: none;
+  outline: none;
+}
+
+.addButton:focus {
+  outline: none;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--fs-base);
+}
+
+.removeCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #999; /* gris neutro de base */
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.removeCard:hover {
+  color: #E63946; /* rojo en hover */
+  background: #ffeaea; /* un fondo suave */
+}
+
+.removeCard:focus,
+.removeCard:active,
+.removeCard:hover {
+  outline: none;
+  border: none;
+}
+
+.paymentMethod p {
+  font-size: var(--fs-base);
+}
+
+.paymentMethod {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 8px;
+}
+
+.infoText {
+  color: var(--color-info);
+  font-size: var(--fs-base);
+}

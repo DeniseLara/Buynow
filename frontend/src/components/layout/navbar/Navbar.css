@@ -48,7 +48,7 @@
   left: -50%;
   transform: translateX(-50%);
   background: var(--white-color);
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color-light);
   padding: 1rem 1.4rem;
   min-width: 130px;
   border-radius: 1rem;
@@ -136,7 +136,7 @@ a {
   display: flex;
   align-items: center;
   background-color: var(--white-color);
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color-light);
   border-radius: 8px;
   padding: 6px 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -152,8 +152,8 @@ a {
   padding: 6px 8px;
   font-size: var(--fs-sm);
   border-radius: 6px;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 

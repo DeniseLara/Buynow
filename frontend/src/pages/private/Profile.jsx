@@ -2,10 +2,10 @@ import "./Profile.css";
 import { MdEdit } from "react-icons/md";
 import { useUserProfile } from "../../hooks/useUserProfile";
 
-import ProfileHeader from "../../components/profile/ProfileHeader";
-import ShippingAddress from "../../components/profile/ShippingAddress";
-import PaymentMethods from "../../components/profile/PaymentMethods";
-import ViewLinks from "../../components/profile/ViewLinks";
+import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
+import ShippingAddress from "../../components/profile/ShippingAddress/ShippingAddress";
+import PaymentMethods from "../../components/profile/PaymentMethods/PaymentMethods";
+import ViewLinks from "../../components/profile/ViewLinks/ViewLinks";
 import fakeTestCards from "../../data/fakeTestCards";
 
 function Profile() {
@@ -24,7 +24,8 @@ function Profile() {
     handleSaveChanges,
     setSelectedCard,
     removePaymentMethod,
-    formData
+    formData,
+    handleCancelEdit,
   } = useUserProfile();
 
   return (
@@ -68,14 +69,25 @@ function Profile() {
         />
 
         {editMode && (
-          <button
-            type="button" 
-            className="save-button" 
-            onClick={handleSaveChanges}
-            aria-label="save profile changes"
-          >
-            Save Changes
-          </button>
+          <div className="profile-action-buttons">
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={handleCancelEdit} 
+              aria-label="cancel editing profile"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="button"
+              className="save-button"
+              onClick={handleSaveChanges}
+              aria-label="save profile changes"
+            >
+              Save Changes
+            </button>
+          </div>
         )}
           
         <ViewLinks/>

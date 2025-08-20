@@ -8,7 +8,7 @@ function FavoritesPage() {
   return (
     <section className="favorites-page" aria-labelledby="favorites-heading">
       <header className="favorites-header">
-        <h1  id="favorites-heading" className="favorites-title">My Wishlist</h1>
+        <h1 id="favorites-heading" className="favorites-title">My Wishlist</h1>
       </header>
 
       {favorites.length === 0 ? (

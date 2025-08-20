@@ -1,31 +1,11 @@
 import './Form.css'
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { registerUser } from "../../services/authService";
+import { useSignUp } from '../../hooks/useSignup';
 
 function Signup() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState("");
-
-    const onSubmit = async (data) => {
-        try {
-            const user = await registerUser(data.email, data.password, data.name); 
-            if (user) {
-                navigate("/"); // Redirige si el registro es exitoso
-            } else {
-                setErrorMessage("Failed to create account. Please try again.");
-            }
-        } catch (err) {
-            const errorMessages = {
-                "auth/email-already-in-use": "This email is already in use.",
-                "auth/invalid-email": "Invalid email format.",
-                "auth/weak-password": "Password is too weak. Must be at least 6 characters."
-            };
-            setErrorMessage(errorMessages[err.code] || "Failed to create account. Please try again.");
-        }
-    };
+    const { handleSignUp, errorMessage} = useSignUp();
 
     return (
         <section className="form-container" aria-labelledby="signup-title">
@@ -34,7 +14,7 @@ function Signup() {
                 <p>Create an account to start shopping with us.</p>
                 
                 <form 
-                    onSubmit={handleSubmit(onSubmit)} 
+                    onSubmit={handleSubmit(handleSignUp)} 
                     noValidate 
                     aria-describedby={errorMessage ? "form-error" : undefined}
                 >

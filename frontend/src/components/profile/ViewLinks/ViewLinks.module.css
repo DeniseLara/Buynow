@@ -1,0 +1,31 @@
+.container {
+  padding: 0.7rem 1rem;
+}
+
+.item{
+  margin-top: 1.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item p {
+  color: var(--text-color);
+  font-size: var(--fs-base);
+}
+
+.text {
+  color: #2c2c2c;
+}
+
+.link {
+  color: #2c2c2c;
+  padding: 0;
+  font-size: var(--fs-base);
+  display: flex;
+  transition: all .3s ease-in-out;
+}
+
+.link:hover {
+  transform:translateX(0.2rem);
+}

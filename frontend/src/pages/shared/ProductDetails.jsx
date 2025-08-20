@@ -6,9 +6,9 @@ import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoritesContext';
 
 import BackButton from '../../components/ui/BackButton';
-import ProductPurchaseActions from '../../components/productsDetails/ProductPurchaseActions';
-import RelatedProducts from '../../components/productsDetails/RelatedProducts';
-import ProductInfo from '../../components/productsDetails/ProductInfo';
+import ProductPurchaseActions from '../../components/productsDetails/ProductPurchaseActions/ProductPurchaseActions';
+import RelatedProducts from '../../components/productsDetails/RelatedProducts/RelatedProducts';
+import ProductInfo from '../../components/productsDetails/ProductInfo/ProductInfo';
 
 function ProductDetails() {
   const location = useLocation();
@@ -19,10 +19,10 @@ function ProductDetails() {
   const allProducts = location.state?.allProducts || [];
   const [quantity, setQuantity] = useState(1); 
   
-
   if (!product) return <p>Producto no encontrado</p>; 
   
   const rating = Math.round(product.rating);
+  
   // Filtrar productos de la misma categoría (excepto el actual)
   const relatedProducts = allProducts.filter(
     (p) => p.category === product.category && p.id !== product.id
@@ -32,13 +32,15 @@ function ProductDetails() {
 
   // función para manejar el botón de favoritos
   const handleFavoriteClick = () => {
-    favorite ? removeFromFavorites(product.id) : addToFavorites(product);
+    favorite 
+    ? removeFromFavorites(product.id) 
+    : addToFavorites(product);
   };
 
 
   const handleQuantityChange = (e) => {
-  const value = parseInt(e.target.value);
-    setQuantity(value > 0 ? value : 1);
+  const value = Number(e.target.value);
+    setQuantity(!isNaN(value) && value > 0 ? value : 1);
   };
   
   const productImage = product.thumbnail || "https://via.placeholder.com/150";
@@ -52,7 +54,7 @@ function ProductDetails() {
         <figure className="image-container">
           <img 
             src={productImage} 
-            alt={product.title} 
+            alt={`Image of ${product.title}`}
             className='product-image'
           />
         </figure>

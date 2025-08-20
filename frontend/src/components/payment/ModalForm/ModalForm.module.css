@@ -1,0 +1,62 @@
+/*MODAL DE ÉXITO*/
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.content {
+  position: relative;
+  background: var(--white-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  max-width: 100%;
+  width: 80%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0rem;
+  color: var(--text-color);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  outline: none;
+  transition: color .3s ease-in-out;
+}
+
+.closeButton:hover{
+  color: var(--color-info);
+}
+
+.closeButton:focus,
+.closeButton:active,
+.closeButton:hover{
+  border: none;
+  outline: none;
+}
+
+
+
+@media (min-width:768px){
+  .content{
+    width: 55%;
+  }
+}
+
+
+@media (min-width:1024px){
+  .content{
+    width: 45%;
+  }
+}

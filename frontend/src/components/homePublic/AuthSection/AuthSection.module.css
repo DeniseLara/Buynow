@@ -1,0 +1,100 @@
+/** AUTH SECTION **/
+.container {
+  background-color: var(--white-color);
+  padding: 4rem 1rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+  
+.content {
+  margin-bottom: 1rem;
+}
+
+.imageContainer {
+  border-radius: 50%;
+  background-color: #1a5db7;
+  width: clamp(14rem, 40vw, 25rem);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+    
+.title {
+  font-size: var(--fs-2xl);
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+  
+.description {
+  font-size: var(--fs-base);
+  margin-bottom: 2rem;
+  color: #666;
+}
+  
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+  
+.button {
+  display: inline-flex;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-decoration: none;
+  border-radius: 1rem;
+  font-size: var(--fs-base);
+  font-weight: 700;
+  will-change: transform;
+  text-transform:uppercase;
+  transition: all 0.3s ease-in-out;
+}
+  
+.button:hover {
+  background-color: #1a5db7; 
+  transform: scale(1.05); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+
+
+@media (min-width: 768px) {  
+  .button {
+    padding: 1.2rem 2.5rem;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 3rem 3.5rem;
+    flex-direction: row;
+    text-align: start;
+  }
+  
+  .button {
+    padding: 1.2rem 3rem;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+  }
+}

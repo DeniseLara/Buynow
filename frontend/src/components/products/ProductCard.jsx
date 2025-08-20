@@ -1,4 +1,4 @@
-import './ProductCard.css'
+import styles from './ProductCard.module.css'
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
@@ -43,20 +43,20 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
   };
 
   return (
-    <article className="product-card">
+    <article className={styles.card}>
       {isFavoriteCard && (
-        <div className="menu-container">
+        <div className={styles.menuContainer}>
           <button 
-            className="dots-btn"
+            className={styles.deleteButton}
             type="button"
             aria-label="open favorite options menu" 
             onClick={toggleMenu}
           >
-              <BsThreeDotsVertical size={18} />
+              <BsThreeDotsVertical size={18}/>
           </button>
           
         {menuOpen && (
-          <div className="dropdown-menu">
+          <div className={styles.dropdown}>
             <button 
               onClick={handleRemove}
               type="button"
@@ -74,29 +74,29 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
         state={{product, allProducts}}
         aria-label={`Ver detalles de ${product.title}`}
       >
-      <figure className="product-media">
+      <figure className={styles.media}>
         <img
           src={productImage}
           alt={product.title}
-          className="product-img"
+          className={styles.image}
           loading="lazy"
         /> 
-        <div className="product-info">
-          <h3 className="product-title">{product.title}</h3>
+        <div className={styles.info}>
+          <h3 className={styles.title}>{product.title}</h3>
         </div>      
       </figure>
     </Link>
    
-    <footer className="card-footer">
-      <p className="product-price">
+    <footer className={styles.footer}>
+      <p className={styles.price}>
         $ <strong>{product.price}</strong>
       </p>
 
       <button 
+        className={styles.addButton}
         onClick={() => addToCart(product)}
         aria-label={`add ${product.title} to cart`}
         type="button"
-        className="product-btn"
       >
         <MdAddShoppingCart/>
       </button>

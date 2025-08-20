@@ -16,23 +16,23 @@ import {
 const getCategoryIcon = (group) => {
   switch (group) {
     case "Women":
-      return <span className="category-icon"><FaFemale /></span>; // mujer
+      return <span className="category-icon"><FaFemale /></span>;
     case "Men":
-      return <span className="category-icon"><FaMale /></span>; // hombre
+      return <span className="category-icon"><FaMale /></span>; 
     case "Fragrances":
-      return <span className="category-icon"><GiPerfumeBottle /></span>; // perfume
+      return <span className="category-icon"><GiPerfumeBottle /></span>; 
     case "Skincare":
-      return <span className="category-icon"><FaAppleAlt /></span>; // salud/belleza
+      return <span className="category-icon"><FaAppleAlt /></span>; 
     case "Electronics":
-      return <span className="category-icon"><GiLaptop /></span>; // laptop = tecnología
+      return <span className="category-icon"><GiLaptop /></span>;
     case "Home":
-      return <span className="category-icon"><FaHome /></span>; // casa
+      return <span className="category-icon"><FaHome /></span>;
     case "Groceries":
-      return <span className="category-icon"><GiShoppingCart /></span>; // carrito
+      return <span className="category-icon"><GiShoppingCart /></span>; 
     case "Accessories":
-      return <span className="category-icon"><GiSunglasses /></span>; // lentes
+      return <span className="category-icon"><GiSunglasses /></span>; 
     default:
-      return <span className="category-icon"><FaUserAlt /></span>; // ícono genérico
+      return <span className="category-icon"><FaUserAlt /></span>;
   }
 };
 

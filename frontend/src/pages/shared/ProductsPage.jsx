@@ -68,7 +68,6 @@ function ProductsPage() {
         ))}
         </div>
       </nav>
-
      
       <ProductList 
         products={filteredProducts} 

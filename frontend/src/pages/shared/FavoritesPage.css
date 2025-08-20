@@ -10,7 +10,8 @@
 }
 
 .favorites-page p {
-  font-size: var(--fs-md);
+  color: var(--color-info);
+  font-size: var(--fs-base);
 }
   
 .go-back-btn {

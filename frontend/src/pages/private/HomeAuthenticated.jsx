@@ -1,9 +1,9 @@
 import "./HomeAuthenticated.css";
 
-import Hero from "../../components/homeAuthenticated/Hero";
-import FeaturedProducts from "../../components/homeAuthenticated/FeaturedProducts";
-import UserStats from "../../components/homeAuthenticated/UserStats";
-import PromoSection from "../../components/homeAuthenticated/PromoSection";
+import Hero from "../../components/homeAuthenticated/Hero/Hero";
+import FeaturedProducts from "../../components/homeAuthenticated/FeaturedProducts/FeaturedProducts";
+import UserStats from "../../components/homeAuthenticated/UserStats/UserStats";
+import PromoSection from "../../components/homeAuthenticated/PromoSection/PromoSection";
 
 function HomeAuthenticated() {
   return (

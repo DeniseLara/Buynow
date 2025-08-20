@@ -1,13 +1,14 @@
+import styles from './OrderSummary.module.css'
 import { RiErrorWarningLine } from 'react-icons/ri';
 
 function OrderSummary({ total, onCheckoutClick, isDisabled }) {
   return (
-    <aside className="cart-summary">
-      <h2 className="cart-summary-subtitle">Order Summary</h2>
-      <p>Total: <strong className="cart-total">${total.toFixed(2)}</strong></p> 
+    <aside className={styles.container}>
+      <h2 className={styles.subtitle}>Order Summary</h2>
+      <p>Total: <strong className={styles.totalValue}>${total.toFixed(2)}</strong></p> 
       
-      <div className="checkout">
-        <button className="checkout-button"
+      <div className={styles.checkout}>
+        <button className={styles.button}
           onClick={onCheckoutClick}
           disabled={isDisabled}
           aria-label="proceed to payment button"
@@ -17,8 +18,8 @@ function OrderSummary({ total, onCheckoutClick, isDisabled }) {
         </button>
       </div>
       
-      <p className="demo-warning" role="alert" aria-live="assertive">
-        <span><RiErrorWarningLine className='warning-icon'/></span>
+      <p className={styles.warning} role="alert" aria-live="assertive">
+        <span><RiErrorWarningLine className={styles.warningIcon}/></span>
         This platform is for demonstration purposes only. 
         No real payments are processed.
       </p>

@@ -1,0 +1,109 @@
+.container {
+  background-color: rgba(66, 115, 136, 0.1); 
+  padding: 1rem;
+  font-size: var(--fs-sm);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: var(--text-color);
+}
+
+.header {
+  display: flex;
+  font-size: var(--fs-base);
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.orderDate {
+  color: #99AAB0;
+  font-size: var(--fs-sm);
+}
+
+.itemsList {
+  padding-left: 0;
+  margin-top: 0.8rem;
+}
+  
+.itemsList li {
+  padding: 0.25rem 0;
+}
+
+.itemsList {
+  margin-bottom: 0.5rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemTitle {
+  font-size: var(--fs-base);
+  margin-bottom: 0.5rem;
+}
+
+.itemQuantity strong{
+  color: var(--text-color);
+}
+
+.footer {
+  display: flex;
+  font-size: var(--fs-base);
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.status {
+  font-size: var(--fs-base);
+  text-transform: capitalize;
+  color: #4CAF50;
+}
+
+.status.canceled {
+  color: #d93025;
+}
+
+.status.shipped {
+  color: #1967d2;
+}
+
+.status.delivered {
+  color: #33691e;
+}
+
+.total {
+  font-size: var(--fs-base);
+}
+
+.cancelButton {
+  display: flex;
+  font-size: var(--fs-sm);
+  justify-self: end;
+  border: 1px solid #999;
+  transition: all .3s ease-in-out;
+  color: #e63946;
+  border-radius: 1rem;
+  padding: 0.5rem 0.8rem;
+  background-color: transparent;
+}
+
+.cancelButton:focus,
+.cancelButton:active{
+  border: 1px solid var(--text-color);
+}
+
+.cancelButton:hover{
+  border: 1px solid var(--text-color);
+  background-color: #f0f0f0;
+}
+
+
+
+@media (min-width:1024px){
+  .container {
+    padding: 1.25rem;
+  }
+}

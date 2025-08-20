@@ -1,0 +1,78 @@
+.container {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: var(--fs-md);
+  margin-bottom: 1rem;
+  color: #084275; 
+}
+
+.message {
+  font-size: var(--fs-base);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  gap: 1.2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.item p {
+  color: var(--text-color);
+  font-size: var(--fs-base);
+}
+  
+.item:last-child {
+  border-bottom: none;
+}
+
+.deleteButton {
+  background: #ff4d4d;
+  color: var(--white-color);
+  padding: 0.5rem 0.7rem;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: var(--fs-sm);
+  box-shadow: rgba(255, 77, 77, 0.25) 0px 2px 5px;  
+  transition: background-color 0.25s ease;
+}
+
+.deleteButton:active {
+  transform: translateY(0);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px inset;
+}
+  
+.deleteButton:hover {
+  background-color: #d43f3f; 
+  box-shadow: rgba(212, 63, 63, 0.35) 0px 3px 8px;
+}
+
+.clearButton{
+  margin-top: 1.5rem;
+  display: flex;
+  justify-self: flex-end;
+  border: none;
+  outline: none;
+  background-color: var(--bg-color);  
+  color: var(--text-color);
+  border: 1px solid var(--border-color-light);
+  box-shadow: rgba(149, 157, 165, 0.1) 0px 2px 4px;
+  will-change: transform;
+  font-size: var(--fs-base);
+  transition: all .3s ease;
+}
+
+.clearButton:hover {
+  background-color: #f1f1f1;
+  border: 1px solid var(--border-color);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 8px;
+}

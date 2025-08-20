@@ -1,0 +1,10 @@
+.title {
+  margin-bottom: 1rem;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.section {
+  margin-top: 2rem;
+}

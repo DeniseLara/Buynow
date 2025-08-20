@@ -5,30 +5,11 @@
   margin-bottom: 1rem;
 }
 
-.profile-principal-text{
-  display: flex;
-  flex-direction: column;
-}
-
 .profile-data-container {
   padding: 2rem 1.5rem;
   position: relative;
   border-radius: 0.8rem;
   margin: 3rem auto;
-}
-
-.profile-header {
-  display: flex;
-  gap: 1.2rem;
-  justify-content: start;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.username {
-  color: var(--text-color);
-  font-weight: 600;
-  font-size: var(--fs-lg);
 }
 
 .profile-title{
@@ -37,37 +18,68 @@
   font-size: var(--fs-xl);
 }
 
-.save-button{
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+.profile-action-buttons {
   display: flex;
-  color: var(--secondary-color);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem; 
+  margin-top: 1.5rem;
+}
+
+.cancel-button {
+  background-color: #f8f8f8; 
+  color: #d43f3f; 
   font-size: var(--fs-base);
-  border: 1px solid var(--secondary-color); 
-  justify-self: end;
-  background-color: rgba(34, 114, 255, 0.1);
-  transition: all .3s ease-in-out;
+  padding: 0.55rem 1.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d43f3f; 
+  cursor: pointer;
+  display: inline-flex;
+  transition: all 0.25s ease;
+}
+
+.cancel-button:hover {
+  background-color: #d43f3f; 
+  color: var(--white-color);
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.cancel-button:active {
+  box-shadow: none;
+}
+
+.cancel-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212,63,63,0.3);
+}
+
+.save-button {
+  font-size: var(--fs-base);
+  padding: 0.55rem 1.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--secondary-color);
+  background-color: var(--secondary-color); 
+  color: var(--white-color);
+  cursor: pointer;
+  display: inline-flex;
+  transition: all 0.25s ease-in-out;
 }
 
 .save-button:hover {
+  border: 1px solid transparent;
   background-color: #1A5FCC;
-  color: var(--white-color);
   box-shadow: 0 2px 6px rgba(34, 114, 255, 0.15);
-  border: 1px solid #1A5FCC;
 }
 
 .save-button:active {
-  background-color: #0A3C75;
-  color: var(--white-color);
-  box-shadow: none;
   transform: scale(0.97);
+  box-shadow: none;
 }
 
-.save-button:focus,
-.add-payment-button:focus {
+.save-button:focus {
   outline: none;
-  border: 1px solid #2272FF;
-  box-shadow: 0 0 4px rgba(34, 114, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(34, 114, 255, 0.3);
 }
 
 .edit-profile-button{
@@ -98,132 +110,9 @@
 
 }
 
-.email {
-  font-size: var(--fs-base);
-  color: #757575;
-  font-weight: 300;
-}
-
-.profile-avatar-wrapper{
-  position: relative;
-}
-
-.profile-avatar-remove{
-  position: absolute;
-  bottom: 0;
-  border: none;
-  outline: none;
-  right: 0;
-  color: var(--white-color);
-  padding: 0.15rem;
-  font-size: var(--fs-base);
-  border-radius: 2rem;
-  background-color: var(--secondary-color);
-}
-
-.profile-input{
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #D1D1D1;
-  border-radius: 0.6rem;
-  background: #F7F7F7;
-  color: #333;
-  font-size: var(--fs-base);
-  outline: none;
-  transition: all 0.3s ease;
-  margin-top: 0.5rem;
-}
-
-.profile-input:focus {
-  border: 1px solid var(--secondary-color);
-  box-shadow: 0 0 5px rgba(13, 59, 102, 0.4);
-}
-
-.profile-avatar-remove:hover,
-.profile-avatar-remove:focus,
-.profile-avatar-remove:active{
-  outline: none;
-  border: none;
-}
-
-.profile-avatar-label {
-  font-size: var(--fs-sm);
-}
-
-.profile-avatar {
-  width: 4.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 0.8px solid #2c2c2c;
-}
-
 .profile-details {
   text-align: left;
   width: 100%;
-}
-
-.profile-section {
-  font-size: var(--fs-base);
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 0.1rem solid var(--border-color);
-}
-
-.profile-view-details{
-  padding: 0.7rem 1rem;
-}
-
-.profile-view{
-  margin-top: 1.9rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.profile-view p {
-  color: var(--text-color);
-  font-size: var(--fs-base);
-}
-
-.btn-text{
-  color: #2c2c2c;
-}
-
-.btn-view{
-  color: #2c2c2c;
-  padding: 0;
-  font-size: var(--fs-base);
-  display: flex;
-  transition: all .3s ease-in-out;
-}
-
-.btn-view:hover{
-  transform:translateX(0.2rem);
-}
-
-.profile-section p,
-.profile-section input {
-  font-size: var(--fs-base);
-  transition: all 0.3s ease-in-out;
-}
-
-.profile-section input::placeholder {
-  font-size: var(--fs-sm);
-}
-
-.profile-section h3 {
-  font-size: var(--fs-md);
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.profile-section p {
-  font-size: var(--fs-base);
-  color: var(--text-color);
 }
 
 .logout-button {
@@ -232,7 +121,7 @@
   padding: 0.8rem;
   font-size: var(--fs-md);
   background: var(--primary-color);
-  color: white;
+  color: var(--white-color);
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -243,142 +132,11 @@
   background-color: #084275;
 }
 
-.payment-card{
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.payment-card p,
-.payment-method-display p {
-  font-size: var(--fs-base);
-}
-
-.remove-card{
-  padding: 0;
-  font-size: var(--fs-base);
-  color: #E63946;
-  border: none;
-  outline: none;
-  transition: all .3s ease-in-out;
-}
-
-.remove-card:hover{
-  color: #B22222;
-}
-
-.remove-card:focus,
-.remove-card:active,
-.remove-card:hover{
-  outline: none;
-  border: none;
-}
-
-.card-filter {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-
-.card-option {
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  display: flex;
-  border: 1px solid transparent;
-  outline: none;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.card-option:hover {
-  border: 1px solid var(--primary-color);
-}
-
-.card-option.selected {
-  border: 1px solid var(--primary-color);
-  background-color: #e8f0ff;
-}
-
-.card-logo {
-  width: 40px;
-  height: auto;
-}
-
-.add-payment-button {
-  border: none;
-  outline: none;
-  gap: 0.5rem;
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 1.2rem 0 1.5rem; 
-  color: var(--primary-color); 
-  cursor: pointer; 
-  transition: all 0.3s ease-in-out; 
-}
-
-.add-payment-button:hover {
-  opacity: 0.8;
-}
-
-.add-payment-button strong {
-  font-size: var(--fs-md);
-}
-
-.add-payment-button .add-payment-text {
-  font-size: var(--fs-base);
-}
-
-.add-payment-button strong svg {
-  font-size: var(--fs-md);
-}
-
-.add-payment-button:active,
-.add-payment-button:focus,
-.add-payment-button:hover{
-  border: none;
-  outline: none;
-}
-
-.payment-method-display {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 8px;
-}
-
-.card-logo-display {
-  width: 30px;
-  height: auto;
-}
-
-.profile-avatar-remove{
-  padding: 0.3rem 0.5rem;
-}
-
-
-
-@media (min-width:360px){
-  .profile-avatar {
-    width: 5rem;
-    height: 5rem;
-  }
-}
 
 
 @media (min-width: 480px) {
   .profile-data-container {
     padding: 2.5rem;
-  }
-
-  .profile-avatar {
-    width: 6rem;
-    height: 6rem;
   }
 
   .logout-button {
@@ -387,30 +145,10 @@
 }
 
 
-@media (min-width:400px){
-  .profile-header {
-    display: flex;
-    gap: 1.2rem;
-    justify-content: start;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-}
-
-
 @media (min-width: 768px) {
   .profile-data-container {
     margin: 3.5rem auto;
     padding: 3rem;
-  }
-
-  .profile-avatar {
-    width: 7rem;
-    height: 7rem;
-  }
-
-  .profile-avatar-remove{
-    padding: 0.2rem;
   }
 
   .logout-button {
@@ -427,7 +165,7 @@
 @media (min-width:1024px){
   .profile-data-container{
     margin: 3rem auto;
-    padding: 2.2rem 4.5rem;
+    padding: 2.2rem 5rem;
   }
 
   .edit-profile-button{
