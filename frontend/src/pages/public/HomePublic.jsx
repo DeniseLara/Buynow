@@ -1,5 +1,4 @@
 import './HomePublic.css'
-
 import Hero from '../../components/homePublic/Hero/Hero';
 import Benefits from '../../components/homePublic/Benefits/Benefits';
 import AuthSection from '../../components/homePublic/AuthSection/AuthSection';

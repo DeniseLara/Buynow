@@ -2,10 +2,16 @@ import './Form.css'
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSignUp } from '../../hooks/useSignup';
+import { useEffect } from 'react';
+import { IoWarningOutline } from "react-icons/io5";
 
 function Signup() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setFocus } = useForm();
     const { handleSignUp, errorMessage} = useSignUp();
+
+    useEffect(() => {
+        setFocus("username")
+    }, [setFocus])
 
     return (
         <section className="form-container" aria-labelledby="signup-title">
@@ -24,7 +30,7 @@ function Signup() {
                             id='username'
                             type="text"
                             placeholder="Name"
-                            {...register("name", { required: "Name is required" })}
+                            {...register("username", { required: "Name is required" })}
                             aria-invalid={errors.name ? "true" : "false"}
                             aria-describedby={errors.name ? "name-error" : undefined}
                         />
@@ -46,7 +52,7 @@ function Signup() {
                         />
                         {errors.email && (
                             <p id="email-error" className="error" role="alert">
-                                {errors.email.message}
+                                <IoWarningOutline/>{errors.email.message}
                             </p>
                         )}
                     </div>
@@ -65,7 +71,7 @@ function Signup() {
                         />
                         {errors.password && (
                             <p id="password-error" className="error" role="alert">
-                                {errors.password.message}
+                                <IoWarningOutline/>{errors.password.message}
                             </p>
                         )}
                     </div>

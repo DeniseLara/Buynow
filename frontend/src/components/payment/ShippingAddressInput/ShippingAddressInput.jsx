@@ -1,6 +1,7 @@
 import styles from './ShippingAddressInput.module.css'
 
 function ShippingAddressInput({ address, onChange, error }) {
+
   return (
     <div className={styles.container}>
       <label htmlFor="address">Shipping Address</label>

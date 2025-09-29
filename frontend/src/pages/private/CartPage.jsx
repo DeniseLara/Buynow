@@ -1,6 +1,5 @@
 import './CartPage.css';
 import { useState } from "react";
-
 import { useCart } from '../../context/CartContext'; 
 import { useCartTotal } from "../../hooks/useCartTotal";
 

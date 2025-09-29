@@ -1,19 +1,23 @@
 import './Form.css';
 import { Link } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../hooks/useLogin";
-
+import { useEffect } from 'react';
+import { IoWarningOutline } from "react-icons/io5";
 
 function Login() {
-    const { register, handleSubmit, formState: { errors }, setError } = useForm();
-    const { handleLogin, loginError } = useLogin();
+    const { register, handleSubmit, formState: { errors }, setError, setFocus } = useForm();
+    const { handleLogin } = useLogin();
+
+    useEffect(() => {
+        setFocus("email")
+    }, [setFocus])
 
     return (
         <section className="form-container" aria-label="Login form">
             <article className="form-card">
                 <h1 id="login-title">Welcome Back to <span>BuyNow</span> 🛍️</h1>
-                <p>Login to continue shopping with us.</p>
+                <p className='login-description'>Login to continue shopping with us.</p>
                 
                 <form onSubmit={handleSubmit((data) => handleLogin(data, setError))} noValidate>
                     <div className="input-group">
@@ -27,7 +31,7 @@ function Login() {
                             placeholder="Email"
                             {...register("email", { required: "Email is required" })}
                         />
-                        {errors.email && <p className="error">{errors.email.message}</p>}
+                        {errors.email && <p className="error"><IoWarningOutline/>{errors.email.message}</p>}
                     </div>
 
                     <div className="input-group">
@@ -46,7 +50,7 @@ function Login() {
                         />
                         {errors.password && (
                             <p id="password-error" className="error" role="alert">
-                                {errors.password.message}
+                                <IoWarningOutline/>{errors.password.message}
                             </p>
                         )}
                     </div>

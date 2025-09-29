@@ -1,84 +1,23 @@
 import styles from './PaymentForm.module.css';
-import { useState, useEffect } from 'react';
-
-import { processPayment } from '../../../utils/paymentService';
-import { usePayment } from '../../../context/PaymentContext';
-import { useAuth } from '../../../context/AuthContext';
-
-import fakeTestCards from '../../../data/fakeTestCards';
+import { usePaymentForm } from '../../../hooks/usePaymentForm';
 import ShippingAddressInput from '../ShippingAddressInput/ShippingAddressInput'
 import PaymentSummary from '../PaymentSummary/PaymentSummary'
 import SavedCardsSelector from '../SavedCardsSelector/SavedCardsSelector'
-import { useCart } from '../../../context/CartContext';
 
 
 function PaymentForm({ total, onSucces }) {
-  const { user } = useAuth();
-  const { cart } = useCart();
-  const { 
-    paymentMethods, 
-    address, 
-    updateAddress, 
+  const {
+    selectedCard,
+    cardError,
+    addressError,
+    isProcessing,
+    cardsToShow,
+    address,
+    updateAddress,
+    handleCardChange,
+    handleSubmit,
     shippingCost, 
-    calculateShippingCost 
-  } = usePayment();
-  const [selectedCard, setSelectedCard] = useState('');
-  const [cardError, setCardError] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [addressError, setAddressError] = useState(null);
-
-  const cardsToShow = paymentMethods.length > 0 ? paymentMethods : fakeTestCards;
-  
-  useEffect(() => {
-    if (cardsToShow.length === 1) {
-      setSelectedCard(cardsToShow[0].id);
-    }
-  }, [cardsToShow]);
-
-
-  useEffect(() => {
-    calculateShippingCost(total);
-  }, [total, calculateShippingCost]);
-
-
-  const handleCardChange = (e) => {
-    setSelectedCard(e.target.value);
-  };
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!address.trim()) {
-      setAddressError('Por favor, ingresa una dirección de envío.');
-      return;
-    }
-
-    // Verificar que se haya seleccionado una tarjeta si hay más de una
-    if (cardsToShow.length > 1 && !selectedCard) {
-      setCardError('Por favor, selecciona una tarjeta para realizar el pago.');
-      return;
-    }
-
-    setIsProcessing(true);
-    setCardError(null);
-    setAddressError(null);
-
-    try {
-      const paymentIntent = await processPayment(cart, shippingCost, user.uid);
-
-      if (paymentIntent.status === 'succeeded') {
-        onSucces();
-      } else {
-        setCardError('El pago no fue exitoso. Inténtalo nuevamente.');
-      }
-    } catch (error) {
-      setCardError(error.message || 'Hubo un error al procesar el pago.');
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-  
+  } = usePaymentForm(total, onSucces);
 
   return (
     <section className={styles.container} aria-labelledby="payment-title" role="region">

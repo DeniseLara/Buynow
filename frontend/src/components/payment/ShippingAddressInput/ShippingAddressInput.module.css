@@ -21,6 +21,10 @@
   font-size: 1rem;
 }
 
+.input:focus {
+  border: 1px solid var(--secondary-color);
+}
+
 .error {
   color: #ff4d4d;
   margin-top: 0.5rem;
