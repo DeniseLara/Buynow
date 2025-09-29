@@ -1,16 +1,9 @@
-import { useState, useEffect } from "react";
-import { getAuth, signOut } from "firebase/auth";
-import { getUserProfile } from "../services/authService";
-import { useProfile } from "../context/ProfileContext";
+import { useState } from "react";
 import { usePayment } from "../context/PaymentContext";
 import { useAuth } from "../context/AuthContext";
 
-import fakeTestCards from "../data/fakeTestCards";
-
 export function useUserProfile() {
-  const auth = getAuth();
-  const { user, userData, loading, setUserData } = useAuth();
-  const { userName } = useProfile();
+  const { logout } = useAuth();
   const {
     paymentMethods,
     addPaymentMethod,
@@ -22,39 +15,16 @@ export function useUserProfile() {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({ address: "", paymentMethods: [] });
   const [selectedCard, setSelectedCard] = useState(null);
-  const [loadingProfile, setLoadingProfile] = useState(true); 
-
-  useEffect(() => {
-    if (user) {
-      const fetchUserData = async () => {
-        setLoadingProfile(true);
-        try {
-          const profile = await getUserProfile(user.uid);
-          setUserData(profile);
-        } catch (error) {
-          setUserData(null);
-        } finally {
-          setLoadingProfile(false); 
-        }
-      };
-      fetchUserData();
-    } else {
-      setUserData(null);
-      setLoadingProfile(false);
-    }
-  }, [user]);
-
 
   const handleLogout = async () => {
-    await signOut(auth);
+    await logout();
   };
-
 
   const handleEditToggle = () => {
     if (!editMode) {
       setFormData({
-        address: userData?.address || "",
-        paymentMethods: paymentMethods || []
+        address,
+        paymentMethods: [...paymentMethods]
       });
     }
     setEditMode(!editMode);
@@ -65,24 +35,36 @@ export function useUserProfile() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
+  
   const handleCancelEdit = () => {
     setFormData({
-      userName: userName,
-      address: address,
-      paymentMethods: paymentMethods,
+      address,
+      paymentMethods,
     });
 
-    // Salir del modo edición
     setEditMode(false);
   };
 
 
   const handleAddPaymentMethod = () => {
-    if (selectedCard === null) return;
-    const selected = fakeTestCards.find(card => card.id === selectedCard);
-    addPaymentMethod(selected);
+    if (!selectedCard) return;
+    const exists = formData.paymentMethods.some((c) => c.id === selectedCard.id);
+    if (!exists) {
+      setFormData((prev) => ({
+        ...prev,
+        paymentMethods: [...prev.paymentMethods, selectedCard],
+      }));
+    }
     setSelectedCard(null);
+  };
+
+
+  // Remover tarjeta temporalmente
+  const handleRemovePaymentMethod = (id) => {
+    setFormData(prev => ({
+      ...prev,
+      paymentMethods: prev.paymentMethods.filter(p => p.id !== id)
+    }));
   };
 
 
@@ -91,34 +73,39 @@ export function useUserProfile() {
       alert("La dirección no puede estar vacía.");
       return;
     }
+    
+    // guardar cambios
+    updateAddress(formData.address);
+    
+    // agregar nuevas tarjetas
+    const existingIds = paymentMethods.map(p => p.id);
+    const toAdd = formData.paymentMethods.filter(p => !existingIds.includes(p.id));
+    for (const card of toAdd) await addPaymentMethod(card);
 
-    try {
-      updateAddress(formData.address);
-      setEditMode(false);
-    } catch (error) {
+     // Eliminar tarjetas removidas
+    const toRemove = paymentMethods.filter(p => !formData.paymentMethods.some(f => f.id === p.id));
+    for (const card of toRemove) {
+      const index = paymentMethods.findIndex(p => p.id === card.id);
+      if (index !== -1) await removePaymentMethod(index);
     }
+
+    setEditMode(false);
   };
 
 
   return {
-    user,
-    userData,
-    loading,
-    userName,
     editMode,
-    setEditMode,
     formData,
-    setFormData,
     selectedCard,
     setSelectedCard,
     handleLogout,
     handleEditToggle,
+    paymentMethods,
+    address,
     handleChange,
     handleAddPaymentMethod,
     handleSaveChanges,
-    paymentMethods,
-    removePaymentMethod,
-    address,
+    handleRemovePaymentMethod,
     handleCancelEdit,
   };
 }

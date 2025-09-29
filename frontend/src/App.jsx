@@ -2,7 +2,6 @@ import { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { useAuth } from './context/AuthContext';
-import { useProfile } from './context/ProfileContext';
 
 import Navbar from './components/layout/navbar/Navbar';
 import Footer from './components/layout/footer/Footer'
@@ -21,12 +20,11 @@ const MyOrders = lazy(() => import('./pages/private/MyOrders'));
 
 function App() {
   const { user, loading } = useAuth();
-  const { profileImage } = useProfile();
   if (loading) return <Loading/>;
 
   return (
     <div className="path-container">
-      <Navbar user={user} profileImage={profileImage}/>
+      <Navbar user={user}/>
       
       <Suspense fallback={<Loading />}>
       <main className='path'>
@@ -38,7 +36,7 @@ function App() {
           
           <Route 
             path="/profile" 
-            element={user ? <Profile user={user} profileImage={profileImage} /> : <Navigate to="/login" />}
+            element={user ? <Profile user={user} /> : <Navigate to="/login" />}
           />
 
           <Route 

@@ -17,21 +17,25 @@ function Login() {
                 
                 <form onSubmit={handleSubmit((data) => handleLogin(data, setError))} noValidate>
                     <div className="input-group">
+                        <label className='sr-only' htmlFor="email"></label>
                         <input 
+                            id='email'
                             type="email"
                             autoComplete="email"
                             aria-invalid={errors.email ? "true" : "false"}
                             aria-describedby="email-error"
-                            placeholder="Enter your email"
+                            placeholder="Email"
                             {...register("email", { required: "Email is required" })}
                         />
                         {errors.email && <p className="error">{errors.email.message}</p>}
                     </div>
 
                     <div className="input-group">
+                        <label className='sr-only' htmlFor="password"></label>
                         <input 
+                            id='password'
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder="Password"
                             autoComplete="current-password"
                             aria-invalid={errors.password ? "true" : "false"}
                             aria-describedby={errors.password ? "password-error" : undefined}
@@ -54,9 +58,9 @@ function Login() {
                     )} 
 
                     <button 
-                    type="submit" 
-                    className="form-btn"
-                    aria-label="submit login form"
+                        type="submit" 
+                        className="form-btn"
+                        aria-label="submit login form"
                     >
                         Log In
                     </button>

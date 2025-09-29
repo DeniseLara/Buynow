@@ -1,7 +1,7 @@
 import styles from './OrderSummary.module.css'
 import { RiErrorWarningLine } from 'react-icons/ri';
 
-function OrderSummary({ total, onCheckoutClick, isDisabled }) {
+function OrderSummary({ total ,onCheckoutClick, isDisabled }) {
   return (
     <aside className={styles.container}>
       <h2 className={styles.subtitle}>Order Summary</h2>

@@ -19,9 +19,11 @@ function Signup() {
                     aria-describedby={errorMessage ? "form-error" : undefined}
                 >
                     <div className="input-group">
+                        <label className='sr-only' htmlFor="username"></label>
                         <input 
+                            id='username'
                             type="text"
-                            placeholder="Enter your name"
+                            placeholder="Name"
                             {...register("name", { required: "Name is required" })}
                             aria-invalid={errors.name ? "true" : "false"}
                             aria-describedby={errors.name ? "name-error" : undefined}
@@ -34,9 +36,10 @@ function Signup() {
                     </div>
 
                     <div className="input-group">
+                        <label className='sr-only' htmlFor="email"></label>
                         <input 
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder="Email"
                             {...register("email", { required: "Email is required" })}
                             aria-invalid={errors.email ? "true" : "false"}
                             aria-describedby={errors.email ? "email-error" : undefined}
@@ -49,9 +52,10 @@ function Signup() {
                     </div>
 
                     <div className="input-group">
+                        <label className='sr-only' htmlFor="password"></label>
                         <input 
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder="Password"
                             {...register("password", { 
                                 required: "Password is required", 
                                 minLength: { value: 6, message: "Password must be at least 6 characters" } 

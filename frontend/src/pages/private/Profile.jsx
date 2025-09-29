@@ -1,32 +1,22 @@
 import "./Profile.css";
 import { MdEdit } from "react-icons/md";
-import { useUserProfile } from "../../hooks/useUserProfile";
+import { useProfile, ProfileProvider } from "../../context/ProfileContext";
 
 import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
 import ShippingAddress from "../../components/profile/ShippingAddress/ShippingAddress";
 import PaymentMethods from "../../components/profile/PaymentMethods/PaymentMethods";
 import ViewLinks from "../../components/profile/ViewLinks/ViewLinks";
-import fakeTestCards from "../../data/fakeTestCards";
+import { useAuth } from "../../context/AuthContext";
 
-function Profile() {
+function ProfileContent() {
+  const { user, userName } = useAuth()
   const {
-    user,
-    profileImage,
-    userName,
     editMode,
-    selectedCard,
-    paymentMethods,
-    address,
     handleLogout,
     handleEditToggle,
-    handleChange,
-    handleAddPaymentMethod,
     handleSaveChanges,
-    setSelectedCard,
-    removePaymentMethod,
-    formData,
     handleCancelEdit,
-  } = useUserProfile();
+  } = useProfile();
 
   return (
     <section className="profile-data-container" aria-labelledby="profile-title">
@@ -47,26 +37,12 @@ function Profile() {
       <ProfileHeader
         user={user} 
         userName={userName} 
-        profileImage={profileImage} 
       />
 
       <div className="profile-details">
-        <ShippingAddress
-          editMode={editMode}
-          address={address}
-          formData={formData}
-          handleChange={handleChange}
-        />
+        <ShippingAddress/>
 
-        <PaymentMethods
-          editMode={editMode}
-          selectedCard={selectedCard}
-          fakeTestCards={fakeTestCards}
-          setSelectedCard={setSelectedCard}
-          handleAddPaymentMethod={handleAddPaymentMethod}
-          paymentMethods={paymentMethods}
-          removePaymentMethod={removePaymentMethod}
-        />
+        <PaymentMethods/>
 
         {editMode && (
           <div className="profile-action-buttons">
@@ -105,4 +81,10 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default function Profile() {
+  return (
+    <ProfileProvider>
+      <ProfileContent/>
+    </ProfileProvider>
+  );
+}

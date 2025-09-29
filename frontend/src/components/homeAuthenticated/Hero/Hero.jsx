@@ -1,15 +1,15 @@
 import styles from './Hero.module.css'
 import { Link } from "react-router-dom";
-import { useProfile } from "../../../context/ProfileContext";
+import { useAuth } from '../../../context/AuthContext';
 
 function Hero() {
-    const { userName } = useProfile(); 
+    const { userName } = useAuth()
     
     return(
         <header className={styles.container}>
             <div className={styles.content}>
                 <h1 className={styles.title}>
-                    Welcome back, {userName || 'Guest'}!
+                    Welcome back, {userName}!
                 </h1>
                 <p className={styles.description}>
                     Find the best of our products.

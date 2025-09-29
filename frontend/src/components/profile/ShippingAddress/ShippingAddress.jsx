@@ -1,6 +1,9 @@
+import { useProfile } from '../../../context/ProfileContext';
 import styles from './ShippingAddress.module.css'
 
-function ShippingAddress({ editMode, address, formData, handleChange }) {
+function ShippingAddress() {
+  const { editMode, address, formData, handleChange } = useProfile();
+  
   return (
     <section className={styles.container} aria-labelledby="shipping-address-title">
       <h3 id="shipping-address-title">Shipping Address</h3>

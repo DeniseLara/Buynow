@@ -1,4 +1,3 @@
-import { ProfileProvider } from './context/ProfileContext.jsx';
 import { CartProvider } from './context/CartContext.jsx';
 import { SearchProvider } from './context/SearchContext.jsx';
 import { PaymentModalProvider } from './context/PaymentModalContext.jsx';
@@ -10,7 +9,6 @@ import { AuthProvider } from './context/AuthContext.jsx';
 function AppProviders({ children }) {
     return (
       <AuthProvider>
-        <ProfileProvider>
           <FavoritesProvider>
             <CartProvider>
               <SearchProvider>
@@ -24,7 +22,6 @@ function AppProviders({ children }) {
               </SearchProvider>
             </CartProvider>
           </FavoritesProvider>
-        </ProfileProvider>
       </AuthProvider>
     );
 }

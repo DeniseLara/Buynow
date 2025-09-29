@@ -9,10 +9,12 @@ import fakeTestCards from '../../../data/fakeTestCards';
 import ShippingAddressInput from '../ShippingAddressInput/ShippingAddressInput'
 import PaymentSummary from '../PaymentSummary/PaymentSummary'
 import SavedCardsSelector from '../SavedCardsSelector/SavedCardsSelector'
+import { useCart } from '../../../context/CartContext';
 
 
-function PaymentForm({ total, cart, onSucces }) {
+function PaymentForm({ total, onSucces }) {
   const { user } = useAuth();
+  const { cart } = useCart();
   const { 
     paymentMethods, 
     address, 

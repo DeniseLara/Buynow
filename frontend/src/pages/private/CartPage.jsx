@@ -13,7 +13,7 @@ import BackButton from '../../components/ui/BackButton';
 
 
 function CartPage() {  
-  const { cart, removeFromCart, clearCart, checkout, loading } = useCart();
+  const { cart, checkout, loading } = useCart();
   const total = useCartTotal();
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -32,11 +32,7 @@ function CartPage() {
         <p role="alert">Your cart is empty</p>
       ) : (
         <>
-          <Cart 
-            items={cart} 
-            onRemoveFromCart={removeFromCart} 
-            onClearCart={clearCart} 
-          />
+          <Cart />
         
           <OrderSummary
             total={total}
@@ -53,7 +49,6 @@ function CartPage() {
       >
       <PaymentForm
         total={total}
-        cart={cart}
         onSucces={() => checkout(setShowPaymentForm, setShowSuccessModal)}
       />
       </Modal>

@@ -1,15 +1,20 @@
+import { useProfile } from '../../../context/ProfileContext';
 import styles from './PaymentMethods.module.css'
 import { IoIosAdd, IoIosRemoveCircleOutline } from "react-icons/io";
+import fakeTestCards from '../../../data/fakeTestCards';
 
-function PaymentMethods({
-  editMode,
-  selectedCard,
-  fakeTestCards,
-  setSelectedCard,
-  handleAddPaymentMethod,
-  paymentMethods,
-  removePaymentMethod
-}) {
+function PaymentMethods() {
+  const { 
+    editMode, 
+    selectedCard, 
+    setSelectedCard, 
+    handleAddPaymentMethod,
+    paymentMethods,
+    handleRemovePaymentMethod,
+    formData, 
+  } = useProfile()
+
+  const cardsToDisplay = editMode ? formData.paymentMethods : paymentMethods;
   
   return (
     <section className={styles.container} aria-labelledby="payment-methods-title">
@@ -22,8 +27,8 @@ function PaymentMethods({
                 <button
                   type="button"
                   key={card.id}
-                  className={`${styles.cardOption} ${selectedCard === card.id ? styles.selected : ''}`}
-                  onClick={() => setSelectedCard(card.id)}
+                  className={`${styles.cardOption} ${selectedCard?.id === card.id ? styles.selected : ''}`}
+                  onClick={() => setSelectedCard(card)}
                   aria-label="select card"
                 >
                   <img src={card.logo} alt={card.brand} className={styles.cardLogo} />
@@ -45,14 +50,14 @@ function PaymentMethods({
              )}
               
             <ul className={styles.cardList}>
-              {paymentMethods.map((method, index) => (
-                <li key={index} className={styles.card}>
+              {cardsToDisplay.map((method) => (
+                <li key={method.id} className={styles.card}>
                 <p className={styles.cardText}>{method.brand} **** {method.last4}</p> 
                   <button 
                     type="button"
                     aria-label="remove card"
                     className={styles.removeCard}
-                    onClick={() => removePaymentMethod(index)} 
+                    onClick={() => handleRemovePaymentMethod(method.id)} 
                   >
                     <IoIosRemoveCircleOutline/>
                   </button>
@@ -63,8 +68,8 @@ function PaymentMethods({
           ) : (
             <ul className={styles.cardListDisplay}>
               {paymentMethods.length > 0 ? (
-                paymentMethods.map((method, index) => (
-                  <li key={index} className={styles.paymentMethod}>
+                paymentMethods.map((method) => (
+                  <li key={method.id} className={styles.paymentMethod}>
                     <img 
                       src={method.logo} 
                       alt={method.brand} 

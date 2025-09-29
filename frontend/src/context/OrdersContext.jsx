@@ -79,7 +79,7 @@ export const OrdersProvider = ({ children }) => {
       changeOrderStatus,
       handleCancelOrder,
       cancelingOrders,
-      }}>
+    }}>
       {children}
     </OrdersContext.Provider>
   );

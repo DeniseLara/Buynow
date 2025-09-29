@@ -8,7 +8,7 @@ export const fetchProducts = async () => {
       throw new Error('Error al obtener los productos');
     }
     const data = await response.json();
-    return data.products; // Acceder a la propiedad 'products' del JSON
+    return data.products; 
   } catch (error) {
     console.error(error);
     return [];

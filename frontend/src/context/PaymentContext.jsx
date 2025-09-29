@@ -87,7 +87,7 @@ return (
       shippingCost,
       updateShippingCost,
       calculateShippingCost
-      }}>
+    }}>
       {children}
     </PaymentContext.Provider>
   );

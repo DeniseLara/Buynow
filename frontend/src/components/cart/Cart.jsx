@@ -1,23 +1,25 @@
+import { useCart } from '../../context/CartContext';
 import styles from './Cart.module.css'
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-function Cart({ items, onRemoveFromCart, onClearCart }) {
+function Cart() {
+  const { cart, removeFromCart, clearCart } = useCart()
 
   return (
     <article className={styles.container}>
       <h2 className={styles.subtitle}>Shopping Cart</h2>
 
-      {items.length === 0 ? (
+      {cart.length === 0 ? (
         <p className={styles.message}>Tu carrito está vacío</p>
       ) : ( 
         <>
       <ul className={styles.list}>  
-        {items.map((item) => (
+        {cart.map((item) => (
         <li key={item.id} className={styles.item}>
           <p>{item.title} - ${item.price} x {item.quantity}</p>
           <button 
             className={styles.deleteButton} 
-            onClick={() => onRemoveFromCart(item.id)} 
+            onClick={() => removeFromCart(item.id)} 
             aria-label="delete product from the cart button"
             type="button">
             <RiDeleteBin6Line />
@@ -28,7 +30,7 @@ function Cart({ items, onRemoveFromCart, onClearCart }) {
 
       <button 
         className={styles.clearButton} 
-        onClick={onClearCart}
+        onClick={clearCart}
         aria-label="empty cart button"
         type="button"
       >
