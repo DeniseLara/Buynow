@@ -1,10 +1,10 @@
-# 🛒 BuyNow
+# BuyNow
 
 **BuyNow** es una simulación de una tienda online desarrollada como proyecto personal para mi portafolio. Está construida con **React + Vite** en el frontend, utiliza **Firebase** para autenticación y base de datos, y un pequeño backend en **Express + Node.js** para la lógica de pagos simulados con **Stripe**.
 
 ---
 
-## 🚀 Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - **Frontend**
   - React
@@ -20,11 +20,11 @@
 
 ---
 
-## 🌐 Estructura del sitio
+## Estructura del sitio
 
 El sitio cuenta con **10 páginas en total**, divididas entre **públicas** y **privadas**:
 
-### 🔓 Páginas públicas
+### Páginas públicas
 
 1. **Home** – Página principal para todo público.
 2. **Login** – Autenticación con Firebase.
@@ -33,7 +33,7 @@ El sitio cuenta con **10 páginas en total**, divididas entre **públicas** y **
 5. **Wishlist** – Lista de favoritos (funciona para usuarios autenticados y no autenticados).
 6. **Product Details** – Detalle de un producto con imagen, descripción, rating y opción para seleccionar cantidad y agregar al carrito.
 
-### 🔒 Páginas privadas (requieren login)
+### Páginas privadas (requieren login)
 
 7. **Home (usuario autenticado)** – Vista personalizada del home.
 8. **Cart** – Muestra productos en el carrito con cálculo total y botón para pagar.
@@ -42,7 +42,7 @@ El sitio cuenta con **10 páginas en total**, divididas entre **públicas** y **
 
 ---
 
-## 💳 Pagos simulados
+## Pagos simulados
 
 BuyNow utiliza **Stripe** en modo de prueba para simular pagos.  
 **No se realiza ningún pago real.**  
@@ -50,7 +50,7 @@ El backend en Node.js expone un endpoint que crea un `PaymentIntent` falso solo 
 
 ---
 
-## 📦 Funcionalidades destacadas
+## Funcionalidades destacadas
 
 - Registro e inicio de sesión con Firebase.
 - Persistencia de favoritos incluso sin login.
@@ -62,14 +62,14 @@ El backend en Node.js expone un endpoint que crea un `PaymentIntent` falso solo 
 
 ---
 
-## 🚀 Despliegue
+## Despliegue
 
 El frontend y backend están desplegados en producción usando **Render**.
 
 ---
 
-## ✨ Autor
+## Autor
 
-Proyecto desarrollado por **Denise Lara** — *Frontend Developer* 🧑‍💻  
+Proyecto desarrollado por **Denise Lara** — *Frontend Developer* 
 Forma parte de mi portafolio personal.  
 ¡Gracias por visitarlo!
