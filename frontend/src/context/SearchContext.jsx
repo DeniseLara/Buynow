@@ -7,15 +7,20 @@ export const SearchProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState(''); 
 
   const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen); // Alterna la visibilidad del buscador
+    setIsSearchOpen(!isSearchOpen); 
   };
 
   const setSearchText = (text) => {
-    setSearchQuery(text); // Actualiza el texto de búsqueda
+    setSearchQuery(text); 
   };
 
   return (
-    <SearchContext.Provider value={{ isSearchOpen, toggleSearch, searchQuery, setSearchText }}>
+    <SearchContext.Provider value={{ 
+      isSearchOpen, 
+      toggleSearch, 
+      searchQuery, 
+      setSearchText 
+    }}>
       {children}
     </SearchContext.Provider>
   );

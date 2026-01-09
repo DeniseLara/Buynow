@@ -1,29 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Colores Principales */
+  --primary: #2563eb;        
+  --primary-dark: #1e40af;   
+  --primary-light: #dbeafe;  
+  
+  /* Colores Secundarios */
+  --secondary: #f59e0b;      
+  --secondary-dark: #d97706; 
+  --secondary-light: #fef3c7; 
+  
+  /* Neutros */
+  --neutral-900: #111827;    
+  --neutral-700: #374151;    
+  --neutral-500: #6b7280;    
+  --neutral-300: #d1d5db;    
+  --neutral-100: #f3f4f6;   
+  --neutral-50: #f9fafb;     
+  
+  /* Semánticos */
+  --success: #10b981;        
+  --warning: #f59e0b;        
+  --error: #ef4444;          
+  --info: #3b82f6;           
+  
+  /* Fondo y Texto */
+  --background: #ffffff;     
+  --text-primary: #111827;   
+  --text-secondary: #6b7280; 
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --secondary-color:#0D3B66;
-  --text-color: #333;
-  --color-info: #555555;
-  --bg-color: #f9f9f9;
-  --border-color: #ccc;
-  --border-color-light: #ddd;
-
-  --primary-color: #2272FF;
-  --background-color: #f8f9fa;
-  --white-color: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.1);
+  --font-header:  "Inter", sans-serif;
+  --font-body:  "Open Sans", sans-serif;
 
   --fx-xs: clamp(0.64rem, 0.608rem + 0.16vw, 0.8rem);
   --fs-sm: clamp(0.8rem, 0.76rem + 0.2vw, 1rem);
@@ -51,15 +65,20 @@ body{
   padding: 0;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  background-color: #ffffff;
+  font-family: var(--font-body);
+  background-color: var(--neutral-50);
+}
+
+h1, h2, h3, h4, button {
+  font-family: var(--font-header);
 }
 
 a {
+  cursor: pointer;
   font-weight: 500;
+  border: none;
+  outline: none;
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent; /* quita el flash azul en móviles */
 }
 
 ul {
@@ -83,7 +102,6 @@ button{
   border: none;
   outline: none;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent; /* quita el flash azul en móviles */
 }
 
 button:hover,
@@ -117,7 +135,48 @@ button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 button:hover {
   border-color: #646cff;
+}
+
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 2rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* === RESPONSIVE === */
+@media screen and (max-width:320px) {
+  .container {
+    margin-inline: 1rem;
+  }
+}
+
+@media (min-width: 1023px) {
+  .section  {
+    padding-block: 7rem 2rem;
+  }
+}
+
+@media screen and (min-width:1150px) {
+  .container {
+    margin-inline: auto;
+  }
 }
 

@@ -1,6 +1,6 @@
 import './Navbar.css';
 import { useState } from 'react';
-import { useAuth } from '../../../context/AuthContext';
+import { useAuthContext } from '../../../context/AuthContext';
 
 import NavbarToggleButton from './NavbarToggleButton';
 import Logo from './Logo';
@@ -11,7 +11,7 @@ import SidebarMenu from './SidebarMenu';
 
 
 function Navbar() { 
-    const { user } = useAuth();
+    const { user } = useAuthContext();
     const [menuOpen, setMenuOpen] = useState(false);
         
     const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -29,7 +29,7 @@ function Navbar() {
                 </button>
             )}
         
-            <nav className="navbar container">
+            <nav className='navbar container'>
                 <NavbarToggleButton 
                     toggleMenu={toggleMenu}
                     aria-expanded={menuOpen} 

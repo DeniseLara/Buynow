@@ -1,10 +1,12 @@
 .card {
-  background-color: var(--white-color);
+  background-color: var(--background);
   border-radius: 0.75rem;
   overflow: hidden;
   border: 1px solid #E0E0E0;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  transition: all .3s ease-in-out;
+  transition: transform .3s ease-in-out, 
+  border .3s ease-in-out, 
+  box-shadow .3s ease-in-out;
   display: flex;
   padding: 1rem 1.2rem;
   flex-direction: column;
@@ -29,15 +31,15 @@
   
 .deleteButton {
   background: transparent;
-  border: none;
-  cursor: pointer;
   color: #2b2d42;
   font-size: var(--fs-sm);
   position: absolute;
   padding: 0.5rem;
   right: 0.4rem;
   top: 0.4rem;
-  transition: all .3s ease-in-out;
+  transition: background-color .3s ease-in-out, 
+  border-radius .3s ease-in-out, 
+  padding .3s ease-in-out;
 }
 
 .deleteButton:hover{
@@ -50,7 +52,7 @@
   position: absolute;
   top: 2.5rem;
   right: 1.2rem;
-  background-color: var(--white-color);
+  background-color: var(--background);
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -59,15 +61,12 @@
   
 .dropdown button {
   background: none;
-  border: none;
   color: var(--text-color);
   font-size: var(--fs-sm);
   padding: 0.5rem 0.8rem;
   width: 100%;
-  outline: none;
   text-align: left;
-  cursor: pointer;
-  transition: all .3s ease;
+  transition: background-color .3s ease;
 }
   
 .dropdown button:hover {
@@ -103,7 +102,7 @@
 
 .footer .price {
   color: #1B3CFC;
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
   font-weight: bold;
 }
 
@@ -115,25 +114,44 @@
   
 .addButton {
   margin: 0;
-  color: #1B3CFC;
-  border: 1px solid #1B3CFC;
+  color: var(--primary);
+  border: 2px solid var(--primary);
   background-color: transparent;
   border-radius: 38%;
   padding: 0.4rem 0.8rem;
   font-size: var(--fs-base);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease-in-out, 
+  color 0.3s ease-in-out, 
+  border 0.3s ease-in-out;
+}
+
+.addButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.addButton:hover::before {
+  left: 0;
 }
 
 .addButton:focus,
 .addButton:active{
-  border: 1px solid #1B3CFC;
+  border: 2px solid var(--primary);
 }
   
 .addButton:hover {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  border: 1px solid transparent;
+  color: var(--background);
+  border: 2px solid var(--primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .footer{

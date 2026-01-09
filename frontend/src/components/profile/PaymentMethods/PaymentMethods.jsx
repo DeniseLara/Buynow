@@ -2,14 +2,15 @@ import { useProfile } from '../../../context/ProfileContext';
 import styles from './PaymentMethods.module.css'
 import { IoIosAdd, IoIosRemoveCircleOutline } from "react-icons/io";
 import fakeTestCards from '../../../data/fakeTestCards';
+import { usePayment } from '../../../context/PaymentContext';
 
 function PaymentMethods() {
+  const { paymentMethods } = usePayment()
   const { 
     editMode, 
     selectedCard, 
     setSelectedCard, 
     handleAddPaymentMethod,
-    paymentMethods,
     handleRemovePaymentMethod,
     formData, 
   } = useProfile()

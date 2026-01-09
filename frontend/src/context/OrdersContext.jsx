@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { loadUserOrders, updateOrderStatus, cancelOrder, fetchUserOrdersOnce } from "../services/ordersService";
-import { useAuth } from "./AuthContext";
+import { useAuthContext } from "./AuthContext";
 
 const OrdersContext = createContext();
 
@@ -8,7 +8,7 @@ export const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
   const [cancelingOrders, setCancelingOrders] = useState([]); 
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   
   // efecto para escuchar los cambios en las órdenes cuando el usuario cambia
   useEffect(() => {

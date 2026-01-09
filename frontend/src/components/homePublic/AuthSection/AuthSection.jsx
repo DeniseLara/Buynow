@@ -4,7 +4,8 @@ import Personas from '../../../assets/shop.png'
 
 function AuthSection() {
   return (
-    <section className={styles.container} aria-labelledby="auth-section-title">
+    <section className={`section ${styles.container}`} aria-labelledby="auth-section-title">
+      <div className={`container grid ${styles.authContainer}`}>
       <header className={styles.content}>
         <h2 id="auth-section-title" className={styles.title}>
           Join us and enjoy more benefits!
@@ -31,6 +32,7 @@ function AuthSection() {
           loading="lazy" 
           className={styles.image}
         />
+      </div>
       </div>
     </section>
   );

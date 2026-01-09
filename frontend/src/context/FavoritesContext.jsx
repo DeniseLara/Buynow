@@ -1,13 +1,13 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getFavoritesFromFirestore, saveFavoritesToFirestore } from '../services/favoritesService'
-import { useAuth } from './AuthContext';
+import { useAuthContext } from './AuthContext';
 
 const FavoritesContext = createContext();
 export const useFavorites = () => useContext(FavoritesContext);
 
 
 export const FavoritesProvider = ({ children }) => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading } = useAuthContext();
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -67,7 +67,12 @@ export const FavoritesProvider = ({ children }) => {
 
   return (
     <FavoritesContext.Provider
-      value={{ favorites, addToFavorites, removeFromFavorites, isFavorite }}
+      value={{ 
+        favorites, 
+        addToFavorites, 
+        removeFromFavorites, 
+        isFavorite 
+      }}
     >
       {children}
     </FavoritesContext.Provider>

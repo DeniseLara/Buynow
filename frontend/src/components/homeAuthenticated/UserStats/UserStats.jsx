@@ -9,7 +9,8 @@ function UserStats() {
   const { cart } = useCart();
 
   return (
-    <section className={styles.container} aria-label="User statistics">
+    <section className={`section ${styles.container}`} aria-label="User statistics">
+      <div className="container">
       <h2 className={styles.title}>Your Activity Summary</h2>
       <ul className={styles.grid}>
         <li className={styles.item}>
@@ -25,6 +26,7 @@ function UserStats() {
           <p>{cart.length} products</p>
         </li>
       </ul>
+      </div>
     </section>
   );
 }

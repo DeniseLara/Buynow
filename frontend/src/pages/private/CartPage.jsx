@@ -1,7 +1,6 @@
 import './CartPage.css';
 import { useState } from "react";
 import { useCart } from '../../context/CartContext'; 
-import { useCartTotal } from "../../hooks/useCartTotal";
 
 import Cart from "../../components/cart/Cart";
 import PaymentForm from '../../components/payment/PaymentForm/PaymentForm'
@@ -12,50 +11,47 @@ import BackButton from '../../components/ui/BackButton';
 
 
 function CartPage() {  
-  const { cart, checkout, loading } = useCart();
-  const total = useCartTotal();
+  const { cart, checkout } = useCart();
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   
-  if (loading) return <p>Loading cart...</p>
-
   return (
-    <div className="cart-page">
-      <header>
-        <BackButton/>
-        <h1 className="cart-title">Your cart</h1>
-      </header>
+    <div className="cart-page section">
+      <div className="container">
+        <header>
+          <BackButton/>
+          <h1 className="cart-title">Your cart</h1>
+        </header>
 
-      <section>
-      {cart.length === 0 ? (
-        <p role="alert">Your cart is empty</p>
-      ) : (
-        <>
-          <Cart />
+        <section className='cart-page-content'>
+        {cart.length === 0 ? (
+          <p role="alert">Your cart is empty</p>
+        ) : (
+          <>
+            <Cart />
         
-          <OrderSummary
-            total={total}
-            onCheckoutClick={() => setShowPaymentForm(true)}
-            isDisabled={cart.length === 0}
+            <OrderSummary
+              onCheckoutClick={() => setShowPaymentForm(true)}
+              isDisabled={cart.length === 0}
+            />
+          </>
+        )}
+        </section>
+
+        <Modal 
+          isOpen={showPaymentForm}
+        >
+          <PaymentForm
+            onClose={() => setShowPaymentForm(false)}
+            onSuccess={() => checkout(setShowPaymentForm, setShowSuccessModal)}
           />
-        </>
-      )}
-      </section>
+        </Modal>
 
-      <Modal 
-        isOpen={showPaymentForm} 
-        onClose={() => setShowPaymentForm(false)}
-      >
-      <PaymentForm
-        total={total}
-        onSucces={() => checkout(setShowPaymentForm, setShowSuccessModal)}
-      />
-      </Modal>
-
-      {showSuccessModal && (
-      <PaymentSuccessModal onClose={() => setShowSuccessModal(false)} />
-    )}
-  </div>
+        {showSuccessModal && (
+          <PaymentSuccessModal onClose={() => setShowSuccessModal(false)} />
+        )}
+      </div>
+    </div>
   );
 }
 

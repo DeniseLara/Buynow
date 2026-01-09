@@ -6,7 +6,8 @@ function FavoritesPage() {
   const { favorites } = useFavorites();
  
   return (
-    <section className="favorites-page" aria-labelledby="favorites-heading">
+    <section className="favorites-page section" aria-labelledby="favorites-heading">
+      <div className="container">
       <header className="favorites-header">
         <h1 id="favorites-heading" className="favorites-title">My Wishlist</h1>
       </header>
@@ -16,12 +17,13 @@ function FavoritesPage() {
         ) : (
           <ul className="favorites-grid">
             {favorites.map((product) => (
-              <li key={product.id} role="listitem">
+              <li key={product.sku} role="listitem">
                 <ProductCard product={product} isFavoriteCard={true}/>
               </li>
             ))}
           </ul>
         )}
+        </div>
     </section>
     );
   };

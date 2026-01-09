@@ -1,32 +1,30 @@
-import { Suspense, lazy } from "react";
+//import { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
-import { useAuth } from './context/AuthContext';
+import { useAuthContext } from './context/AuthContext';
 
 import Navbar from './components/layout/navbar/Navbar';
 import Footer from './components/layout/footer/Footer'
 import Loading from './components/ui/Loading'
-
-const HomePublic = lazy(() => import('./pages/public/HomePublic'));
-const HomeAuthenticated = lazy(() => import('./pages/private/HomeAuthenticated'));
-const Signup = lazy(() => import('./pages/public/Signup'));
-const Login = lazy(() => import('./pages/public/Login'));
-const Profile = lazy(() => import('./pages/private/Profile'));
-const ProductsPage = lazy(() => import('./pages/shared/ProductsPage'));
-const CartPageWrapper = lazy(() => import('./CartPageWrapper'));
-const ProductDetails = lazy(() => import('./pages/shared/ProductDetails'));
-const FavoritesPage = lazy(() => import('./pages/shared/FavoritesPage'));
-const MyOrders = lazy(() => import('./pages/private/MyOrders'));
+import HomePublic from "./pages/public/HomePublic";
+import HomeAuthenticated from "./pages/private/HomeAuthenticated";
+import Signup from "./pages/public/Signup";
+import Login from "./pages/public/Login";
+import Profile from "./pages/private/Profile";
+import ProductsPage from "./pages/shared/ProductsPage";
+import CartPageWrapper from "./CartPageWrapper";
+import ProductDetails from "./pages/shared/ProductDetails";
+import FavoritesPage from "./pages/shared/FavoritesPage";
+import MyOrders from "./pages/private/MyOrders";
 
 function App() {
-  const { user, loading } = useAuth();
+  const { user, loading } = useAuthContext();
+  
   if (loading) return <Loading/>;
 
   return (
     <div className="path-container">
       <Navbar user={user}/>
       
-      <Suspense fallback={<Loading />}>
       <main className='path'>
         <Routes>
           <Route 
@@ -75,7 +73,6 @@ function App() {
           />
       </Routes>
       </main>
-      </Suspense>
 
       <Footer/>
     </div>

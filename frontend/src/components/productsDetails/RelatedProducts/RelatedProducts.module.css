@@ -1,10 +1,43 @@
 .title {
-  margin-bottom: 1rem;
-  font-size: var(--fs-md);
-  font-weight: 500;
-  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--neutral-900);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 2px;
 }
 
 .section {
   margin-top: 2rem;
+  padding: 2rem;
+  background: var(--background);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 2.5rem;
+  }
+
+  .title {
+    font-size: var(--fs-2xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 3rem;
+  }
 }

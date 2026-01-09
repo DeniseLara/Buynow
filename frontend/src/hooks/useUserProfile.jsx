@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { usePayment } from "../context/PaymentContext";
-import { useAuth } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 export function useUserProfile() {
-  const { logout } = useAuth();
+  const { logout } = useAuthContext();
   const {
     paymentMethods,
     addPaymentMethod,
@@ -100,8 +100,6 @@ export function useUserProfile() {
     setSelectedCard,
     handleLogout,
     handleEditToggle,
-    paymentMethods,
-    address,
     handleChange,
     handleAddPaymentMethod,
     handleSaveChanges,

@@ -6,10 +6,8 @@ import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader"
 import ShippingAddress from "../../components/profile/ShippingAddress/ShippingAddress";
 import PaymentMethods from "../../components/profile/PaymentMethods/PaymentMethods";
 import ViewLinks from "../../components/profile/ViewLinks/ViewLinks";
-import { useAuth } from "../../context/AuthContext";
 
 function ProfileContent() {
-  const { user, userName } = useAuth()
   const {
     editMode,
     handleLogout,
@@ -20,62 +18,61 @@ function ProfileContent() {
 
   return (
     <section className="profile-data-container" aria-labelledby="profile-title">
-      <header className="profile-principal">
-        <h1 id="profile-title" className="profile-title">
-          My profile
-        </h1>
-        <button 
-          className="edit-profile-button" 
-          onClick={handleEditToggle} 
-          aria-label="edit profile"
-          type="button"
-        >
-          <MdEdit />
-        </button>
-      </header>
+      <div className="container">
+        <header className="profile-principal">
+          <h1 id="profile-title" className="profile-title">
+            My profile
+          </h1>
+          <button 
+            className="edit-profile-button" 
+            onClick={handleEditToggle} 
+            aria-label="edit profile"
+            type="button"
+          >
+            <MdEdit />
+          </button>
+        </header>
 
-      <ProfileHeader
-        user={user} 
-        userName={userName} 
-      />
+        <ProfileHeader/>
 
-      <div className="profile-details">
-        <ShippingAddress/>
+        <div className="profile-details">
+          <ShippingAddress/>
+ 
+          <PaymentMethods/>
 
-        <PaymentMethods/>
+          {editMode && (
+            <div className="profile-action-buttons">
+              <button
+                type="button"
+                className="cancel-button"
+                onClick={handleCancelEdit} 
+                aria-label="cancel editing profile"
+              >
+                Cancel
+              </button>
 
-        {editMode && (
-          <div className="profile-action-buttons">
-            <button
-              type="button"
-              className="cancel-button"
-              onClick={handleCancelEdit} 
-              aria-label="cancel editing profile"
-            >
-              Cancel
-            </button>
-
-            <button
-              type="button"
-              className="save-button"
-              onClick={handleSaveChanges}
-              aria-label="save profile changes"
-            >
-              Save Changes
-            </button>
-          </div>
-        )}
+              <button
+                type="button"
+                className="save-button"
+                onClick={handleSaveChanges}
+                aria-label="save profile changes"
+              >
+                Save Changes
+              </button>
+            </div>
+          )}
           
-        <ViewLinks/>
+          <ViewLinks/>
 
-        <button 
-          className="logout-button" 
-          onClick={handleLogout}
-          aria-label="log out"
-          type="button"
-        >
-          Log Out
-        </button>
+          <button 
+            className="logout-button" 
+            onClick={handleLogout}
+            aria-label="log out"
+            type="button"
+          >
+            Log Out
+          </button>
+        </div>
       </div>
     </section>
   );

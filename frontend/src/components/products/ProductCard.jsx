@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
-
 import { useCart } from "../../context/CartContext";  
 import { useFavorites } from "../../context/FavoritesContext";
 

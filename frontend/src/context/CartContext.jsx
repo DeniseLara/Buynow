@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { loadCartFromFirebase, saveCartToFirebase }  from '../services/cartService'
 import { saveUserOrder } from '../services/ordersService'
-import { useAuth } from './AuthContext';
+import { useAuthContext } from './AuthContext';
 
 const CartContext = createContext();
 
@@ -10,7 +10,7 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const { user,loading: authLoading } = useAuth();
+  const { user, loading: authLoading } = useAuthContext();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true); 
   const [errorMessage, setErrorMessage] = useState(null);

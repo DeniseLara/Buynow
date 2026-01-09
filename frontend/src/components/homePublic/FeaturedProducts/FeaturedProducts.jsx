@@ -8,7 +8,8 @@ function FeaturedProducts() {
   const { products, loading } = useFeaturedProducts();  
 
   return (
-    <section className={styles.container} aria-labelledby="featured-products-title">
+    <section className={`section ${styles.container}`} aria-labelledby="featured-products-title">
+      <div className="container">
       <h2 id="featured-products-title" className={styles.title}>
         Exclusive Product Highlights
       </h2>
@@ -71,6 +72,7 @@ function FeaturedProducts() {
         <Link to="/products" aria-label="view all products">
           <span className={styles.viewAllLink}>View all products</span>
         </Link>
+      </div>
       </div>
     </section>
   );

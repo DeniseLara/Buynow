@@ -1,16 +1,50 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { updateUserData } from "../services/authService";
-import { useAuth } from "./AuthContext";
+import { useAuthContext } from "./AuthContext";
+import { useCart } from "./CartContext";
 
 const PaymentContext = createContext();
 
 export const PaymentProvider = ({ children }) => {
-  const { user, userData, loading: authLoading, setUserData } = useAuth();
+  const { user, userData, loading: authLoading, setUserData } = useAuthContext();
+  const { cart } = useCart()
+
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [address, setAddress] = useState(""); 
-  const [shippingCost, setShippingCost] = useState(0); 
+  const [shippingCost, setShippingCost] = useState(599); 
   const [loading, setLoading] = useState(true);
 
+  // PRIMERO calcular subtotal SOLO (sin shipping)
+  const subtotalInCents = useMemo(() => {
+    return cart.reduce((acc, item) => 
+      acc + (Math.round(item.price * 100) * item.quantity), 0
+    );
+  }, [cart]); // Solo depende de cart
+
+  // LUEGO calcular shipping basado en subtotal
+  useEffect(() => {
+    const subtotalDollars = subtotalInCents / 100;
+    const newShippingCost = subtotalDollars >= 50 ? 0 : 5.99;
+    setShippingCost(newShippingCost * 100);
+  }, [subtotalInCents]);
+
+  // FINALMENTE calcular totals (esto puede usar shippingCost)
+  const { totalInCents, totals } = useMemo(() => {
+    const totalCents = subtotalInCents + shippingCost;
+    
+    const totalsObj = {
+      subtotal: subtotalInCents / 100,        
+      shipping: shippingCost / 100,         
+      total: totalCents / 100,              
+      subtotalInCents: subtotalInCents,       
+      totalInCents: totalCents,            
+    };
+    
+    return {
+      totalInCents: totalCents,
+      totals: totalsObj
+    };
+  }, [subtotalInCents, shippingCost]);
 
   useEffect(() => {
     if (authLoading) return;
@@ -26,7 +60,6 @@ export const PaymentProvider = ({ children }) => {
     setLoading(false);
   }, [user, userData, authLoading]);
 
-
   const addPaymentMethod = async (newCard) => {
     const cardWithId = {
       ...newCard,
@@ -41,7 +74,6 @@ export const PaymentProvider = ({ children }) => {
       setUserData(prev => ({ ...prev, paymentMethods: updated }));
     }
   }
-
   
   const removePaymentMethod = async (indexToRemove) => {
     const updated = paymentMethods.filter((_, i) => i !== indexToRemove);
@@ -52,7 +84,6 @@ export const PaymentProvider = ({ children }) => {
     }
   };
 
-
   const updateAddress = async (newAddress) => {
     setAddress(newAddress);
     if (user) {
@@ -60,35 +91,21 @@ export const PaymentProvider = ({ children }) => {
       setUserData(prev => ({ ...prev, address: newAddress }));
     }
   };
-
-
-  // función para actualizar el costo de envío (en centavos)
-  const updateShippingCost = (cost) => {
-    setShippingCost(cost * 100);  // Guardamos el costo en centavos
-  };
-
   
-  const calculateShippingCost = (total) => {
-    const cost = total >= 50 ? 0 : 5.99;
-    setShippingCost(cost * 100);  // Almacenar en centavos
-  };
-
-
-  if (loading || authLoading) return null;
-  
-return (
-  <PaymentContext.Provider 
-    value={{ 
-      paymentMethods, 
-      addPaymentMethod, 
-      removePaymentMethod, 
-      address,
-      updateAddress,
-      shippingCost,
-      updateShippingCost,
-      calculateShippingCost
-    }}>
-      {children}
+  return (
+    <PaymentContext.Provider 
+      value={{ 
+        paymentMethods, 
+        addPaymentMethod, 
+        removePaymentMethod, 
+        address,
+        updateAddress,
+        shippingCost,
+        totals,
+        subtotalInCents,
+        totalInCents
+      }}>
+        {children}
     </PaymentContext.Provider>
   );
 };

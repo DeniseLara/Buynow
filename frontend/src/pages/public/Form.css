@@ -2,32 +2,39 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5rem 1rem 2rem;
 }
 
 .form-card {
-    background: var(--white-color);
+    background: var(--background);
     padding: 1.5rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-md);
     text-align: center;
     max-width: 100%;
     width: clamp(350px, 50vw, 550px); 
-    color: var(--white-color);
+    color: var(--neutral-900);
     margin: 1rem auto;
     transition: 0.3s;
 }
 
-.form-card h1 {
+.form-header {
+    margin-bottom: 1.5rem;
+}
+
+.form-header h1 {
     font-size: var(--fs-lg);
-    color: var(--secondary-color);
+    color: var(--neutral-900);
     margin-bottom: 0.5rem;
+}
+
+.form-header h1 span {
+    color: var(--secondary);
 }
 
 .login-description {
     font-size: var(--fs-sm);
     margin-bottom: 1rem;
-    color: #B0B0B0;
+    color:var(--neutral-700);
 }
 
 .input-group {
@@ -40,12 +47,12 @@
     padding: 1rem;
     border: 1.5px solid #D1D1D1;
     border-radius: 0.6rem;
-    background: #F7F7F7;
+    background: var(--neutral-50);
     color: var(--text-color);
     font-size: var(--fs-base); 
     outline: none;
     transition: all 0.3s ease;
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
 }
 
 .input-group input::placeholder{
@@ -53,7 +60,7 @@
 }
 
 .input-group input:focus {
-    border: 1.5px solid var(--secondary-color);
+    border: 1.5px solid var(--primary);
 }
 
 .sr-only {
@@ -69,7 +76,7 @@
 }
 
 .error {
-    color: #FF4C4C;
+    color: var(--error);
     font-size: var(--fx-xs);
     margin-top: 0.3rem;
     display: flex;
@@ -81,7 +88,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: #FF4C4C;
+    color: var(--error);
     font-size: var(--fx-xs);
     margin-top: 0.4rem;
 }
@@ -89,33 +96,35 @@
 .form-btn {
     width: 80%;
     padding: 1rem;
-    background: var(--secondary-color);
-    color: var(--white-color);
+    background: var(--primary);
+    color: var(--background);
     font-size: var(--fs-base);
     font-weight: 700;
-    border: none;
     text-transform: uppercase;
     border-radius: 0.6rem;
-    cursor: pointer;
-    transition: 0.3s;
+    transition: background 0.3s ease-in-out;
     margin-top: 1rem;
 }
 
 .form-btn:hover {
-    background: #1A5ACC;
+    background: var(--primary-dark);
 }
 
 .form-text {
-    margin-top: 1rem;
-    color: #B0B0B0;
+    margin-top: 1.5rem;
+    color: var(--neutral-700);
     font-size: var(--fs-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
 }
 
 .form-text a {
     font-size: var(--fs-sm);
-    color: var(--secondary-color);
-    text-decoration: none;
+    color: var(--primary);
     font-weight: bold;
+    transition: text-decoration .25s ease;
 }
 
 .form-text a:hover {
@@ -123,17 +132,12 @@
 }
 
 
-
+/* === RESPONSIVE === */
 @media (min-width: 768px) {
-    .form-container{
-        margin: 5rem auto 2rem;
-    }
-
     .form-card {
-        padding: 2rem;
+        padding: 2rem 2.5rem;
     }
 }
-
 
 @media (min-width: 1024px) {
     .form-btn {
@@ -141,9 +145,3 @@
     }
 }
 
-
-@media (min-width:1920px){
-    .form-container{
-        margin: 5rem 1rem 3rem;
-    }
-}

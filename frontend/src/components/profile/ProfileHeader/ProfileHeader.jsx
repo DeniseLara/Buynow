@@ -1,10 +1,9 @@
 import styles from './ProfileHeader.module.css'
+import { useAuthContext } from '../../../context/AuthContext';
 import Perfil from '../../../assets/profile.png';
 
-function ProfileHeader({ 
-  user, 
-  userName, 
-}) {
+function ProfileHeader() {
+  const { user, userName } = useAuthContext()
   
   return (
     <div className={styles.container}>

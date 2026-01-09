@@ -1,8 +1,10 @@
+import { usePayment } from '../../../context/PaymentContext';
 import { useProfile } from '../../../context/ProfileContext';
 import styles from './ShippingAddress.module.css'
 
 function ShippingAddress() {
-  const { editMode, address, formData, handleChange } = useProfile();
+  const { address } = usePayment()
+  const { editMode, formData, handleChange } = useProfile();
   
   return (
     <section className={styles.container} aria-labelledby="shipping-address-title">

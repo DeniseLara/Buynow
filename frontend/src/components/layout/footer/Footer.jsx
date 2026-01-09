@@ -5,8 +5,8 @@ import FooterSide from './FooterSide';
 function Footer() {
 
   return (
-    <footer className="footer">
-      <div className="footer-content">
+    <footer className="footer section">
+      <div className="footer-content container">
         <FooterMain/>
         <FooterSide/>       
         <p className='footer-rights'>

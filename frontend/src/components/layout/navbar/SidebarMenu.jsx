@@ -6,10 +6,10 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { BiReceipt } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import { RiLoginBoxFill } from "react-icons/ri";
-import { useAuth } from '../../../context/AuthContext';
+import { useAuthContext } from '../../../context/AuthContext';
 
 function SidebarMenu({ toggleMenu, menuOpen, user, id }) {
-  const { logout } = useAuth();
+  const { logout } = useAuthContext();
 
   const handleLogout = async () => {
     await logout();

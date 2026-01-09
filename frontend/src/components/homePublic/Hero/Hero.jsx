@@ -1,14 +1,16 @@
 import styles from './Hero.module.css'
 import { Link } from 'react-router-dom';
 import { MdArrowOutward } from "react-icons/md";
+import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 
 function Hero() {
   return (
-    <section className={styles.container}>
-      <div className={styles.content}>
+    <section className={`section ${styles.container}`}>
+      <div className={`container ${styles.content}`}>
         <div className={styles.heroContent}>
+          <span className={styles.text}><MdOutlineProductionQuantityLimits/> New products every week</span>
           <h1 id="hero-title" className={styles.title}>
-            Find the best products for you
+            Find the best <span>products</span> for you
           </h1>
           <p className={styles.description}>
             Explore our wide range of products at unbeatable prices.

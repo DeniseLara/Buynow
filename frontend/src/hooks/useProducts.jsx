@@ -1,27 +1,7 @@
 import { useState, useEffect } from "react";
+import { CATEGORY_MAP } from "../utils/getCategoryIcon";
 
-const CATEGORY_MAP = {
-  Women: [
-    "womens-dresses",
-    "womens-shoes",
-    "womens-watches",
-    "womens-bags",
-    "womens-jewellery",
-    "tops"
-  ],
-  Men: [
-    "mens-shirts",
-    "mens-shoes",
-    "mens-watches",
-  ],
-  Fragrances: ["fragrances"],
-  Skincare: ["skincare"],
-  Electronics: ["smartphones", "laptops"],
-  Home: ["home-decoration", "furniture"],
-  Groceries: ["groceries"],
-  Accessories: ["sunglasses"]
-};
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
@@ -32,7 +12,7 @@ export const useProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://dummyjson.com/products?limit=250");
+        const response = await fetch(`${API_URL}?limit=250`);
         const data = await response.json();
         setProducts(data.products);
 

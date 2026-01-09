@@ -1,15 +1,20 @@
-import styles from './ProductPurchaseActions.module.css'
-import PropTypes from 'prop-types';
+import styles from './ProductActions.module.css'
+import { useCart } from '../../../context/CartContext';
 
-function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, productTitle }) {   
-   // Para manejar + / – sin input directo, pero aquí sólo llamamos onQuantityChange con el nuevo valor
+function ProductActions({ product, quantity, onQuantityChange }) {  
+  const { addToCart } = useCart(); 
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+  };
+
   const handleDecrease = () => {
     if (quantity > 1) onQuantityChange({ target: { value: quantity - 1 } });
   };
+
   const handleIncrease = () => {
     onQuantityChange({ target: { value: quantity + 1 } });
   };
-  
   
   return (
     <section className={styles.container}>
@@ -48,8 +53,8 @@ function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, produ
 
       <button 
         className={styles.addToCart}
-        onClick={onAddToCart}
-        aria-label={`Add ${quantity} of ${productTitle} to cart`}
+        onClick={handleAddToCart}
+        aria-label={`Add ${quantity} of ${product.title} to cart`}
         type='button'
       >
         Add to Cart
@@ -58,11 +63,4 @@ function ProductPurchaseActions({ quantity, onQuantityChange, onAddToCart, produ
   );
 }
 
-ProductPurchaseActions.propTypes = {
-  quantity: PropTypes.number.isRequired,
-  onQuantityChange: PropTypes.func.isRequired,
-  onAddToCart: PropTypes.func.isRequired,
-  productTitle: PropTypes.string.isRequired,
-};
-
-export default ProductPurchaseActions;
+export default ProductActions;

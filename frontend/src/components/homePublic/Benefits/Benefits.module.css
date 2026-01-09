@@ -1,72 +1,106 @@
-/** BENEFITS SECTION **/
 .container {
-  padding: 2rem 1rem;
-  background-color: var(--white-color);
-  margin-bottom: 2.5rem;
+  background-color: var(--neutral-50);
 }
-  
+
 .title {
   font-size: var(--fs-2xl);
+  font-family: var(--font-header);
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
-  color: var(--text-color);
+  margin-bottom: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
   
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit,
-  minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   justify-content: center;
   gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
   
 .card {
-  background-color: var(--white-color);
-  padding: 1.5rem;
+  background-color: var(--background);
+  padding: 2.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  border-radius: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: all .3s ease-in-out;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, 
+  box-shadow 0.3s ease, 
+  border-color 0.3s ease;
+  border: 1px solid var(--neutral-200);
 }
 
 .card:hover{
-  transform: translateY(-0.6rem);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.iconContainer {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-light);
+  border-radius: 50%;
+  margin-bottom: 1rem;
 }
 
 .icon {
-  font-size: var(--fs-2xl);
-  color: var(--primary-color);
-  margin-bottom: 10px;
+  font-size: var(--fs-lg);
+  color: var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .icon {
+  transform: scale(1.1);
 }
 
 .subtitle {
-  font-size: var(--fs-lg);
+  font-size: var(--fs-md);
+  font-family: var(--font-header);
   margin-bottom: 1rem;
-  color: var(--primary-color);
-  font-weight: bold;
+  color: var(--text-primary);
+  font-weight: 700;
 }
   
 .description {
-  font-size: var(--fs-base);
-  color: #666;
+  font-size: var(--fs-sm);
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: start;
 }
 
 
+/* === RESPONSIVE === */
 @media (min-width: 768px) {
-  .container {
+  .title {
+    font-size: var(--fs-2xl);
+    margin-bottom: 3.5rem;
+  }
+
+  .cards {
+    gap: 2.5rem;
+  }
+
+  .card {
     padding: 3rem 2rem;
   }
 }
 
-
 @media (min-width: 1024px) {
-  .container {
-    padding: 4rem 3rem;
+  .title {
+    font-size: var(--fs-3xl);
+    margin-bottom: 4rem;
+  }
+
+  .cards {
+    gap: 3rem;
   }
 }

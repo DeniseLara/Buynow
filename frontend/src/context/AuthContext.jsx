@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (userId) => {
-      setLoading(true); // Establece loading como true cuando se cambia de usuario
 
       if (userId) {
         setUser(userId);
@@ -84,4 +83,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuthContext = () => useContext(AuthContext);

@@ -1,12 +1,12 @@
 import '../../pages/shared/ProductDetails.css'
 import { useNavigate, useLocation } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 function BackButton() {
     const navigate = useNavigate();
     const location = useLocation();
-    const { user } = useAuth();
+    const { user } = useAuthContext();
 
     const handleClick = () => {
     const isInProductDetails = location.pathname.startsWith("/products/");

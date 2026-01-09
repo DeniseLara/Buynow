@@ -15,17 +15,20 @@
 }
 
 .text {
-  color: #2c2c2c;
+  color: var(--neutral-900);
+  font-size: var(--fs-base);
+  font-weight: 500;
 }
 
 .link {
-  color: #2c2c2c;
+  color: var(--neutral-700);
   padding: 0;
-  font-size: var(--fs-base);
+  font-size: var(--fs-lg);
   display: flex;
-  transition: all .3s ease-in-out;
+  transition: transform .3s ease-in-out;
 }
 
 .link:hover {
-  transform:translateX(0.2rem);
+  color: var(--primary);
+  transform: translateX(0.25rem);
 }

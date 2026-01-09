@@ -13,6 +13,28 @@ import {
   FaMale,
 } from "react-icons/fa";
 
+export const CATEGORY_MAP = {
+  Women: [
+    "womens-dresses",
+    "womens-shoes",
+    "womens-watches",
+    "womens-bags",
+    "womens-jewellery",
+    "tops"
+  ],
+  Men: [
+    "mens-shirts",
+    "mens-shoes",
+    "mens-watches",
+  ],
+  Fragrances: ["fragrances"],
+  Skincare: ["skincare"],
+  Electronics: ["smartphones", "laptops"],
+  Home: ["home-decoration", "furniture"],
+  Groceries: ["groceries"],
+  Accessories: ["sunglasses"]
+};
+
 const getCategoryIcon = (group) => {
   switch (group) {
     case "Women":

@@ -12,7 +12,7 @@
 }
 
 .modalContent {
-  background-color: var(--white-color);
+  background-color: var(--background);
   padding: 1.5rem;
   border-radius: 1rem;
   max-width: 90%;
@@ -43,6 +43,7 @@
 }
 
 
+/* === RESPONSIVE === */
 @media (min-width:768px){
   .modalContent {
     max-width: 100%;

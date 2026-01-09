@@ -1,8 +1,20 @@
 import styles from './ProductInfo.module.css'
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { useFavorites } from '../../../context/FavoritesContext';
 
-function ProductInfo({ product, handleFavoriteClick, isFavorite, rating }) {
+function ProductInfo({ product }) {
+    const { removeFromFavorites, addToFavorites, isFavorite } = useFavorites();
+    const favorite = isFavorite(product.id);
+    const rating = Math.round(product.rating);
+
+    // función para manejar el botón de favoritos
+    const handleFavoriteClick = () => {
+        favorite 
+        ? removeFromFavorites(product.id) 
+        : addToFavorites(product);
+    };
+
     return (
         <section aria-labelledby="product-title">
             <div className={styles.headerLine}>
@@ -11,11 +23,11 @@ function ProductInfo({ product, handleFavoriteClick, isFavorite, rating }) {
                     className={styles.button}
                     type='button'
                     onClick={handleFavoriteClick} 
-                    aria-label={isFavorite 
+                    aria-label={favorite 
                     ? `Remove ${product.title} from favorites` 
                     : `Add ${product.title} to favorites`
                 }>
-                {isFavorite ? (
+                {favorite ? (
                     <MdFavorite className={styles.favoriteIconFilled}/>
                 ) : (
                     <MdFavoriteBorder />

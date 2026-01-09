@@ -17,7 +17,7 @@ app.use(cors({
 app.use(express.json());
 
 // Middleware para evitar cache 
-app.use((req, res, next) => {
+app.use((res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   res.set('Expires', '0');
   res.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload'); 
@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-app.get('/', (req, res) => {
+app.get('/', (res) => {
   res.send('Servidor backend funcionando correctamente');
 });
 

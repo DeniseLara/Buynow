@@ -1,13 +1,13 @@
 import styles from './Hero.module.css'
 import { Link } from "react-router-dom";
-import { useAuth } from '../../../context/AuthContext';
+import { useAuthContext } from '../../../context/AuthContext';
 
 function Hero() {
-    const { userName } = useAuth()
+    const { userName } = useAuthContext()
     
     return(
-        <header className={styles.container}>
-            <div className={styles.content}>
+        <header className={`${styles.container} section`}>
+            <div className={`container ${styles.content}`}>
                 <h1 className={styles.title}>
                     Welcome back, {userName}!
                 </h1>
