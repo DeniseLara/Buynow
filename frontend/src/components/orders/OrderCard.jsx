@@ -22,7 +22,7 @@ function OrderCard({ order }) {
         <div className={styles.orderIdSection}>
           <div className={styles.orderId}>
             <span className={styles.orderIcon}>📦</span>
-            <h3>Order #{order.id.slice(0, 8).toUpperCase()}</h3>
+            <h3>Order #{order.id.slice(0, 8)}</h3>
           </div>
           <time className={styles.orderDate} dateTime={order.date}>
             {formattedDate}
