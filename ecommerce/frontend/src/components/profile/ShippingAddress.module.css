@@ -1,0 +1,46 @@
+.container {
+  font-size: var(--fs-base);
+  margin-bottom: 1rem;
+}
+
+.container h3 {
+  font-size: var(--fs-md);
+  color: var(--neutral-900);
+  margin-bottom: 1rem;
+  font-family: var(--font-header);
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--neutral-300);
+  border-radius: 0.75rem;
+  background: var(--background);
+  color: var(--neutral-900);
+  font-size: var(--fs-base);
+  font-family: var(--font-body);
+  outline: none;
+  transition: all 0.25s ease;
+  margin-top: 0.5rem;
+}
+
+.input::placeholder {
+  color: var(--neutral-500);
+  font-size: var(--fs-base);
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input:hover {
+  border-color: var(--neutral-500);
+}
+
+.infoText {
+  color: var(--neutral-700);
+  font-size: var(--fs-base);
+  margin-top: 0.5rem;
+}

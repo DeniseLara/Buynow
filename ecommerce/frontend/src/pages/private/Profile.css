@@ -1,0 +1,152 @@
+.profile-data-container {
+  border-radius: 1rem;
+  margin: 0 auto;
+  margin-top: 6rem;
+  padding: 2rem 1rem;
+}
+
+.profile-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--neutral-300);
+}
+
+.profile-title {
+  font-size: var(--fs-2xl);
+  color: var(--neutral-900);
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.profile-subtitle {
+  color: var(--neutral-900);
+  margin: 0;
+  font-size: var(--fs-md);
+  font-family: var(--font-header);
+  font-weight: 600;
+}
+
+.edit-profile-button {
+  background-color: transparent;
+  color: var(--neutral-700);
+  padding: 0.4rem 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.25s ease, 
+  color 0.25s ease, 
+  border 0.25s ease,
+  box-shadow 0.25s ease;
+}
+
+.edit-profile-button svg {
+  font-size: var(--fs-md);
+}
+
+.edit-profile-button:hover {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.edit-profile-button:focus {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.profile-details {
+  text-align: left;
+  width: 100%;
+}
+
+.profile-action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--neutral-300);
+}
+
+.cancel-button {
+  background-color: var(--neutral-100);
+  color: var(--error);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--neutral-300);
+  transition: background-color 0.25s ease, 
+  color 0.25s ease, 
+  border-color 0.25s ease,
+  box-shadow 0.25s ease;
+}
+
+.cancel-button:hover {
+  background-color: var(--error);
+  color: var(--background);
+  border: 2px solid var(--error);
+}
+
+.cancel-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.save-button {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--primary);
+  background-color: var(--primary);
+  color: var(--background);
+  transition: background-color 0.25s ease,
+  border 0.25s ease,
+  box-shadow 0.25s ease,
+  transform 0.25s ease;
+}
+
+.save-button:hover {
+  background-color: var(--primary-dark);
+  border: 2px solid var(--primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.save-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.save-button:active {
+  transform: translateY(1px);
+}
+
+.logout-button {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1rem;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  background-color: var(--neutral-100);
+  color: var(--neutral-700);
+  border-radius: 0.5rem;
+  border: 2px solid var(--neutral-300);
+  transition: background-color 0.25s ease, color 0.25s ease, border 0.25s ease;
+}
+
+.logout-button:hover {
+  border: 2px solid transparent;
+  background-color: var(--neutral-300);
+  color: var(--neutral-900);
+}
+
+/* === RESPONSIVE === */
+@media (min-width: 768px) {
+  .profile-action-buttons {
+    gap: 1.5rem;
+  }
+}
