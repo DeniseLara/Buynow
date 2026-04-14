@@ -44,22 +44,15 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
     // Acceso directo a la subcolección del usuario
     const orderRef = admin.firestore()
       .collection('users')
-      .doc(usferId)
+      .doc(userId)
       .collection('orders')
-      .doc(orderId)
-      .update({ 
-        status: 'paid',
-        paymentId: event.data.object.id, 
-        updatedAt: admin.firestore.FieldValue.serverTimestamp()
-      });
+      .doc(orderId); 
 
     await orderRef.update({ 
       status: 'paid',
-      paymentIntentId: event.data.object.id, 
-      paidAt: admin.firestore.FieldValue.serverTimestamp()
+      paymentId: event.data.object.id, 
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
     });
-    
-    console.log(`Orden ${orderId} actualizada a pagada.`);
   } catch (error) {
     console.error("Error actualizando Firebase:", error);
   }
@@ -84,44 +77,48 @@ app.get('/', (req, res) => {
 
 // Ruta para crear el payment intent
 app.post('/create-payment-intent', async (req, res) => {
-
   try {
-    const { amount, userId, shippingCost, orderId } = req.body;  
+    const { userId, orderId } = req.body;
+
+    if (!userId || !orderId) {
+      return res.status(400).json({ error: 'Faltan datos: userId u orderId' });
+    }
+
+    // buscar la orden en firestore
+    const orderDoc = await admin.firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('orders')
+      .doc(orderId)
+      .get();
+
+    if (!orderDoc.exists) {
+      return res.status(404).json({ error: 'La orden no existe en la base de datos' });
+    }
+
+    const orderData = orderDoc.data();
     
-     // Verificar si el amount es válido
-     if (!amount || isNaN(amount) || amount <= 0) {
-      return res.status(400).json({ error: 'Amount debe ser mayor que 0' });
+    // obtener el total pagado
+    const totalAmount = Math.round(parseFloat(orderData.totalPaid) * 100);
+
+    if (isNaN(totalAmount) || totalAmount <= 0) {
+      return res.status(400).json({ error: 'El monto de la orden es inválido o 0' });
     }
 
-    // Verificar que el userId sea válido 
-     if (!userId) {
-      return res.status(400).json({ error: 'userId es necesario' });
-    }
-
-    // Lógica para calcular el costo de envío según el monto
-    const expectedShipping = amount >= 5000 ? 0 : 599; // Si el monto >= 50 USD => envío gratis 
-     
-    if (shippingCost !== expectedShipping) {
-      return res.status(400).json({ error: `El costo de envío debería ser ${expectedShipping / 100} USD` });
-    }
-
-    const amountInCents = amount + shippingCost  
-
+    // Crear el intento
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: amountInCents,
+      amount: totalAmount,
       currency: 'usd',
-      payment_method_types: ['card'],
-      metadata: { 
-      userId,
-      orderId,
-      shippingCost: shippingCost.toString() },  
+      metadata: { userId, orderId },
     });
 
-    res.send({
-      clientSecret: paymentIntent.client_secret,
+    res.send({ 
+      clientSecret: paymentIntent.client_secret, 
+      total: orderData.totalPaid 
     });
-    
+
   } catch (err) {
+    console.error("Error en create-payment-intent:", err);
     res.status(500).json({ error: err.message });
   }
 });

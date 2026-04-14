@@ -29,7 +29,6 @@ export const OrdersProvider = ({ children }) => {
 
   }, [user]); 
 
-
   // Función para cancelar la orden
   const handleCancelOrder = async (orderId) => {
     if (!user) return;

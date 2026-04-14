@@ -13,7 +13,6 @@ export const loadCartFromFirebase = async (userId) => {
   }
 };
 
-
 // Función para guardar el carrito en Firestore
 export const saveCartToFirebase = async (userId, cart) => {
   const cartRef = doc(db, "users", userId, "cart", "data");

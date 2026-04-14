@@ -1,11 +1,11 @@
-import { useProfile } from '../../context/ProfileContext';
 import styles from './PaymentMethods.module.css'
 import { IoIosAdd, IoIosRemoveCircleOutline } from "react-icons/io";
+import { useProfile } from '../../context/ProfileContext';
+import { useAuthContext } from '../../context/AuthContext';
 import fakeTestCards from '../../data/fakeTestCards'
-import { usePayment } from '../../context/PaymentContext';
 
 function PaymentMethods() {
-  const { paymentMethods } = usePayment()
+  const { userData } = useAuthContext()
   const { 
     editMode, 
     selectedCard, 
@@ -15,7 +15,7 @@ function PaymentMethods() {
     formData, 
   } = useProfile()
 
-  const cardsToDisplay = editMode ? formData.paymentMethods : paymentMethods;
+  const cardsToDisplay = editMode ? formData.paymentMethods : userData.paymentMethods;
   
   return (
     <section className={styles.container} aria-labelledby="payment-methods-title">
@@ -68,8 +68,8 @@ function PaymentMethods() {
           </>
           ) : (
             <ul className={styles.cardListDisplay}>
-              {paymentMethods.length > 0 ? (
-                paymentMethods.map((method) => (
+              {userData.paymentMethods.length > 0 ? (
+                userData.paymentMethods.map((method) => (
                   <li key={method.id} className={styles.paymentMethod}>
                     <img 
                       src={method.logo} 

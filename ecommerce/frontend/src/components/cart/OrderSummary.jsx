@@ -1,9 +1,9 @@
-import { FiCreditCard, FiShield } from 'react-icons/fi';
 import styles from './OrderSummary.module.css';
-import { usePayment } from '../../context/PaymentContext';
+import { FiCreditCard, FiShield } from 'react-icons/fi';
+import { useCart } from '../../context/CartContext';
 
 function OrderSummary({ onCheckoutClick, isDisabled }) { 
-  const { totals } = usePayment() 
+  const { totals } = useCart()
 
   return (
     <div className={styles.container}>
@@ -14,7 +14,7 @@ function OrderSummary({ onCheckoutClick, isDisabled }) {
       <div className={styles.totalSection}>
         <div className={styles.totalRow}>
           <span>Subtotal</span>
-          <span>${totals.subtotal.toFixed(2)}</span>
+          <span>${totals.subtotal}</span>
         </div>
         <div className={styles.totalRow}>
           <span>Shipping cost</span>

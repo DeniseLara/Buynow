@@ -1,5 +1,5 @@
-import { useOrders } from '../../context/OrdersContext';
 import styles from './OrderCard.module.css';
+import { useOrders } from '../../context/OrdersContext';
 
 function OrderCard({ order }) {
   const { cancelingOrders, handleCancelOrder } = useOrders();
@@ -12,9 +12,10 @@ function OrderCard({ order }) {
     day: 'numeric'
   });
   
+  // Busca esta sección en tu OrderCard.jsx y reemplázala:
   const totalPaid = order.totalPaid !== undefined && order.totalPaid !== null
-    ? `$${order.totalPaid.toFixed(2)}`
-    : "$0.00";
+  ? `$${Number(order.totalPaid).toFixed(2)}` // Forzamos la conversión a Number
+  : "$0.00";
 
   return (
     <div className={styles.orderCard}>

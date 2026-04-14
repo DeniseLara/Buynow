@@ -1,9 +1,9 @@
-import { useCart } from '../../context/CartContext';
-import { FiTrash2, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 import styles from './Cart.module.css';
+import { FiTrash2, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
+import { useCart } from '../../context/CartContext';
 
 function Cart() {
-  const { cart, cartItemsCount, removeFromCart, updateQuantity, clearCart, addToCart } = useCart();
+  const { cart, cartItemsCount, removeFromCart, clearCart, addToCart } = useCart();
 
   const handleQuantityChange = (id, change) => {
     const item = cart.find(item => item.id === id);

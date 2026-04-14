@@ -1,9 +1,9 @@
-import { usePayment } from '../../context/PaymentContext';
-import { useProfile } from '../../context/ProfileContext';
 import styles from './ShippingAddress.module.css'
+import { useAuthContext } from '../../context/AuthContext';
+import { useProfile } from '../../context/ProfileContext';
 
 function ShippingAddress() {
-  const { address } = usePayment()
+  const { userData } = useAuthContext()
   const { editMode, formData, handleChange } = useProfile();
   
   return (
@@ -19,7 +19,7 @@ function ShippingAddress() {
             placeholder="Enter your address"
           />
           ) : (
-            <p className={styles.infoText}>{address || "Not specified"}</p>
+            <p className={styles.infoText}>{userData.address || "Not specified"}</p>
           )}
     </section>
   );

@@ -1,10 +1,10 @@
 .container {
   font-size: var(--fs-base);
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .container h3 {
-  font-size: var(--fs-md);
+  font-size: var(--fs-base);
   color: var(--neutral-900);
   margin-bottom: 1rem;
   font-family: var(--font-header);

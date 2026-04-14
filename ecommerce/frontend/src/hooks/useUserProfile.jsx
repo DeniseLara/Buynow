@@ -15,7 +15,6 @@ export function useUserProfile() {
     if (!editMode) {
       setFormData({
         name: userData?.name || "",
-        email: userData?.email || "",
         address: userData?.address || "",
         paymentMethods: [...(userData?.paymentMethods || [])]
       });
@@ -24,12 +23,10 @@ export function useUserProfile() {
     setEditMode(!editMode);
   };
 
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  
   const handleCancelEdit = () => {
     setFormData({
       address,
@@ -38,7 +35,6 @@ export function useUserProfile() {
 
     setEditMode(false);
   };
-
 
   const handleAddPaymentMethod = () => {
     if (!selectedCard) return;
@@ -52,7 +48,6 @@ export function useUserProfile() {
     setSelectedCard(null);
   };
 
-
   // Remover tarjeta temporalmente
   const handleRemovePaymentMethod = (id) => {
     setFormData(prev => ({
@@ -61,21 +56,17 @@ export function useUserProfile() {
     }));
   };
 
-
-  // useUserProfile.js
-const handleSaveChanges = async () => {
-  try {
+  const handleSaveChanges = async () => {
+    try {
       await updateProfile({
-        name: formData.name,
-        address: formData.address,
-        paymentMethods: formData.paymentMethods
+        ...formData 
       });
       setEditMode(false);
       alert("Perfil actualizado!");
     } catch (e) {
       alert("Error al guardar");
     }
-};
+  };
 
 
   return {

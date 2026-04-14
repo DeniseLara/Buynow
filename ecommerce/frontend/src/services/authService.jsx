@@ -27,7 +27,6 @@ export const registerUser = async (email, password, name) => {
   }
 };
 
-
 // Función para iniciar sesión con email y contraseña
 export const loginUser = async (email, password) => {
   try {
@@ -38,7 +37,6 @@ export const loginUser = async (email, password) => {
   }
 };
 
-
 // Función para cerrar sesión
 export const logoutUser = async () => {
   try {
@@ -48,18 +46,16 @@ export const logoutUser = async () => {
   }
 };
 
-
 // Función para obtener el usuario actual
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      resolve(user); // Devuelve el usuario autenticado (si existe)
+      resolve(user); // Devuelve el usuario autenticado 
     }, reject);
         
     return unsubscribe;
   });
 };
-
 
 // Función para obtener el ID del usuario actual
 export const getCurrentUserId = async () => {
@@ -67,21 +63,18 @@ export const getCurrentUserId = async () => {
   return user ? user.uid : null;
 };
 
-
 export const getUserProfile = async (userId) => {
   const userDoc = await getDoc(doc(db, "users", userId));
   if (userDoc.exists()) {
-    return userDoc.data(); // Devuelve {name, email, ...}
+    return userDoc.data(); 
   } else {
     return null;
   }
 };
 
-
 export const updateUserProfileImage = async (userId, newImageUrl) => {
   await updateDoc(doc(db, "users", userId), { profileImage: newImageUrl });
 };
-
 
 export const updateUserData = async (uid, data) => {
   await setDoc(doc(db, "users", uid), data, { merge: true });

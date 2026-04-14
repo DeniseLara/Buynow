@@ -5,7 +5,6 @@ import { useAuthContext } from './AuthContext';
 const FavoritesContext = createContext();
 export const useFavorites = () => useContext(FavoritesContext);
 
-
 export const FavoritesProvider = ({ children }) => {
   const { user, loading: authLoading } = useAuthContext();
   const [favorites, setFavorites] = useState([]);
@@ -30,7 +29,6 @@ export const FavoritesProvider = ({ children }) => {
     })();
   }, [user, authLoading]);
 
-
   useEffect(() => {
     if (loading || authLoading) return;
 
@@ -47,7 +45,6 @@ export const FavoritesProvider = ({ children }) => {
     return () => clearTimeout(timeout);
   }, [favorites, user, loading, authLoading]);
   
-
   const addToFavorites = (item) => {
     setFavorites((prev) => {
     if (prev.some((fav) => fav.id === item.id)) return prev;
@@ -55,23 +52,21 @@ export const FavoritesProvider = ({ children }) => {
     });
   };
 
-
   const removeFromFavorites = (id) => {
     setFavorites((prev) => prev.filter((item) => item.id !== id));
   };
 
   const isFavorite = (id) => favorites.some((item) => item.id === id);
 
-
-  if (loading || authLoading) return null;
-
+  
   return (
     <FavoritesContext.Provider
       value={{ 
         favorites, 
         addToFavorites, 
         removeFromFavorites, 
-        isFavorite 
+        isFavorite, 
+        loading
       }}
     >
       {children}

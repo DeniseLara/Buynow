@@ -8,7 +8,6 @@ export const getFavoritesFromFirestore = async (userId) => {
   return favSnap.exists() ? favSnap.data().items || [] : [];
 };
 
-  
 // Guardar favoritos en Firestore
 export const saveFavoritesToFirestore = async (userId, items) => {
   const favRef = doc(db, "users", userId, "favorite", "data");

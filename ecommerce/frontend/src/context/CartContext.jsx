@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect, useMemo } from 'react';
 import { loadCartFromFirebase, saveCartToFirebase }  from '../services/cartService'
-import { saveUserOrder } from '../services/ordersService'
 import { useAuthContext } from './AuthContext';
+import { saveUserOrder } from '../services/ordersService';
 
 const CartContext = createContext();
 
@@ -15,20 +15,32 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); 
   const [errorMessage, setErrorMessage] = useState(null);
 
+  // función para calular el total a pagar
+  const totals = useMemo(() => {
+    const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const shipping = subtotal > 50 || subtotal === 0 ? 0 : 5.99;
+    return {
+      subtotal: Number(subtotal.toFixed(2)), 
+      shipping: Number(shipping.toFixed(2)),
+      total: Number((subtotal + shipping).toFixed(2))
+    };
+  }, [cart]);
+
   // Escuchar cambios de autenticación y cargar carrito solo una vez por usuario
   useEffect(() => {
     if (!authLoading) {
       (async () => {
         if (!user) {
-          // Si no hay usuario, buscamos si dejó algo en el navegador (localStorage)
+          // Si no hay usuario, buscamos si dejó algo en el navegador 
           const localCart = JSON.parse(localStorage.getItem('guest_cart')) || [];
           setCart(localCart);
           setLoading(false);
           return;
-      }
+    }
 
     try {
       const cartData = await loadCartFromFirebase(user.uid);
+      console.log("Datos de Firebase:", cartData);
       setCart(cartData?.items || []);
     } catch (error) {
       setCart([]);
@@ -39,22 +51,22 @@ export const CartProvider = ({ children }) => {
     }     
   }, [user, authLoading]);
 
-
   // Guardar el carrito en Firebase solo cuando cambia
   useEffect(() => {
+    if (loading) return;
+    
     const timeout = setTimeout(() => {
       if (user?.uid) {
         saveCartToFirebase(user.uid, { items: cart });
       } else {
 
-        // Si es invitado, guardamos en el navegador
+        // Si el usuario no está logueado/registrado, guardamos el carrito en el navegador
         localStorage.setItem('guest_cart', JSON.stringify(cart));
       }
     }, 1000);
 
     return () => clearTimeout(timeout);
   }, [cart, user]);
-
 
   // Agregar un producto al carrito
   const addToCart = (item, quantity = 1) => {
@@ -76,29 +88,36 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-
-  const checkout = async (setShowPaymentForm, setShowSuccessModal) => {
+  const checkout = async () => {
     if (!user) {
       alert("Debes iniciar sesión para finalizar la compra");
       return;
     }
 
     try {
+      // Creamos la orden en Firestore antes de borrar el carrito
+      const orderId = await saveUserOrder(
+        user.uid, 
+        cart,           // Los productos actuales
+        totals,         // El objeto {subtotal, total, shipping}
+        "processing"    // Estado inicial
+      );
+
+      // limpiamos el carrito en local y en Firebase
       clearCart(); 
       await saveCartToFirebase(user.uid, { items: [] }); 
       return true;
     } catch (error) {
-      setErrorMessage("Ocurrió un error al completar la orden. Intenta nuevamente.");
-      return false
+      console.error(error);
+      setErrorMessage("Ocurrió un error al completar la orden.");
+      return false;
     }
   };
-
 
   // Eliminar un producto del carrito
   const removeFromCart = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
-  
 
   // Limpiar el carrito
   const clearCart = () => setCart([]);
@@ -106,21 +125,19 @@ export const CartProvider = ({ children }) => {
   const cartItemsCount = useMemo(() => {
     return cart.reduce((acc, item) => acc + item.quantity, 0);
   }, [cart])
-
-  if (loading || authLoading) {
-    return null;
-  }
+  
 
   return (
     <CartContext.Provider value={{ 
       cart, 
       cartItemsCount,
+      totals,
       addToCart, 
       removeFromCart, 
       clearCart, 
       checkout, 
       errorMessage, 
-      loading 
+      loading  
     }}>
       {children}
     </CartContext.Provider>

@@ -38,7 +38,6 @@ export const loadUserOrders = (userId, callback) => {
   );
 };
 
-
 // Guardar órdenes del usuario como una lista plana de productos
 export const saveUserOrder = async (userId, newItems, totals, status = "processing") => {
   const ordersCollection = collection(db, "users", userId, "orders"); 
@@ -50,12 +49,11 @@ export const saveUserOrder = async (userId, newItems, totals, status = "processi
     createdAt: serverTimestamp(),
     subtotal: totals.subtotal,
     totalPaid: totals.total, 
-    status // Lo guardamos como "pending" inicialmente
+    status 
   });
 
-  return docRef.id; // <--- ESTO ES VITAL: Retornar el ID del nuevo documento
+  return docRef.id; 
 };
-
 
 // Función para cancelar la orden
 export const cancelOrder = async (userId, orderId) => {
@@ -63,14 +61,13 @@ export const cancelOrder = async (userId, orderId) => {
 
   try {
     await updateDoc(orderRef, {
-      status: "canceled", // Cambia el estado a "canceled"
+      status: "canceled", 
       canceledAt: serverTimestamp(), // Guarda la fecha de cancelación
     });
   } catch (_) {
     throw new Error("Error al cancelar la orden");
   }
 };
-
 
 export const fetchUserOrdersOnce = async (userId) => {
   const ordersCollection = collection(db, "users", userId, "orders");
@@ -82,7 +79,6 @@ export const fetchUserOrdersOnce = async (userId) => {
     ...doc.data(),
   }));
 };
-
 
 // Función para actualizar el estado de la orden
 export const updateOrderStatus = async (userId, orderId, newStatus) => {

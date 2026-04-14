@@ -1,15 +1,13 @@
 import "./MyOrders.css";
+import { useState } from "react";
 import { useOrders } from "../../context/OrdersContext";
 import OrderCard from "../../components/orders/OrderCard";
 import Loading from '../../components/ui/Loading'
-import { useState } from "react";
 
 function MyOrders() {
   const { orders, loadingOrders } = useOrders();
   const [filterStatus, setFilterStatus] = useState("all");
   
-  if (loadingOrders) return <Loading/>
-
   // Filtrar órdenes
   const filteredOrders = filterStatus === "all" 
     ? orders 
@@ -21,6 +19,9 @@ function MyOrders() {
   const sortedOrders = [...filteredOrders].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
+
+  if (loadingOrders) return <Loading/>
+  if (!orders) return <p>No hay órdenes aún</p>
 
   return (
     <section className="my-orders section">
@@ -43,7 +44,10 @@ function MyOrders() {
             <div className="stat-card">
               <span className="stat-label">Total Spent</span>
               <span className="stat-value">
-                ${orders.reduce((total, order) => total + (order.totalPaid || 0), 0).toFixed(2)}
+                ${orders.reduce((total, order) => {
+                  const amount = Number(order.totalPaid);
+                  return total + (isNaN(amount) ? 0 : amount);
+                }, 0).toFixed(2)}
               </span>
             </div>
           </div>

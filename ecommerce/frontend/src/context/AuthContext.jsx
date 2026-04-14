@@ -45,7 +45,6 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe(); // Limpia el listener al desmontar
   }, []); 
 
-
   // Función para registrar usuario
   const signup = async (email, password, name) => {
     const newUser = await registerUser(email, password, name);
@@ -56,7 +55,6 @@ export const AuthProvider = ({ children }) => {
       }
     return newUser;
   };
-
 
   // Función para login
   const login = async (email, password) => {
@@ -69,7 +67,6 @@ export const AuthProvider = ({ children }) => {
     return loggedUser;
   };
 
-  
   // Función para logout
   const logout = async () => {
     await logoutUser();

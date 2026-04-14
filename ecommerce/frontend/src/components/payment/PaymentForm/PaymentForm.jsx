@@ -2,23 +2,20 @@ import styles from './PaymentForm.module.css';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { IoMdClose } from "react-icons/io";
-import { usePayment } from '../../../context/PaymentContext';
+
+import { saveUserOrder } from '../../../services/ordersService';
 import { useCart } from '../../../context/CartContext';
 import { useAuthContext } from '../../../context/AuthContext';
 import { processPayment } from '../../../services/paymentService';
 import fakeTestCards from '../../../data/fakeTestCards'
-import { saveUserOrder } from '../../../services/ordersService';
 
 function PaymentForm({ onSuccess, onClose }) {
-    const { totals } = usePayment()
-    const { user } = useAuthContext();
-    const { cart } = useCart();
-    const { 
-        paymentMethods, 
-        address, 
-        updateAddress,
-        shippingCost 
-    } = usePayment();
+    const { user, userData, updateProfile } = useAuthContext();
+    const { cart, totals } = useCart();
+
+    // Extraemos los datos de userData
+    const paymentMethods = userData?.paymentMethods || [];
+    const savedAddress = userData?.address || '';
 
     const {
         register,
@@ -29,7 +26,7 @@ function PaymentForm({ onSuccess, onClose }) {
         reset
     } = useForm({
         defaultValues: {
-            address: address || '',
+            address: savedAddress,
             cardId: ''
         }
     });
@@ -46,33 +43,31 @@ function PaymentForm({ onSuccess, onClose }) {
 
     // Sync address with context
     const handleAddressChange = (e) => {
-        updateAddress(e.target.value);
+        //updateAddress(e.target.value);
         setValue('address', e.target.value);
     };    
 
-    // Handle form submission
-    const onSubmit = async () => {
+    const onSubmit = async (data) => {
         try {
+            if (data.address !== userData?.address) {
+                await updateProfile({ address: data.address });
+            }
+
+            // Guardar la orden 
             const orderId = await saveUserOrder(user.uid, cart, totals);
             
-            const paymentIntent = await processPayment(
-                totals,
-                user.uid, 
-                orderId
-            );
+            // Procesar pago pasando solo los IDs necesarios
+            const paymentData = await processPayment(user.uid, orderId);
 
-            if (paymentIntent.status === 'succeeded') {
+            if (paymentData.clientSecret) {
                 await onSuccess(); 
                 reset();
-            } else {
-                throw new Error('El pago no fue exitoso');
             }
         } catch (error) {
-            throw new Error(error.message || 'Hubo un error al procesar el pago');
+            alert(error.message);
         }
     };
 
-    // Render single card view
     if (cardsToShow.length === 1) {
         const card = cardsToShow[0];
         return (
@@ -106,7 +101,7 @@ function PaymentForm({ onSuccess, onClose }) {
                         <span className={styles.required}>*</span>
                     </label>
                     <input
-                        className={`${styles.shippingInput} ${errors.address ? styles.errorInput : ''}`}
+                        className={`${styles.shippingInput} ${errors.savedAddress ? styles.errorInput : ''}`}
                         type="text"
                         id="address"
                         placeholder="Ingresa tu dirección de envío"
@@ -119,9 +114,9 @@ function PaymentForm({ onSuccess, onClose }) {
                         onChange: handleAddressChange
                         })}
                     />
-                    {errors.address && (
+                    {errors.savedAddress && (
                         <div className={styles.error} role="alert">
-                            {errors.address.message}
+                            {errors.savedAddress.message}
                         </div>
                     )}
                 </div>

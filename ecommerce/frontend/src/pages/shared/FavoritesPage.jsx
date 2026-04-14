@@ -1,9 +1,14 @@
 import './FavoritesPage.css'
 import { useFavorites } from "../../context/FavoritesContext";
 import ProductCard from "../../components/products/ProductCard";
+import Loading from '../../components/ui/Loading';
 
 function FavoritesPage() {
-  const { favorites } = useFavorites();
+  const { favorites, loading } = useFavorites();
+
+  if (loading) {
+    return <Loading/>
+  }
  
   return (
     <section className="favorites-page section" aria-labelledby="favorites-heading">
