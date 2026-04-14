@@ -30,13 +30,13 @@ El sitio cuenta con **10 páginas en total**, divididas entre **públicas** y **
 2. **Login** – Autenticación con Firebase.
 3. **Register** – Registro de nuevos usuarios.
 4. **Products** – Catálogo de productos con categorías.
-5. **Wishlist** – Lista de favoritos (funciona para usuarios autenticados y no autenticados).
-6. **Product Details** – Detalle de un producto con imagen, descripción, rating y opción para seleccionar cantidad y agregar al carrito.
+5. **Cart** – Muestra productos en el carrito con cálculo total y botón para pagar (solo usuarios autenticados pueden pagar).
+6. **Wishlist** – Lista de favoritos (funciona para usuarios autenticados y no autenticados).
+7. **Product Details** – Detalle de un producto con imagen, descripción, rating y opción para seleccionar cantidad y agregar al carrito.
 
 ### Páginas privadas (requieren login)
 
-7. **Home (usuario autenticado)** – Vista personalizada del home.
-8. **Cart** – Muestra productos en el carrito con cálculo total y botón para pagar.
+8. **Home (usuario autenticado)** – Vista personalizada del home.
 9. **Profile** – Perfil del usuario (email, dirección, métodos de pago, enlaces a órdenes y favoritos).
 10. **Orders** – Lista de órdenes simuladas del usuario con opción para cancelar.
 
