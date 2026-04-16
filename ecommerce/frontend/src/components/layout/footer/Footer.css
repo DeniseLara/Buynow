@@ -1,17 +1,14 @@
 .footer {
   background-color: var(--neutral-100);
   font-size: var(--fs-sm);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
-  
-.footer-content-principal{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 2rem;
+
+.footer-content {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 
+  repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem;
 }
 
 .logo-name {
@@ -33,6 +30,7 @@ button[type="submit"] {
   
 .footer-logo p {
   margin-top: 1rem;
+  width: 300px;
   font-size: var(--fs-sm);
   color: var(--neutral-700);
 }
@@ -106,16 +104,7 @@ button[type="submit"] {
   background-color: var(--primary-dark);
 }
   
-.footer-payment {
-  margin-top: 2rem;
-}
-  
-.footer-payment img {
-  height: auto;
-}
-  
 .footer-contact {
-  margin-top: 2rem;
   font-size: var(--fs-sm);
 }
   
@@ -127,7 +116,6 @@ button[type="submit"] {
 .footer-social {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
 }
 
 .footer-social-list{
@@ -146,72 +134,22 @@ button[type="submit"] {
 .social-icon:hover {
   color: var(--primary); 
 }
-
-.payment-logos {
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  justify-content: start;
-  flex-wrap: wrap;
-}
   
-.payment-logo {
-  width: 2.5rem;
-  height: 30px;
-  border-radius: 0.5rem;
-  object-fit: contain;
-}
-
 .footer-rights{
   font-size: var(--fx-xs);
   color: var(--neutral-700);
-  border-top: 1px solid var(--neutral-300);
   padding-top: 1.3rem;
   text-align: center;
   margin-top: 4rem;
 }
 
-.footer-side-content{
-  margin-bottom:1rem;
-}
-
 
 /* === RESPONSIVE === */
 @media (min-width:768px){  
-  .footer-content-principal{
-    flex-direction: row;
-    gap: 1rem;
-    margin-bottom: 6rem;
-  }
-
-  .footer-side-content{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5.2rem;
-  }
-
-  .footer-payment {
-    margin-top: 0rem;
-  }
-
-  .footer-social{
-    margin-top: 0rem;
-  }
-
-  .footer-contact {
-    margin-top: 0rem;
-  }
-
   .footer-logo{
     max-width: 35%;
   }
 }
 
-@media (min-width:1023px) {
-  .footer {
-    display: initial;
-  }
-}
 
   
