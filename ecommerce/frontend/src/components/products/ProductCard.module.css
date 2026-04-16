@@ -4,7 +4,7 @@
   overflow: hidden;
   border: 1px solid var(--neutral-300);
   display: flex;
-  flex: 0 0 100%;
+  flex: 0 0 70%;
   max-width: 100%;
   flex-direction: column;
   position: relative;
@@ -197,15 +197,15 @@
 }
 
 
-@media (min-width:540px) {
+@media (min-width:400px) {
   .card {
-    flex: 0 0 50%;
+    flex: 0 0 55%;
   }
 }
 
 @media (min-width: 768px) {
   .card {
-    flex: 0 0 35%;
+    flex: 0 0 30%;
   }
 }
 
