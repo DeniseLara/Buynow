@@ -2,6 +2,7 @@ import styles from './ProductInfo.module.css'
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useFavorites } from '../../../context/FavoritesContext';
+import { calculateDiscountedPrice, hasValidDiscount } from '../../../utils/priceHelpers';
 
 function ProductInfo({ product }) {
     const { removeFromFavorites, addToFavorites, isFavorite } = useFavorites();
@@ -14,6 +15,10 @@ function ProductInfo({ product }) {
         ? removeFromFavorites(product.id) 
         : addToFavorites(product);
     };
+
+    // Calculamos el precio con descuento
+    const discountedPrice = calculateDiscountedPrice(product.price, product.discountPercentage);
+    const hasDiscount = hasValidDiscount(product.discountPercentage);
 
     return (
         <section aria-labelledby="product-title">
@@ -35,23 +40,39 @@ function ProductInfo({ product }) {
                 </button>
             </div>
         
-        
             <h1 id="product-title">{product.title}</h1>
-            <p className={styles.price}>${product.price}</p>
-        
             <div className={styles.ratingContainer}>
+                <span className={styles.ratingNumber}>{product.rating}</span>
                 <div className={styles.rating}>
-                {[...Array(5)].map((_, i) =>
-                    i < rating ?(
-                        <AiFillStar key={i} color="#facc15" />
-                    ) : (
-                        <AiOutlineStar key={i} color="#facc15" />
-                    )
-                )}
+                    {[...Array(5)].map((_, i) =>
+                        i < rating ?(
+                            <AiFillStar key={i} color='#111827'/>
+                        ) : (
+                            <AiOutlineStar key={i} color='#111827'/>
+                        )
+                    )}
                 </div>
-            </div>   
+                <span className={styles.reviewCount}>
+                    ({product.reviews?.length || 0} reviews)
+                </span>
+            </div>  
+
+            <div className={styles.priceContainer}>
+                <span className={styles.currentPrice}>${discountedPrice}</span>
+                {hasDiscount && (
+                    <>
+                        <span className={styles.originalPrice}>${product.price}</span>
+                        <span className={styles.discountBadge}>
+                            {Math.round(product.discountPercentage)}% OFF
+                        </span>
+                    </>
+                )}
+            </div>
         
-            <p className={styles.description}>{product.description}</p>
+            <div className={styles.descriptionContainer}>
+                <span>Description</span>
+                <p className={styles.description}>{product.description}</p>
+            </div>
         </section>
     );
 }

@@ -11,7 +11,7 @@ export const useFeaturedProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(`${API_URL}?limit=6`);
+        const res = await axios.get(`${API_URL}?limit=12`);
         setProducts(res.data.products);
         setError(null);
       } catch (error) {

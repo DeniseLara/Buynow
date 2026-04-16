@@ -1,163 +1,216 @@
 .card {
   background-color: var(--background);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   overflow: hidden;
-  border: 1px solid #E0E0E0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  transition: transform .3s ease-in-out, 
-  border .3s ease-in-out, 
-  box-shadow .3s ease-in-out;
+  border: 1px solid var(--neutral-300);
   display: flex;
-  padding: 1rem 1.2rem;
+  flex: 0 0 100%;
+  max-width: 100%;
   flex-direction: column;
-  align-items: stretch;
-  will-change: transform;
-  justify-content: space-between;
-  text-align: center;
   position: relative;
+  transition: box-shadow 0.25s ease, transform 0.25s ease,
+  border-color 0.25s ease;
+  will-change: transform;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border: 1px solid transparent;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  border-color: var(--neutral-300);
 }
 
 .menuContainer {
-  display: inline-block;
-  padding: 1rem;
-  margin-left: 8px;
-}
-  
-.deleteButton {
-  background: transparent;
-  color: #2b2d42;
-  font-size: var(--fs-sm);
   position: absolute;
-  padding: 0.5rem;
-  right: 0.4rem;
-  top: 0.4rem;
-  transition: background-color .3s ease-in-out, 
-  border-radius .3s ease-in-out, 
-  padding .3s ease-in-out;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 2;
 }
 
-.deleteButton:hover{
-  background-color: #f2f2f2;
+.deleteButton {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  color: var(--neutral-700);
   border-radius: 50%;
-  padding: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: 1rem;
 }
-  
+
+.deleteButton:hover {
+  background: var(--background);
+  color: var(--neutral-900);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
 .dropdown {
   position: absolute;
-  top: 2.5rem;
-  right: 1.2rem;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  min-width: 130px;
   background-color: var(--background);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--neutral-300);
+  border-radius: 0.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   z-index: 10;
+  overflow: hidden;
 }
-  
+
 .dropdown button {
   background: none;
-  color: var(--text-color);
+  color: var(--error);
   font-size: var(--fs-sm);
-  padding: 0.5rem 0.8rem;
+  font-weight: 500;
+  padding: 0.55rem 0.9rem;
   width: 100%;
   text-align: left;
-  transition: background-color .3s ease;
+  border-radius: 0;
+  transition: background-color 0.2s ease;
 }
-  
+
 .dropdown button:hover {
-  background-color: #f5f5f5;
+  background-color: #fef2f2;
 }
 
 .media {
   width: 100%;
   aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--neutral-100);
   display: block;
-  position: relative;
+  margin: 0;
 }
-  
+
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
 }
-  
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.info {
+  padding: 0.75rem 0.9rem 0;
+}
+
 .title {
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
   font-weight: 500;
-  margin: 0.5rem 0 0.4rem;
-  color: var(--text-color);
-  display: -webkit-box;
-  -webkit-line-clamp: 1; 
-  -webkit-box-orient: vertical;
+  color: var(--neutral-700);
+  margin: 0;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: start;
   text-overflow: ellipsis;
 }
 
-.footer .price {
-  color: #1B3CFC;
-  font-size: var(--fs-sm);
-  font-weight: bold;
-}
-
-.price strong {
-  font-weight: 700;
-  font-size: var(--fs-md);
-  color: #1B3CFC;
-}
-  
-.addButton {
-  margin: 0;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  background-color: transparent;
-  border-radius: 38%;
-  padding: 0.4rem 0.8rem;
-  font-size: var(--fs-base);
-  position: relative;
-  overflow: hidden;
-  transition: background-color 0.3s ease-in-out, 
-  color 0.3s ease-in-out, 
-  border 0.3s ease-in-out;
-}
-
-.addButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  transition: left 0.3s ease;
-  z-index: -1;
-}
-
-.addButton:hover::before {
-  left: 0;
-}
-
-.addButton:focus,
-.addButton:active{
-  border: 2px solid var(--primary);
-}
-  
-.addButton:hover {
-  color: var(--background);
-  border: 2px solid var(--primary);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-}
-
-.footer{
+.footer {
   display: flex;
-  margin-top: 0.8rem;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem 0.9rem;
+  margin-top: auto;
 }
-  
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.finalPrice {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--neutral-900);
+  line-height: 1;
+}
+
+.priceWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.originalPrice {
+  font-size: var(--fs-sm);
+  color: var(--neutral-500);
+  text-decoration: line-through;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.saleInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: var(--fx-xs);
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.35rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.addButton {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  will-change: transform;
+  background-color: var(--primary);
+  color: #fff;
+  border: 2px solid var(--primary);
+  transition: background-color 0.2s ease, transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: var(--primary-dark);
+  border-color: 2px solid var(--primary-dark);
+  transform: scale(1.07);
+}
+
+.addButton:active {
+  transform: scale(0.96);
+  box-shadow: none;
+}
+
+
+@media (min-width:540px) {
+  .card {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    flex: 0 0 35%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    flex: 0 0 24%;
+  }
+}

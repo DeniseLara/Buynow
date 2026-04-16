@@ -5,6 +5,7 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useCart } from "../../context/CartContext";  
 import { useFavorites } from "../../context/FavoritesContext";
+import { calculateDiscountedPrice, hasValidDiscount } from '../../utils/priceHelpers';
 
 // Función para validar la URL de la imagen
 const isValidImageUrl = (url) => {
@@ -20,8 +21,6 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
   const { addToCart } = useCart();
   const { removeFromFavorites } = useFavorites();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  if (!product) return null;
 
   const productImage = isValidImageUrl(product.thumbnail || product.image)
     ? product.thumbnail || product.image
@@ -41,6 +40,9 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
     setMenuOpen(false);
   };
 
+  const hasDiscount = hasValidDiscount(product.discountPercentage);
+  const finalPrice = calculateDiscountedPrice(product.price, product.discountPercentage);
+  
   return (
     <article className={styles.card}>
       {isFavoriteCard && (
@@ -67,6 +69,12 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
         )}
         </div>
       )}
+
+      {hasDiscount && (
+        <span className={styles.discountBadge}>
+          {Math.round(product.discountPercentage)}% OFF
+        </span>
+      )}
         
       <Link 
         to="/products/details" 
@@ -79,27 +87,36 @@ function ProductCard({ product, allProducts, isFavoriteCard = false }) {
           alt={product.title}
           className={styles.image}
           loading="lazy"
-        /> 
-        <div className={styles.info}>
-          <h3 className={styles.title}>{product.title}</h3>
-        </div>      
+        />       
       </figure>
+
+      <div className={styles.info}>
+        <h3 className={styles.title}>{product.title}</h3>
+      </div>
     </Link>
    
     <footer className={styles.footer}>
-      <p className={styles.price}>
-        $ <strong>{product.price}</strong>
-      </p>
+        <div className={styles.priceContainer}>
+          {hasDiscount ? (
+            <div className={styles.priceWrapper}>
+              <span className={styles.originalPrice}>${product.price.toFixed(2)}</span>
+              <div className={styles.saleInfo}>
+                <strong className={styles.finalPrice}>${finalPrice}</strong>
+              </div>
+            </div>
+          ) : (
+            <strong className={styles.finalPrice}>${product.price.toFixed(2)}</strong>
+          )}
+        </div>
 
-      <button 
-        className={styles.addButton}
-        onClick={() => addToCart(product)}
-        aria-label={`add ${product.title} to cart`}
-        type="button"
-      >
-        <MdAddShoppingCart/>
-      </button>
-    </footer>
+        <button 
+          className={styles.addButton}
+          onClick={() => addToCart(product)}
+          aria-label={`add ${product.title} to cart`}
+        >
+          <MdAddShoppingCart/>
+        </button>
+      </footer>
   </article>
   );
 };

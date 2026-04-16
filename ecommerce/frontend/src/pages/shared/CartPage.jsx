@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useCart } from '../../context/CartContext'; 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 import Loading from '../../components/ui/Loading'
 import Cart from "../../components/cart/Cart";
@@ -11,6 +13,8 @@ import Modal from "../../components/payment/ModalForm/ModalForm";
 import PaymentSuccessModal from "../../components/payment/PaymentSuccessModal/PaymentSuccessModal";
 import OrderSummary from "../../components/cart/OrderSummary";
 import BackButton from '../../components/ui/BackButton';
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function CartPage() {  
   const { cart, checkout, loading } = useCart();
@@ -31,16 +35,15 @@ function CartPage() {
   };
 
   const handlePaymentSuccess = async () => {
-    // Limpiamos el carrito en la base de datos y estado 
-    const cleared = await checkout();
+    // Cerramos el formulario primero
+    setShowPaymentForm(false);
     
-    if (cleared) {
-        // Cerramos el formulario de pago
-        setShowPaymentForm(false);
-        // Mostramos el modal de éxito
-        setShowSuccessModal(true);
-    }
-  };
+    // Limpiamos el carrito 
+    await checkout(); 
+    
+    // Mostramos éxito
+    setShowSuccessModal(true);
+};
 
   if (loading) {
     return <Loading/>
@@ -72,10 +75,12 @@ function CartPage() {
         <Modal 
           isOpen={showPaymentForm}
         >
+          <Elements stripe={stripePromise}>
           <PaymentForm
             onClose={() => setShowPaymentForm(false)}
             onSuccess={handlePaymentSuccess}
           />
+          </Elements>
         </Modal>
 
         {showSuccessModal && (

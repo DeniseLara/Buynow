@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect, useMemo } from 'react';
 import { loadCartFromFirebase, saveCartToFirebase }  from '../services/cartService'
 import { useAuthContext } from './AuthContext';
-import { saveUserOrder } from '../services/ordersService';
+import { calculateDiscountedPrice } from '../utils/priceHelpers';
 
 const CartContext = createContext();
 
@@ -17,8 +17,14 @@ export const CartProvider = ({ children }) => {
 
   // función para calular el total a pagar
   const totals = useMemo(() => {
-    const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const subtotal = cart.reduce((acc, item) => {
+      // Calculamos el precio real (con descuento si aplica) de cada item
+      const realPrice = calculateDiscountedPrice(item.price, item.discountPercentage);
+      return acc + (Number(realPrice) * item.quantity);
+    }, 0);
+
     const shipping = subtotal > 50 || subtotal === 0 ? 0 : 5.99;
+
     return {
       subtotal: Number(subtotal.toFixed(2)), 
       shipping: Number(shipping.toFixed(2)),
@@ -89,27 +95,15 @@ export const CartProvider = ({ children }) => {
   };
 
   const checkout = async () => {
-    if (!user) {
-      alert("Debes iniciar sesión para finalizar la compra");
-      return;
-    }
-
+    // limpiar el estado local y de Firebase
     try {
-      // Creamos la orden en Firestore antes de borrar el carrito
-      const orderId = await saveUserOrder(
-        user.uid, 
-        cart,           // Los productos actuales
-        totals,         // El objeto {subtotal, total, shipping}
-        "processing"    // Estado inicial
-      );
-
-      // limpiamos el carrito en local y en Firebase
-      clearCart(); 
-      await saveCartToFirebase(user.uid, { items: [] }); 
+      clearCart();
+      if (user?.uid) {
+        await saveCartToFirebase(user.uid, { items: [] });
+      }
       return true;
     } catch (error) {
-      console.error(error);
-      setErrorMessage("Ocurrió un error al completar la orden.");
+      console.error("Error al limpiar carrito:", error);
       return false;
     }
   };

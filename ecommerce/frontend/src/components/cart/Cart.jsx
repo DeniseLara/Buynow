@@ -1,6 +1,7 @@
 import styles from './Cart.module.css';
 import { FiTrash2, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 import { useCart } from '../../context/CartContext';
+import { calculateDiscountedPrice } from '../../utils/priceHelpers';
 
 function Cart() {
   const { cart, cartItemsCount, removeFromCart, clearCart, addToCart } = useCart();
@@ -39,64 +40,66 @@ function Cart() {
       ) : (
         <>
           <ul className={styles.itemsList}>
-            {cart.map((item) => (
-              <li key={item.id} className={styles.item}>
-                <div className={styles.itemInfo}>
-                  <div className={styles.itemImage}>
-                    <img 
-                      src={item.thumbnail || item.image} 
-                      alt={item.title}
-                      onError={(e) => {
-                        e.target.src = "https://via.placeholder.com/80x80/2563eb/ffffff?text=Product";
-                      }}
-                    />
-                  </div>
-                  <div className={styles.itemDetails}>
-                    <h3 className={styles.itemTitle}>{item.title}</h3>
-                    {item.brand && (
-                      <p className={styles.itemBrand}>{item.brand}</p>
-                    )}
-                    <p className={styles.itemPrice}>
-                      ${(item.price * item.quantity).toFixed(2)}
-                      <span className={styles.unitPrice}>
-                        (${item.price.toFixed(2)} each)
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                
-                <div className={styles.itemActions}>
-                  <div className={styles.quantityControl}>
-                    <button 
-                      onClick={() => handleQuantityChange(item.id, -1)}
-                      className={styles.quantityButton}
-                      aria-label="Decrease quantity"
-                      type="button"
-                    >
-                      <FiMinusCircle />
-                    </button>
-                    <span className={styles.quantity}>{item.quantity}</span>
-                    <button 
-                      onClick={() => handleQuantityChange(item.id, 1)}
-                      className={styles.quantityButton}
-                      aria-label="Increase quantity"
-                      type="button"
-                    >
-                      <FiPlusCircle />
-                    </button>
+            {cart.map((item) => {
+              const discountedUnitPrice = calculateDiscountedPrice(item.price, item.discountPercentage);
+              const itemSubtotal = (Number(discountedUnitPrice) * item.quantity).toFixed(2);
+
+              return (
+                <li key={item.id} className={styles.item}>
+                  <div className={styles.itemInfo}>
+                    <div className={styles.itemImage}>
+                      <img 
+                        src={item.thumbnail || item.image} 
+                        alt={item.title}
+                        onError={(e) => {
+                          e.target.src = "https://via.placeholder.com/80x80/2563eb/ffffff?text=Product";
+                        }}
+                      />
+                    </div>
+                    <div className={styles.itemDetails}>
+                      <h3 className={styles.itemTitle}>{item.title}</h3>
+                      {item.brand && <p className={styles.itemBrand}>{item.brand}</p>}
+                      
+                      <p className={styles.itemPrice}>
+                        <strong>${itemSubtotal}</strong>
+                        
+                        <span className={styles.unitPrice}>
+                          (${discountedUnitPrice} each)
+                        </span>
+                      </p>
+                    </div>
                   </div>
                   
-                  <button 
-                    onClick={() => removeFromCart(item.id)} 
-                    className={styles.deleteButton}
-                    aria-label="Remove item from cart"
-                    type="button"
-                  >
-                    <FiTrash2 />
-                  </button>
-                </div>
-              </li>
-            ))}
+                  <div className={styles.itemActions}>
+                    <div className={styles.quantityControl}>
+                      <button 
+                        onClick={() => handleQuantityChange(item.id, -1)}
+                        className={styles.quantityButton}
+                        type="button"
+                      >
+                        <FiMinusCircle />
+                      </button>
+                      <span className={styles.quantity}>{item.quantity}</span>
+                      <button 
+                        onClick={() => handleQuantityChange(item.id, 1)}
+                        className={styles.quantityButton}
+                        type="button"
+                      >
+                        <FiPlusCircle />
+                      </button>
+                    </div>
+                    
+                    <button 
+                      onClick={() => removeFromCart(item.id)} 
+                      className={styles.deleteButton}
+                      type="button"
+                    >
+                      <FiTrash2 />
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
           
           <div className={styles.cartFooter}>

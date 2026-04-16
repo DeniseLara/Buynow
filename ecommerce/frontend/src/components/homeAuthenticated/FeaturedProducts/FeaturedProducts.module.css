@@ -17,10 +17,10 @@
 
 
 /* === RESPONSIVE === */
-@media (min-width: 1024px) {
+@media (min-width: 1050px) {
   .list {
     grid-template-columns: 
-    repeat(auto-fit, minmax(300px, 1fr));
+    repeat(auto-fit, minmax(230px, 1fr));
     padding: 0;
   }
 }

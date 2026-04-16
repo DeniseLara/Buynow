@@ -1,4 +1,3 @@
-//import { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from './context/AuthContext';
 
@@ -11,7 +10,7 @@ import Signup from "./pages/public/Signup";
 import Login from "./pages/public/Login";
 import Profile from "./pages/private/Profile";
 import ProductsPage from "./pages/shared/ProductsPage";
-import CartPageWrapper from "./CartPageWrapper";
+import CartPage from './pages/shared/CartPage'
 import ProductDetails from "./pages/shared/ProductDetails";
 import FavoritesPage from "./pages/shared/FavoritesPage";
 import MyOrders from "./pages/private/MyOrders";
@@ -51,7 +50,7 @@ function App() {
 
           <Route 
             path="/cart" 
-            element={<CartPageWrapper />} 
+            element={<CartPage />} 
           />
 
           <Route 

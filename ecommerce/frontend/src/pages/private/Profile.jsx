@@ -4,7 +4,6 @@ import { useProfile, ProfileProvider } from "../../context/ProfileContext";
 
 import ProfileHeader from "../../components/profile/ProfileHeader";
 import ShippingAddress from "../../components/profile/ShippingAddress";
-import PaymentMethods from "../../components/profile//PaymentMethods";
 import ViewLinks from "../../components/profile/ViewLinks";
 
 function ProfileContent() {
@@ -38,8 +37,6 @@ function ProfileContent() {
 
         <div className="profile-details">
           <ShippingAddress/>
- 
-          <PaymentMethods/>
 
           {editMode && (
             <div className="profile-action-buttons">

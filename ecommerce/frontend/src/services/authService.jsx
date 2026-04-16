@@ -18,7 +18,6 @@ export const registerUser = async (email, password, name) => {
     name,
     email: user.email,
     address: "",
-    paymentMethods: [],
   });
 
     return user; // El objeto del usuario registrado

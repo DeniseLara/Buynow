@@ -7,7 +7,6 @@ function Modal({ isOpen, children }) {
     <div className={styles.overlay} role="dialog" aria-modal="true">
       <div className={styles.content}>
         
-        {/* ENVUELVE EL CONTENIDO EN EL DIV DEL BODY */}
         <div className={styles.modalBody}>
           {children}
         </div>

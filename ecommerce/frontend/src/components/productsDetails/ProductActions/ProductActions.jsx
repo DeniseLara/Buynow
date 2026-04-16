@@ -19,7 +19,7 @@ function ProductActions({ product, quantity, onQuantityChange }) {
   return (
     <section className={styles.container}>
       <div className={styles.actions}>
-        <label className={styles.label} htmlFor="quantity">Quantity:</label>
+        <label className="sr-only" htmlFor="quantity">Quantity:</label>
         <div className={styles.quantityWrapper}>
            <button 
             type="button" 

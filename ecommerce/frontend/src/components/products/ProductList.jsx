@@ -37,12 +37,11 @@ function ProductList({
       ) : filteredProducts.length > 0 ? (
         <ul className={styles.list}>
           {filteredProducts.map((product) => (
-            <li key={product.sku} className={styles.item}>
-              <ProductCard  
+              <ProductCard 
+                key={product.sku}  
                 product={product} 
                 allProducts={filteredProducts}
               />
-            </li>
           ))}
         </ul> 
       ) : (
