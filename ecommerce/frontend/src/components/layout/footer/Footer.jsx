@@ -1,6 +1,6 @@
 import './Footer.css'; 
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/compra-logo.png';
+import logo from '../../../assets/compra-logo.webp';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 function Footer() {

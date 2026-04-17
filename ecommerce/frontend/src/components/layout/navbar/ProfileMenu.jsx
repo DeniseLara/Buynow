@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import Perfil from '../../../assets/profile.png';
+import Perfil from '../../../assets/profile.webp';
 
 export function ProfileMenu({ user }) {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
